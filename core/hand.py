@@ -3,19 +3,19 @@ from .owning import Owned
 
 class Hand(Owned):
     def __init__(self, name, owner, limit=3):
-        self.name = name
         self.owner(owner)
-        self.cards = []
+        self._name = name
+        self._cards = []
 
     def __str__(self):
-        return self.name
+        return self._name
 
     def add_card(self, card):
-        self.cards.append(card)
+        self._cards.append(card)
 
     def remove_card(self, card):
-        if card in self.cards:
-            self.cards.remove(card)
+        if card in self._cards:
+            self._cards.remove(card)
         else:
             raise (
                 ValueError(
