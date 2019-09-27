@@ -1,10 +1,10 @@
 class Owner:
     def __init__(self, name, color=None):
-        self.name = name
-        self.color = color
+        self._name = name
+        self._color = color
 
     def __str__(self):
-        return self.name
+        return self._name
 
     def color(self):
         return color
@@ -15,11 +15,11 @@ neutral_owner = Owner("neutral")
 
 class Owned:
     def __init__(self, owner=neutral_owner):
-        self.owner = owner
+        self._owner = owner
 
-    def owner(new_owner=None):
-        if new_owner:
-            new_owner, self.owner = self.owner, new_owner
-            return new_owner
+    def owner(self, new_owner=None):
+        if new_owner is None:
+            return self._owner
         else:
-            return self.owner
+            new_owner, self._owner = self._owner, new_owner
+            return new_owner

@@ -4,22 +4,22 @@ from .owning import Owned
 
 class Dice(Owned):
     def __init__(self, name, outcomes):
-        self.name = name
-        self.coutcomes = outcomes
-        self.last_outcome = None
+        self._name = name
+        self._outcomes = outcomes
+        self._last = None
 
     def __str__(self):
-        return self.name
+        return self._name
 
     def number_of_faces(self):
-        return len(self.outcomes)
+        return len(self._outcomes)
 
     def roll(self):
-        self.last_outcome = random_pick(self.outcomes)
-        return self.last_outcome
+        self._last = random_pick(self._outcomes)
+        return self._last
 
     def last_outcome(self):
-        if self.last_outcome is None:
+        if self._last is None:
             raise (
                 RuntimeError(
                     "Dice `"
@@ -28,4 +28,4 @@ class Dice(Owned):
                 )
             )
         else:
-            return self.last_outcome
+            return self._last
