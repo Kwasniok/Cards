@@ -3,7 +3,7 @@ from .owning import Owned
 
 class Hand(Owned):
     def __init__(self, name, owner, limit=3):
-        self.owner(owner)
+        Owned.__init__(self, owner=owner)
         self._name = name
         self._cards = []
 
