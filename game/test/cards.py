@@ -1,16 +1,16 @@
+import unittest
 from core.owning import Owner
 from core.card import Card
 from core.hand import Hand
 from core.dice import Dice
 from core.card_stack import Card_Stack
 from core.card_slot import Card_Slot
-from game.resource_types import LOGS, BRICKS, GRAIN, IRON, WOOL, GOLD
-from game.structure_cards import Street_Card, Settlement_Card, Town_Card
-from game.resource_cards import Resource_Card
-import unittest
+from ..resource_types import LOGS, BRICKS, GRAIN, IRON, WOOL, GOLD
+from ..structure_cards import Street_Card, Settlement_Card, Town_Card
+from ..resource_cards import Resource_Card
 
 
-class Cards_Test(unittest.TestCase):
+class Test(unittest.TestCase):
     def test_general(self):
         cards = [
             Street_Card(),
