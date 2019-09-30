@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from core.card import Card
-from game.resource_types import LOGS, BRICKS, GRAIN, IRON, WOOL, GOLD
+from .resource_types import LOGS, BRICKS, GRAIN, IRON, WOOL, GOLD
 
 
 class Structure_Card(Card):
