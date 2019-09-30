@@ -14,10 +14,10 @@ class Hand(Owned):
     def __contains__(self, card):
         return card in self._cards
 
-    def add_card(self, card):
+    def add(self, card):
         self._cards.append(card)
 
-    def remove_card(self, card):
+    def remove(self, card):
         if card in self._cards:
             self._cards.remove(card)
         else:
