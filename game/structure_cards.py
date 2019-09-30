@@ -9,7 +9,7 @@ class Structure_Card(Card):
 
     def text(self):
         return (
-            self.name
+            self._name
             + " ("
             + " ".join([res.name() for res in self.price()])
             + ")"
