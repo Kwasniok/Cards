@@ -6,14 +6,14 @@ from core.dice import Dice
 from core.card_stack import Card_Stack
 from core.card_slot import Card_Slot
 from ..resource_types import LOGS, BRICKS, GRAIN, IRON, WOOL, GOLD
-from ..structure_cards import Street_Card, Settlement_Card, Town_Card
+from ..structure_cards import Road_Card, Settlement_Card, Town_Card
 from ..resource_cards import Resource_Card
 
 
 class Test(unittest.TestCase):
     def test_general(self):
         cards = [
-            Street_Card(),
+            Road_Card(),
             Settlement_Card(),
             Town_Card(),
             Resource_Card(LOGS, 1, 0),

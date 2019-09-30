@@ -20,9 +20,9 @@ class Structure_Card(Card):
         pass
 
 
-class Street_Card(Structure_Card):
+class Road_Card(Structure_Card):
     def __init__(self):
-        Card.__init__(self, name="Street")
+        Card.__init__(self, name="Road")
 
     def price(self):
         return [BRICKS, BRICKS, LOGS]
