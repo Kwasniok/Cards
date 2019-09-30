@@ -1,0 +1,3 @@
+GRAY = "GRAY"
+BLACK = "BLACK"
+WHITE = "WHITE"
