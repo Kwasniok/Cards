@@ -7,5 +7,5 @@ class Event_Card(Card):
         Card.__init__(self, name)
 
     @abstractmethod
-    def on_dscovery(self, context):
+    def on_discovery(self, context):
         pass
