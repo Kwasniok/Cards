@@ -19,7 +19,7 @@ class Two_Sided_Stack:
         del self._data[0]
         return elem
 
-    def pop_left(self):
+    def pop_right(self):
         elem = self._data[-1]
         del self._data[-1]
         return elem
