@@ -11,12 +11,12 @@ class Expansion_Card(Card):
         pass
 
 
-class Action_Card(Card):
+class Action_Card(Expansion_Card):
     def __init__(self, name):
         Expansion_Card.__init__(self, name)
 
 
-class Building_Card(Card):
+class Building_Card(Expansion_Card):
     def __init__(self, name):
         Expansion_Card.__init__(self, name)
 
@@ -36,11 +36,11 @@ class Building_Card(Card):
         return
 
 
-class Small_Building_Card(Card):
+class Small_Building_Card(Expansion_Card):
     def __init__(self, name):
         Building_Card.__init__(self, name)
 
 
-class Large_Building_Card(Card):
+class Large_Building_Card(Expansion_Card):
     def __init__(self, name):
         Building_Card.__init__(self, name)
