@@ -12,6 +12,21 @@ class Card_Slot(Owned):
     def __str__(self):
         return self._name
 
+    def __repr__(self):
+        return (
+            "Card_Slot(name='"
+            + self._name
+            + "', owner="
+            + str(self._owner)
+            + ", possible_card_types="
+            + str(self._possible_card_types)
+            + ", limit="
+            + str(self._limit)
+            + ", cards="
+            + str(self._cards)
+            + ")"
+        )
+
     def __contains__(self, card):
         return card in self._cards
 
