@@ -19,3 +19,7 @@ class Game:
         for i in range(1, 5 + 1):
             stack = Card_Stack(name="expansion card stack " + str(i))
             self._expansion_card_stacks.append(stack)
+        self._road_card_stack = Card_Stack(name="road card stack")
+        self._settement_card_stack = Card_Stack(name="settlement card stack")
+        self._town_card_stack = Card_Stack(name="town card stack")
+        # TODO: fill card stacks
