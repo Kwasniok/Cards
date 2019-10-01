@@ -1,9 +1,13 @@
 from .owning import Owned
 
+
 class Card_Stack(Owned):
-    def __init__(self, name, cards):
+    def __init__(self, name, cards=None):
         self.name = name
-        self.cards = cards
+        if cards is None:
+            self._cards = []
+        else:
+            self.cards = cards
 
     def __str__(self):
         return self.name
