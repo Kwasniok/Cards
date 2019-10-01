@@ -20,6 +20,7 @@ class Test(unittest.TestCase):
         limit = 2
         h = Hand(name="test hand", owner=self.dummy_owner, limit=limit)
         h.owner()
+        self.assertTrue(h.size() == 0)
         c1 = Test_Card("test card 1")
         c2 = Test_Card("test card 2")
         c3 = Test_Card("test card 3")
