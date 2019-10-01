@@ -4,6 +4,7 @@ from .owning import Owned
 
 class Dice(Owned):
     def __init__(self, name, outcomes):
+        Owned.__init__(self)
         self._name = name
         self._outcomes = outcomes
         self._last = None
