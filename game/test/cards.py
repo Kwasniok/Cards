@@ -5,6 +5,10 @@ from ..cards import (
     Settlement_Card,
     Town_Card,
     Resource_Card,
+    Action_Card,
+    Small_Building_Card,
+    Large_Building_Card,
+    Event_Card,
 )
 
 
