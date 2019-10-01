@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from core.card import Card
+from game.card import Card
 from .resource_types import LOGS, BRICKS, GRAIN, IRON, WOOL, GOLD
 
 
@@ -7,24 +7,20 @@ class Structure_Card(Card):
     def __init__(self, name):
         Card.__init__(self, name=name)
 
-    def text(self):
+    def text(self, context):
         return (
             self._name
             + " ("
-            + " ".join([res.name() for res in self.price()])
+            + " ".join([res.name() for res in self.cost(context)])
             + ")"
         )
-
-    @abstractmethod
-    def price(self):
-        pass
 
 
 class Road_Card(Structure_Card):
     def __init__(self):
         Card.__init__(self, name="Road")
 
-    def price(self):
+    def cost(self, context):
         return [BRICKS, BRICKS, LOGS]
 
 
@@ -32,7 +28,7 @@ class Settlement_Card(Structure_Card):
     def __init__(self):
         Card.__init__(self, name="Settlement")
 
-    def price(self):
+    def cost(self, context):
         return [LOGS, WOOL, BRICKS, GRAIN]
 
 
@@ -40,5 +36,5 @@ class Town_Card(Structure_Card):
     def __init__(self):
         Card.__init__(self, name="Twon")
 
-    def price(self):
+    def cost(self, context):
         return [IRON, IRON, IRON, GRAIN, GRAIN]

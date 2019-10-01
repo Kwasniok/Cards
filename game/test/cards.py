@@ -13,14 +13,16 @@ from ..cards import (
 
 
 class Test(unittest.TestCase):
+    def setUp(self):
+        self._context = None
     def test_structure(self):
         cards = [Road_Card(), Settlement_Card(), Town_Card()]
         self.assertTrue(len(cards) > 2)
         for c in cards:
             self.assertTrue(isinstance(str(c), str))
-            self.assertTrue(isinstance(c.text(), str))
+            self.assertTrue(isinstance(c.text(self._context), str))
             # card name in card text (might not be a good idea)
-            self.assertTrue(str(c) in c.text())
+            self.assertTrue(str(c) in c.text(self._context))
 
     def test_resource(self):
         cards = [
@@ -34,6 +36,6 @@ class Test(unittest.TestCase):
         self.assertTrue(len(cards) > 2)
         for c in cards:
             self.assertTrue(isinstance(str(c), str))
-            self.assertTrue(isinstance(c.text(), str))
+            self.assertTrue(isinstance(c.text(self._context), str))
             # card name in card text (might not be a good idea)
-            self.assertTrue(str(c) in c.text())
+            self.assertTrue(str(c) in c.text(self._context))

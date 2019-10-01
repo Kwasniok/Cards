@@ -1,5 +1,5 @@
 from abc import abstractmethod
-from core.card import Card
+from game.card import Card
 
 
 class Expansion_Card(Card):
@@ -19,15 +19,6 @@ class Action_Card(Expansion_Card):
 class Building_Card(Expansion_Card):
     def __init__(self, name):
         Expansion_Card.__init__(self, name)
-
-    def mill_points(self, context):
-        return 0
-
-    def knight_points(self, context):
-        return 0
-
-    def win_points(self, context):
-        return 0
 
     def on_construction(self, context):
         return

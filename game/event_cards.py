@@ -1,5 +1,5 @@
 from abc import abstractmethod
-from core.card import Card
+from game.card import Card
 
 
 class Event_Card(Card):

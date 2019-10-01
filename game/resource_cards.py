@@ -1,4 +1,4 @@
-from core.card import Card
+from game.card import Card
 
 
 class Resource_Card(Card):
@@ -10,7 +10,7 @@ class Resource_Card(Card):
         self.counter = initial_count
         self.dice_number = dice_number
 
-    def text(self):
+    def text(self, context):
         return (
             str(self.resource_type.source_name())
             + " ["
