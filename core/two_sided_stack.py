@@ -24,11 +24,11 @@ class Two_Sided_Stack:
         del self._data[-1]
         return elem
 
-    def get_right(self):
-        return self._data[-1]
-
     def get_left(self):
         return self._data[0]
+
+    def get_right(self):
+        return self._data[-1]
 
     def __contains__(self, elem):
         return elem in self._data
