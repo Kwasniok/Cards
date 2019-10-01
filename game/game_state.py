@@ -1,5 +1,4 @@
 from itertools import cycle
-from core.color import BLACK, WHITE
 from core.util import random_pop
 from core.owning import Owner
 from core.dice import Dice
@@ -17,8 +16,6 @@ class Game_State:
         self._event_dice = Dice(
             name="number dice", outcomes=EVENT_DICE_OUTCOMES
         )
-        self._player1 = Player(name="player 1", color=BLACK)
-        self._player2 = Player(name="player 2", color=WHITE)
         self._expansion_card_stacks = None
         self._road_card_stack = None
         self._settement_card_stack = None
