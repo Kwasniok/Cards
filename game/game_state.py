@@ -10,7 +10,7 @@ from .events import EVENT_DICE_OUTCOMES
 from .player import Player
 
 
-class Game:
+class Game_State:
     def __init__(self, name):
         self._name = name
         self._number_dice = Dice(name="number dice", outcomes=range(1, 7))
