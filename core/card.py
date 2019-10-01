@@ -4,6 +4,7 @@ from .owning import Owned
 
 class Card(ABC, Owned):
     def __init__(self, name, face_up=False):
+        Owned.__init__(self)
         self._name = name
         self._face_up = face_up
 
