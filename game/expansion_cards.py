@@ -1,6 +1,7 @@
 from abc import abstractmethod
 from collections import Counter
 from game.card import Card
+from .resource_types import *
 
 
 class Expansion_Card(Card):
@@ -49,3 +50,17 @@ def register_expansion_card(card_class, amount):
 def get_all_expansion_cards():
     global expansion_card_histogram
     return list(Counter(expansion_card_histogram).elements())
+
+
+class Monastery(Small_Building_Card):
+    def __init__(self):
+        Small_Building_Card.__init__(self, "Monastery")
+
+    def cost(self, context):
+        return [LOGS, IRON, BRICKS]
+
+    def text(self, context):
+        return "Monastery"
+
+
+register_expansion_card(Monastery, 2)
