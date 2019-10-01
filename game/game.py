@@ -8,13 +8,18 @@ from .player import Player
 
 
 class Game:
-    def __init__(self):
+    def __init__(self, name):
+        self._name = name
         self._number_dice = Dice(name="number dice", outcomes=range(1, 7))
         self._event_dice = Dice(
             name="number dice", outcomes=EVENT_DICE_OUTCOMES
         )
         self._player1 = Player(name="player 1", color=BLACK)
         self._player2 = Player(name="player 2", color=WHITE)
+        self.reset()
+
+    def __str__(self):
+        return self._name
         self._expansion_card_stacks = []
         for i in range(1, 5 + 1):
             stack = Card_Stack(name="expansion card stack " + str(i))
