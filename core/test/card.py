@@ -21,6 +21,7 @@ class Test(unittest.TestCase):
 
     def test_general(self):
         c = Test_Card("test derived", True)
+        c.owner()
         self.assertIsInstance(str(c), str)
         self.assertTrue(c.is_face_up())
         c.toggle_face()

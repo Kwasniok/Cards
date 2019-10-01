@@ -8,6 +8,7 @@ class Test(unittest.TestCase):
         F = 6
         outcomes = range(1, F + 1)
         d = Dice(name="d6", outcomes=outcomes)
+        d.owner()
         # roll / last outcome
         self.assertEqual(d.number_of_faces(), F)
         with self.assertRaises(RuntimeError):
