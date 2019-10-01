@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 from .owning import Owned
 
 
@@ -22,7 +22,3 @@ class Card(ABC, Owned):
 
     def toggle_face(self):
         self._face_up = not self._face_up
-
-    @abstractmethod
-    def text(self):
-        pass

@@ -6,9 +6,6 @@ class Test_Card(Card):
     def __init__(self, name, face_up=False):
         Card.__init__(self, name, face_up=face_up)
 
-    def text(self):
-        return "test"
-
 
 class Test(unittest.TestCase):
     def test_abstract(self):
