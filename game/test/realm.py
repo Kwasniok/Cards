@@ -1,7 +1,7 @@
 import unittest
 from core.directions import RIGHT, LEFT
 from core.owning import Owner
-from ..cards import Road_Card, Settlement_Card, Town_Card, Resource_Card
+from ..all_cards import Road_Card, Settlement_Card, Town_Card, Resource_Card
 from ..resource_types import *
 from ..realm import Realm
 

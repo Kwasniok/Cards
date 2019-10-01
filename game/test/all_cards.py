@@ -1,6 +1,6 @@
 import unittest
 from ..resource_types import LOGS, BRICKS, GRAIN, IRON, WOOL, GOLD
-from ..cards import (
+from ..all_cards import (
     Road_Card,
     Settlement_Card,
     Town_Card,

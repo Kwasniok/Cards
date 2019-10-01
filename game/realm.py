@@ -2,7 +2,7 @@ from core.two_sided_stack import Two_Sided_Stack
 from core.directions import RIGHT, LEFT
 from core.owning import Owned
 from core.card_slot import Card_Slot
-from .cards import Road_Card, Settlement_Card
+from .all_cards import Road_Card, Settlement_Card
 
 
 class Realm(Owned):

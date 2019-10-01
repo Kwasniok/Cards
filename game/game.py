@@ -4,7 +4,7 @@ from core.util import random_pop
 from core.owning import Owner
 from core.dice import Dice
 from core.card_stack import Card_Stack
-from .cards import *
+from .all_cards import *
 from .expansion_cards import get_all_expansion_cards
 from .events import EVENT_DICE_OUTCOMES
 from .player import Player
