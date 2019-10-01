@@ -64,3 +64,17 @@ class Monastery(Small_Building_Card):
 
 
 register_expansion_card(Monastery, 2)
+
+
+class Storage(Small_Building_Card):
+    def __init__(self):
+        Small_Building_Card.__init__(self, "Storage")
+
+    def cost(self, context):
+        return [LOGS, BRICKS]
+
+    def text(self, context):
+        return "Storage"
+
+
+register_expansion_card(Storage, 2)
