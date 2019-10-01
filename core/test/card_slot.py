@@ -50,7 +50,7 @@ class Test(unittest.TestCase):
         with self.assertRaises(ValueError):
             cs.add(c1c)
         # not present
-        with self.assertRaises(KeyError):
+        with self.assertRaises(ValueError):
             cs.remove(c1c)
         # supports
         self.assertTrue(cs.supports(c1c))

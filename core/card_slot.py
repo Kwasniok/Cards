@@ -7,7 +7,7 @@ class Card_Slot(Owned):
         self._owner = owner
         self._possible_card_types = possible_card_types
         self._limit = limit
-        self._cards = set()
+        self._cards = []
 
     def __str__(self):
         return self._name
@@ -61,10 +61,16 @@ class Card_Slot(Owned):
                 + str(self)
                 + "` (card allready is in this stack)."
             )
-        self._cards.add(card)
+        self._cards.append(card)
 
     def remove(self, card):
         self._cards.remove(card)
 
-    def get_cards(self):
-        return self._cards
+    def __getitem__(self, index):
+        return self._cards[index]
+
+    def __iter__(self):
+        return iter(self._cards)
+
+    def get_top(self):
+        return self._cards[-1]
