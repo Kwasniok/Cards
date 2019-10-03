@@ -11,7 +11,8 @@ class Application:
 
     def destroy_all_windows(self):
         for window in self._windows:
-            self.destroy_window(window)
+            window.destroy()
+        self._windows = []
 
     def destroy(self):
         self.destroy_all_windows()
@@ -20,17 +21,12 @@ class Application:
     def get_master(self):
         return self._master
 
-    def new_window(self, title, width, height, x, y):
-        window = Window(self, title=title, width=width, height=height, x=x, y=y)
+    def register_window(self, window):
         self._windows.append(window)
-        return window
 
-    def destroy_window(self, window):
+    def unregister_window(self, window):
         if window in self._windows:
-            window.destroy()
             self._windows.remove(window)
-        else:
-            raise (ValueError("Cannot destroy unregistered window."))
 
     def run(self):
         self._master.mainloop()

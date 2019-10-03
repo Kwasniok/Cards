@@ -5,6 +5,7 @@ from tkinter import messagebox
 class Window:
     def __init__(self, application, title, width, height, x, y):
         self._application = application
+        self._application.register_window(self)
         self._toplevel = tk.Toplevel(
             self._application.get_master(), width=width, height=height
         )
@@ -13,6 +14,7 @@ class Window:
         self._toplevel.protocol("WM_DELETE_WINDOW", lambda: self.at_quit())
 
     def destroy(self):
+        self._application.unregister_window(self)
         if not (self._toplevel is None):
             self._toplevel.destroy()
             self._toplevel = None
