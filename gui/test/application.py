@@ -10,6 +10,9 @@ class Test(unittest.TestCase):
 
     def test_general(self):
         self._application = Application()
+        # window = Window(
+        #     application, title="A", x=1000, y=100, width=400, height=400
+        # )
         # self._application.run()
         self._application.destroy()
         self._application = None
