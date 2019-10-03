@@ -13,9 +13,7 @@ class Game_State:
     def __init__(self, name):
         self._name = name
         self._number_dice = Dice(name="number dice", outcomes=range(1, 7))
-        self._event_dice = Dice(
-            name="number dice", outcomes=EVENT_DICE_OUTCOMES
-        )
+        self._event_dice = Dice(name="event dice", outcomes=EVENT_DICE_OUTCOMES)
         self._expansion_card_stacks = None
         self._road_card_stack = None
         self._settement_card_stack = None
