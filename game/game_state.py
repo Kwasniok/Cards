@@ -14,6 +14,7 @@ class Game_State:
         self._name = name
         self._number_dice = Dice(name="number dice", outcomes=range(1, 7))
         self._event_dice = Dice(name="event dice", outcomes=EVENT_DICE_OUTCOMES)
+        self._number_of_expansion_card_stacks = 5
         self._expansion_card_stacks = None
         self._road_card_stack = None
         self._settement_card_stack = None
@@ -27,7 +28,7 @@ class Game_State:
         self._number_dice.roll()
         self._event_dice.roll()
         self._expansion_card_stacks = []
-        for i in range(1, 5 + 1):
+        for i in range(1, self._number_of_expansion_card_stacks + 1):
             stack = Card_Stack(name="expansion card stack " + str(i))
             self._expansion_card_stacks.append(stack)
         self._road_card_stack = Card_Stack(name="road card stack")
