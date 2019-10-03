@@ -13,8 +13,9 @@ class Window:
         self._toplevel.protocol("WM_DELETE_WINDOW", lambda: self.at_quit())
 
     def destroy(self):
-        self._toplevel.destroy()
-        self._toplevel = None
+        if not (self._toplevel is None):
+            self._toplevel.destroy()
+            self._toplevel = None
 
     def quit(self):
         self.destroy()
