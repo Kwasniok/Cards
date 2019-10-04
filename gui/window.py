@@ -7,7 +7,7 @@ class Window:
         self._application = application
         self._application.register_window(self)
         self._toplevel = tk.Toplevel(
-            self._application.get_master(), width=width, height=height
+            self._application.get_tk_root(), width=width, height=height
         )
         self._toplevel.geometry("%dx%d+%d+%d" % (width, height, x, y))
         self._toplevel.title(title)

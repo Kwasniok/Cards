@@ -7,7 +7,7 @@ from .window import Window
 class Application:
     def __init__(self):
         Root.register_application(self)
-        self._master = Root.get_root()
+        self._tk_root = Root.get_root()
         self._windows = []
         self._frame_updater = Updater()
 
@@ -21,8 +21,8 @@ class Application:
         self.destroy_all_windows()
         Root.unregister_application()
 
-    def get_master(self):
-        return self._master
+    def get_tk_root(self):
+        return self._tk_root
 
     def get_frame_updater(self):
         return self._frame_updater
@@ -42,8 +42,8 @@ class Application:
         # main loop
         while len(self._windows) > 0:
             self._frame_updater.update_all()
-            self._master.update_idletasks()
-            self._master.update()
+            self._tk_root.update_idletasks()
+            self._tk_root.update()
 
     def quit(self):
         for window in self._windows:
