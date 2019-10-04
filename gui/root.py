@@ -21,3 +21,7 @@ class Root:
             # disable default window
             Root._root.withdraw()
         return Root._root
+
+    @staticmethod
+    def get_application():
+        return Root._application
