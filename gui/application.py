@@ -30,3 +30,7 @@ class Application:
 
     def run(self):
         self._master.mainloop()
+
+    def quit(self):
+        for window in self._windows:
+            window.close()
