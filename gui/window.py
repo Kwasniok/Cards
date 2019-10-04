@@ -11,7 +11,7 @@ class Window:
         )
         self._toplevel.geometry("%dx%d+%d+%d" % (width, height, x, y))
         self._toplevel.title(title)
-        self._toplevel.protocol("WM_DELETE_WINDOW", lambda: self.at_quit())
+        self._toplevel.protocol("WM_DELETE_WINDOW", lambda: self.at_close())
 
     def destroy(self):
         self._application.unregister_window(self)
@@ -19,11 +19,11 @@ class Window:
             self._toplevel.destroy()
             self._toplevel = None
 
-    def quit(self):
+    def close(self):
         self.destroy()
 
-    def at_quit(self):
+    def at_close(self):
         if messagebox.askokcancel(
-            "Quit Window", "Do you want to quit this window?"
+            "Close Window", "Do you want to close this window?"
         ):
-            self.quit()
+            self.close()

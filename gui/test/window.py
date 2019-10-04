@@ -17,8 +17,9 @@ class Test(unittest.TestCase):
             x=0,
             y=0,
         )
-        w.quit()
+        w.close()
         w.destroy()
+        self.assertTrue(hasattr(w, "at_close"))
 
     def tearDown(self):
         self._application.destroy()
