@@ -32,3 +32,4 @@ class Updater:
     def update_all(self):
         for obj in self._updatables:
             obj.on_update()
+        return True
