@@ -17,9 +17,7 @@ class Updater:
     def register(self, updatable):
         if not isinstance(updatable, Updatable):
             raise (
-                RuntimeError(
-                    "Cannot register non Updatable object in an updater."
-                )
+                TypeError("Cannot register non Updatable object in an updater.")
             )
         if not (updatable in self._updatables):
             self._updatables.append(updatable)
