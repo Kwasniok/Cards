@@ -22,7 +22,7 @@ class Test(unittest.TestCase):
         updater = FPS_Updater(fps_bound=fps_bound)
         updatable = Test_Updatable()
         updater.register(updatable)
-        N = 100
+        N = 25
         i = 0
         t0 = time.time()
         while i < N:
@@ -31,6 +31,5 @@ class Test(unittest.TestCase):
                 i += 1
         t1 = time.time()
         fps_real = float(N) / (t1 - t0)
-        print(fps_real)
         self.assertTrue(fps_bound > fps_real)
         updater.clear()
