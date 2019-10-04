@@ -14,7 +14,7 @@ class Updater:
     def __init__(self):
         self._updatables = []
 
-    def register_updatable(self, updatable):
+    def register(self, updatable):
         if not isinstance(updatable, Updatable):
             raise (
                 RuntimeError(
@@ -24,7 +24,7 @@ class Updater:
         if not (updatable in self._updatables):
             self._updatables.append(updatable)
 
-    def unregister_updatable(self, updatable):
+    def unregister(self, updatable):
         if updatable in self._updatables:
             self._updatables.remove(updatable)
 
