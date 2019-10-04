@@ -29,7 +29,14 @@ class Application:
             self._windows.remove(window)
 
     def run(self):
-        self._master.mainloop()
+        if len(self._windows) == 0:
+            raise (
+                RuntimeError("Application needs at least one window to run.")
+            )
+        # main loop
+        while len(self._windows) > 0:
+            self._master.update_idletasks()
+            self._master.update()
 
     def quit(self):
         for window in self._windows:
