@@ -38,6 +38,24 @@ python main.py
 to run the script.
 
 
+# Tests
+## Unittests
+Run all unit tests via
+```
+cd Cards
+python run_all_unittests.py
+```
+
+## Test/Example
+Run a test/example via
+```
+cd Cards
+python -m test.<test>
+```
+where `<test>` might be the name of any [test module](test).
+*Note: Remeber to strip the file extension `.py` like in `example_test.py` --> `example_test`.*
+
+
 # Update
 Pull via
 ```
