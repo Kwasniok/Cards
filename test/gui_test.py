@@ -44,7 +44,8 @@ class Test_Window(Window, Updatable):
 
     def destroy(self):
         self._image = None
-        self._canvas.destroy()
+        if not (self._canvas is None):
+            self._canvas.destroy()
         self._canvas = None
         Window.destroy(self)
 
