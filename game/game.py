@@ -12,3 +12,12 @@ class Game:
 
     def __str__(self):
         return self._name
+
+    def get_player1(self):
+        return self._player1
+
+    def get_player2(Self):
+        return self._player2
+
+    def get_game_state(self):
+        return self._game_state
