@@ -1,10 +1,8 @@
-from gui.application import Application
-from gui.window import Window
+from game.game_application import Game_Application
 
 
 def main():
-    application = Application()
-    win = Window(application, title="Game", x=100, y=100, width=500, height=500)
+    application = Game_Application()
     application.run()
     application.quit()
 
