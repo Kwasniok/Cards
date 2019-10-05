@@ -32,7 +32,8 @@ class Game_Window(Window, Updatable):
         self._top_bar_rectangle_id = None
         self._player1_text_id = None
         self._player2_text_id = None
-        self._canvas.destroy()
+        if not (self._canvas is None):
+            self._canvas.destroy()
         self._canvas = None
         Window.destroy(self)
 
