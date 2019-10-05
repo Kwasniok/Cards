@@ -1,7 +1,7 @@
 import unittest
 import time
 from ..update import Updatable
-from ..fps_updater import FPS_Updater
+from ..frequency_updater import Frequency_Updater
 
 
 class Test(unittest.TestCase):
@@ -18,8 +18,8 @@ class Test(unittest.TestCase):
             def on_update(self):
                 self._counter += 1
 
-        fps_bound = 100
-        updater = FPS_Updater(fps_bound=fps_bound)
+        max_ups = 100
+        updater = Frequency_Updater(max_ups=max_ups)
         updatable = Test_Updatable()
         updater.register(updatable)
         N = 25
@@ -30,6 +30,6 @@ class Test(unittest.TestCase):
             if updater.update_all():
                 i += 1
         t1 = time.time()
-        fps_real = float(N) / (t1 - t0)
-        self.assertTrue(fps_bound > fps_real)
+        ups_real = float(N) / (t1 - t0)
+        self.assertTrue(max_ups > ups_real)
         updater.clear()

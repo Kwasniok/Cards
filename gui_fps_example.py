@@ -29,7 +29,7 @@ class Test_Updatable(Updatable):
 
 
 def main():
-    application = Application(fps_bound=60)
+    application = Application(max_fps=60)
     window = Window(application, title="A", x=100, y=100, width=150, height=150)
     button = tk.Button(window._toplevel, text="text", command=on_click)
     button.grid()

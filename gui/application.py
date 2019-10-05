@@ -1,16 +1,16 @@
 import tkinter as tk
 from .root import Root
 from .update import Updater
-from .fps_updater import FPS_Updater
+from .frequency_updater import Frequency_Updater
 from .window import Window
 
 
 class Application:
-    def __init__(self, fps_bound=60):
+    def __init__(self, max_fps=60):
         Root.register_application(self)
         self._tk_root = Root.get_root()
         self._windows = []
-        self._frame_updater = FPS_Updater(fps_bound=fps_bound)
+        self._frame_updater = Frequency_Updater(max_ups=max_fps)
 
     def destroy_all_windows(self):
         for window in self._windows:
