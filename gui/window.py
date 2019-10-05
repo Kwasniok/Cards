@@ -21,6 +21,9 @@ class Window:
             self._toplevel.destroy()
             self._toplevel = None
 
+    def get_application(self):
+        return self._application
+
     def get_tk_toplevel(self):
         return self._toplevel
 
