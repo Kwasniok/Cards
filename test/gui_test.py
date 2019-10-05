@@ -46,7 +46,7 @@ class Test_Window(Window, Updatable):
         self._image = None
         self._canvas.destroy()
         self._canvas = None
-        gui.window.Window.destroy(self)
+        Window.destroy(self)
 
     def on_update(self):
         self._counter += 1
