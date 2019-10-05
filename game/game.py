@@ -16,7 +16,7 @@ class Game:
     def get_player1(self):
         return self._player1
 
-    def get_player2(Self):
+    def get_player2(self):
         return self._player2
 
     def get_game_state(self):
