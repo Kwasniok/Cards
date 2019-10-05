@@ -21,7 +21,6 @@ class Game_Window(Window, Updatable):
         self.make_non_resizable()
         self.center()
         self.set_icon("res/game_icon.gif")
-        self._counter = 0
         self._canvas = tk.Canvas(self.get_tk_toplevel())
         self._canvas.pack(expand=True, fill=tk.BOTH)  # fill parent
         self._top_bar_rectangle_id = None
