@@ -7,7 +7,7 @@ class Owner:
         return self._name
 
     def color(self):
-        return color
+        return self._color
 
 
 neutral_owner = Owner("neutral")
