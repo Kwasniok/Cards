@@ -22,6 +22,11 @@ class Window:
     def get_tk_toplevel(self):
         return self._toplevel
 
+    def make_resizable(self):
+        self._toplevel.resizable(width=True, height=True)
+
+    def make_non_resizable(self):
+        self._toplevel.resizable(width=False, height=False)
     def close(self):
         self.destroy()
 
