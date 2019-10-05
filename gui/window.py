@@ -30,6 +30,14 @@ class Window:
     def make_non_resizable(self):
         self._toplevel.resizable(width=False, height=False)
 
+    def center(self):
+        self._toplevel.update_idletasks()
+        width = self._toplevel.winfo_width()
+        height = self._toplevel.winfo_height()
+        x = (self._toplevel.winfo_screenwidth() - width) / 2
+        y = (self._toplevel.winfo_screenheight() - height) / 2
+        self._toplevel.geometry("%dx%d+%d+%d" % (width, height, x, y))
+
     def set_icon(self, image_path):
         self._icon_image = tk.PhotoImage(file=image_path)
         self._toplevel.iconphoto(self._icon_image, self._icon_image)
