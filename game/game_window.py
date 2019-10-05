@@ -4,12 +4,12 @@ from gui.update import Updatable
 
 
 class Game_Window(Window, Updatable):
-    def __init__(self, application, x, y):
+    def __init__(self, game_application, x, y):
         width = 512
         height = 512
         Window.__init__(
             self,
-            application=application,
+            application=game_application,
             title="Game Window",
             width=width,
             height=height,
