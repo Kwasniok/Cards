@@ -15,11 +15,14 @@ class Pulsed_Trigger(Trigger):
 
     _active_pulsed_triggers = []
 
-    def __init__(self, max_pps):
+    def __init__(self, max_pps, starts_stopped=False):
         Trigger.__init__(self)
         self._time_of_next_pull = None
         self._max_pps = max_pps
-        self.restart()
+        if starts_stopped:
+            self.stop()
+        else:
+            self.restart()
 
     def restart(self):
         if not (self in Pulsed_Trigger._active_pulsed_triggers):
