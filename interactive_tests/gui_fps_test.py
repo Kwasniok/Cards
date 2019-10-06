@@ -38,6 +38,7 @@ def main():
     )
     application.run()
     application.get_next_frame_trigger().unregister(triggered)
+    application.destroy()
 
 
 if __name__ == "__main__":

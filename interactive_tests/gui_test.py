@@ -57,6 +57,7 @@ def main():
     application = Application()
     window = Test_Window(application, x=100, y=100)
     application.run()
+    application.destroy()
 
 
 if __name__ == "__main__":
