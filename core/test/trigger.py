@@ -7,7 +7,7 @@ class Listener:
         self._pulled = 0
 
     def on_pull(self):
-        self.pulled += 1
+        self._pulled += 1
 
 
 class Test(unittest.TestCase):
