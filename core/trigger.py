@@ -1,4 +1,4 @@
-from .listeining import Listenable
+from .listening import Listenable, listenable
 
 
 class Trigger(Listenable):
