@@ -2,6 +2,7 @@ import unittest
 from core.directions import RIGHT, LEFT
 from core.owning import Owner
 from ..all_cards import Road_Card, Settlement_Card, Town_Card, Resource_Card
+from ..expansion_cards import Storage_Card
 from ..resource_types import *
 from ..realm import Realm
 
@@ -9,59 +10,37 @@ from ..realm import Realm
 class Test(unittest.TestCase):
     def setUp(self):
         self.dummy_owner = Owner(name="dummy owner")
+        self._context = None
 
     def test_general(self):
         r = Realm(name="realm", owner=self.dummy_owner)
         # realm state: S-R-S (R:Road, S:Settlement)
-        road1 = Road_Card()
-        road2 = Road_Card()
-        settlement1 = Settlement_Card()
-        settlement2 = Settlement_Card()
-        res1 = Resource_Card(LOGS, 1, 0)
-        # first extension must be a road
-        with self.assertRaises(ValueError):
-            r.extend(settlement1, RIGHT)
-        with self.assertRaises(ValueError):
-            r.extend(settlement1, LEFT)
-        # extend with road to the right
-        r.extend(road1, RIGHT)
-        # realm state: S-R-S-R (R:Road, S:Settlement)
-        # no reuse of cards
-        with self.assertRaises(ValueError):
-            r.extend(road1, RIGHT)
-        # road needs settlement or town
-        with self.assertRaises(ValueError):
-            r.extend(road2, RIGHT)
-        # extend with road to the left
-        r.extend(road2, LEFT)
-        # realm state: R-S-R-S-R (R:Road, S:Settlement)
-        # extend with settlement to the right
-        r.extend(settlement1, RIGHT)
-        # realm state: R-S-R-S-R-S (R:Road, S:Settlement)
-        # no reuse of cards
-        with self.assertRaises(ValueError):
-            r.extend(settlement1, RIGHT)
-        # settlement needs road
-        with self.assertRaises(ValueError):
-            r.extend(settlement2, RIGHT)
-        # extend with settlement to the left
-        r.extend(settlement2, LEFT)
-        # realm state: S-R-S-R-S-R (R:Road, S:Settlement)
         # check state
-        structure_slots = r.get_structure_slots()
-        self.assertTrue(structure_slots[0].is_empty())
-        self.assertTrue(structure_slots[1].is_full())
-        self.assertIsInstance(structure_slots[1].get_top(), Settlement_Card)
-        self.assertTrue(structure_slots[2].is_full())
-        self.assertIsInstance(structure_slots[2].get_top(), Road_Card)
-        self.assertTrue(structure_slots[3].is_full())
-        self.assertIsInstance(structure_slots[3].get_top(), Settlement_Card)
-        self.assertTrue(structure_slots[4].is_full())
-        self.assertIsInstance(structure_slots[4].get_top(), Road_Card)
-        self.assertTrue(structure_slots[5].is_full())
-        self.assertIsInstance(structure_slots[5].get_top(), Settlement_Card)
-        self.assertTrue(structure_slots[6].is_full())
-        self.assertIsInstance(structure_slots[6].get_top(), Road_Card)
-        self.assertTrue(structure_slots[7].is_full())
-        self.assertIsInstance(structure_slots[7].get_top(), Settlement_Card)
-        self.assertTrue(structure_slots[8].is_empty())
+        slot_grid = r.get_card_slot_grid()
+        self.assertEquals(len(slot_grid), 5)
+        card_slot_grid = r.get_card_slot_grid()
+        for column in card_slot_grid:
+            self.assertEquals(len(column), 5)
+        self.assertEquals(slot_grid[0][2].possible_card_types(), [Road_Card])
+        self.assertEquals(
+            slot_grid[1][2].possible_card_types(), [Settlement_Card]
+        )
+        self.assertEquals(slot_grid[2][2].possible_card_types(), [Road_Card])
+        self.assertEquals(
+            slot_grid[3][2].possible_card_types(), [Settlement_Card]
+        )
+        self.assertEquals(slot_grid[4][2].possible_card_types(), [Road_Card])
+        # initial points
+        self.assertEquals(r.mill_points(self._context), 0)
+        self.assertEquals(r.knight_points(self._context), 0)
+        self.assertEquals(r.win_points(self._context), 2)
+        # add storage (small building)
+        storage_card = Storage_Card()
+        storage_card.owner(self.dummy_owner)
+        slot_grid[1][1].add(storage_card)
+        with self.assertRaises(ValueError):
+            slot_grid[2][1].add(storage_card)
+        # points with storage
+        self.assertEquals(r.mill_points(self._context), 1)
+        self.assertEquals(r.knight_points(self._context), 0)
+        self.assertEquals(r.win_points(self._context), 2)
