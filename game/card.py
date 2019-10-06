@@ -7,8 +7,11 @@ class Card(core.card.Card):
         core.card.Card.__init__(self, name, face_up)
 
     @abstractmethod
+    def title(self, context):
+        return name
+
     def text(self, context):
-        pass
+        return ""
 
     def cost(self, context):
         return []
