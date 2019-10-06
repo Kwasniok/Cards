@@ -29,12 +29,12 @@ class Building_Card(Expansion_Card):
         return
 
 
-class Small_Building_Card(Expansion_Card):
+class Small_Building_Card(Building_Card):
     def __init__(self, name):
         Building_Card.__init__(self, name)
 
 
-class Large_Building_Card(Expansion_Card):
+class Large_Building_Card(Building_Card):
     def __init__(self, name):
         Building_Card.__init__(self, name)
 
