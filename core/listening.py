@@ -67,8 +67,11 @@ class Listenable:
 
         self._listenings[method_name][listener] = listener_method
 
-        del self._listenings[method_name][listener]
     def unregister_listener(self, method_name, listener):
+        if method_name in self._listenings:
+            listening = self._listenings[method_name]
+            if listener in listening:
+                del listening[listener]
 
 
 def listenable(old_method):
