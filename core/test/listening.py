@@ -56,3 +56,15 @@ class Test(unittest.TestCase):
         self.assertEquals(test_listener._actionA, 1)
         self.assertEquals(test_listener._actionB, 0)
         self.assertEquals(test_listener._actionC, 0)
+        # unregister
+        test_listenable.unregister_listener("actionA", test_listener)
+        test_listenable.unregister_listener("actionB", test_listener)
+        test_listenable.unregister_listener("actionC", test_listener)
+        # 'call' as actions (again)
+        test_listenable.actionA()
+        test_listenable.actionB()
+        test_listenable.actionC
+        # check listener (again)
+        self.assertEquals(test_listener._actionA, 1)
+        self.assertEquals(test_listener._actionB, 0)
+        self.assertEquals(test_listener._actionC, 0)
