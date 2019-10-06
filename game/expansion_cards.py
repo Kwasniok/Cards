@@ -22,6 +22,10 @@ class Building_Card(Expansion_Card):
     def __init__(self, name):
         Expansion_Card.__init__(self, name)
 
+    def playable(self, context):
+        # TODO: on own turn
+        return True
+
     def on_construction(self, context):
         return
 
