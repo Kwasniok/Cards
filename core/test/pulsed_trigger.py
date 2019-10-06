@@ -78,4 +78,4 @@ class Test(unittest.TestCase):
             self.assertEquals(N, listener._pulled)
             # measure actual pull frequency
             real_pps = float(N) / (t1 - t0)
-            self.assertTrue(pulsed_trigger._max_pps > real_pps)
+            self.assertTrue(pulsed_trigger._max_pps * 1.001 > real_pps)
