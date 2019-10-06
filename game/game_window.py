@@ -1,6 +1,9 @@
 import tkinter as tk
+import tkinter.font as tkfont
+from gui.util import px_to_pt, pt_to_px
 from gui.window import Window
 from .game_canvas import Game_Canvas
+from .all_cards import *
 
 
 class Game_Window(Window):
@@ -20,9 +23,112 @@ class Game_Window(Window):
         self.center()
         self.set_icon("res/game_icon.gif")
         self._game_canvas = Game_Canvas(self)
+        self._update_realms_button = tk.Button(
+            self.get_tk_toplevel(),
+            text="update realms",
+            font=tkfont.Font(
+                family="Helvetica", size=px_to_pt(24), weight="bold"
+            ),
+            command=lambda: self.update_realms(),
+        )
+        self._update_realms_button.place(
+            anchor=tk.CENTER, x=width / 2, y=height / 2, width=200, height=100
+        )
+        self._ream1_buttons = []
+        self._ream2_buttons = []
 
     def destroy(self):
         if not (self._game_canvas is None):
             self._game_canvas.destroy()
             self._game_canvas = None
         Window.destroy(self)
+
+    def update_realms(self):
+        toplevel = self.get_tk_toplevel()
+        toplevel.update_idletasks()
+        width = toplevel.winfo_width()
+        height = toplevel.winfo_height()
+        game = self.get_application().get_game()
+        context = None
+        player1 = game.get_player1()
+        player2 = game.get_player2()
+        realm1 = player1.get_realm()
+        realm2 = player2.get_realm()
+
+        # clear realm 1 GUI
+        for column in self._ream1_buttons:
+            for button in column:
+                button.destroy()
+        # draw ream 1 GUI
+        columns = len(realm1._card_slot_grid)
+        rows = 5
+        button_width = 200
+        button_height = 50
+        x_0 = (width - button_width * (columns - 1)) / 2
+        y_0 = 150 + int(button_height * 0.5)
+        self._update_realm(
+            context,
+            realm1,
+            self._ream1_buttons,
+            columns,
+            rows,
+            x_0,
+            y_0,
+            button_width,
+            button_height,
+        )
+        y_0 = height - int(button_height * ((rows - 1))) - y_0
+        self._update_realm(
+            context,
+            realm2,
+            self._ream2_buttons,
+            columns,
+            rows,
+            x_0,
+            y_0,
+            button_width,
+            button_height,
+        )
+
+    def _update_realm(
+        self,
+        context,
+        realm,
+        buttons,
+        columns,
+        rows,
+        x_0,
+        y_0,
+        button_width,
+        button_height,
+    ):
+        for x in range(columns):
+            button_column = []
+            for y in range(rows):
+                slot = realm.get_card_slot_grid()[x][y]
+                slot_name = slot.get_name()
+                possible_card_types_symbol = ""
+                for possible_card_type in slot.possible_card_types():
+                    possible_card_types_symbol += possible_card_type.__name__
+                card_symbol = []
+                for card in slot:
+                    card_symbol.append(card.title(context))
+                card_symbol = "-".join(card_symbol)
+                button = tk.Button(
+                    self.get_tk_toplevel(),
+                    text=slot_name
+                    + "\n"
+                    + card_symbol
+                    + "/"
+                    + possible_card_types_symbol,
+                    command=lambda slot=slot: print("clicked on " + repr(slot)),
+                )
+                button.place(
+                    anchor=tk.CENTER,
+                    x=x_0 + x * button_width,
+                    y=y_0 + y * button_height,
+                    width=int(button_width * 0.8),
+                    height=int(button_height * 0.8),
+                )
+                button_column.append(button)
+            buttons.append(button_column)
