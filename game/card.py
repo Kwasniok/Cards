@@ -3,10 +3,10 @@ import core.card
 
 
 class Card(core.card.Card):
+    @abstractmethod
     def __init__(self, name, face_up=False):
         core.card.Card.__init__(self, name, face_up)
 
-    @abstractmethod
     def title(self, context):
         return name
 

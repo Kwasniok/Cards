@@ -15,13 +15,6 @@ class Test(unittest.TestCase):
             def __init__(self, name, face_up=False):
                 Card.__init__(self, name, face_up)
 
-        with self.assertRaises(TypeError):
-            Derived_Card("test card name")
-
-        class Derived_Card(Card):
-            def __init__(self, name, face_up=False):
-                Card.__init__(self, name, face_up)
-
             def text(self, context):
                 return "test card text"
 

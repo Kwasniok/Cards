@@ -5,6 +5,7 @@ from .resource_types import *
 
 
 class Expansion_Card(Card):
+    @abstractmethod
     def __init__(self, name):
         Card.__init__(self, name)
 
@@ -14,11 +15,13 @@ class Expansion_Card(Card):
 
 
 class Action_Card(Expansion_Card):
+    @abstractmethod
     def __init__(self, name):
         Expansion_Card.__init__(self, name)
 
 
 class Building_Card(Expansion_Card):
+    @abstractmethod
     def __init__(self, name):
         Expansion_Card.__init__(self, name)
 
@@ -34,11 +37,13 @@ class Building_Card(Expansion_Card):
 
 
 class Small_Building_Card(Building_Card):
+    @abstractmethod
     def __init__(self, name):
         Building_Card.__init__(self, name)
 
 
 class Large_Building_Card(Building_Card):
+    @abstractmethod
     def __init__(self, name):
         Building_Card.__init__(self, name)
 
