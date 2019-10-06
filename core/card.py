@@ -11,6 +11,9 @@ class Card(ABC, Owned):
     def __str__(self):
         return self._name
 
+    def get_name(self):
+        return self._name
+
     def is_face_up(self):
         return self._face_up
 
