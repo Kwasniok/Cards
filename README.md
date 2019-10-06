@@ -57,7 +57,7 @@ which will update them according to your project's current version.
 
 
 # Tests
-## Unittests
+## Unit Tests
 Run all unit tests via
 ```
 cd Cards
