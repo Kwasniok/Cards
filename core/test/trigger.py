@@ -16,7 +16,7 @@ class Test(unittest.TestCase):
         listner = Listener()
         trigger.pull()
         self.assertEquals(listner._pulled, 0)
-        trigger.register(listner)
+        trigger.register(listner, Listener.on_pull)
         trigger.pull()
         self.assertEquals(listner._pulled, 1)
         trigger.unregister(listner)
