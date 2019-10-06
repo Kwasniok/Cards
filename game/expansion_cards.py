@@ -52,7 +52,7 @@ def get_all_expansion_cards():
     return list(Counter(expansion_card_histogram).elements())
 
 
-class Monastery(Small_Building_Card):
+class Monastery_Card(Small_Building_Card):
     def __init__(self):
         Small_Building_Card.__init__(self, "Monastery")
 
@@ -63,10 +63,10 @@ class Monastery(Small_Building_Card):
         return "Monastery"
 
 
-register_expansion_card(Monastery, 2)
+register_expansion_card(Monastery_Card, 2)
 
 
-class Storage(Small_Building_Card):
+class Storage_Card(Small_Building_Card):
     def __init__(self):
         Small_Building_Card.__init__(self, "Storage")
 
@@ -77,4 +77,4 @@ class Storage(Small_Building_Card):
         return "Storage"
 
 
-register_expansion_card(Storage, 2)
+register_expansion_card(Storage_Card, 2)
