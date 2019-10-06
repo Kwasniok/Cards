@@ -3,6 +3,7 @@ from .resource_cards import Resource_Card
 from .structure_cards import Road_Card, Settlement_Card, Town_Card
 from .expansion_cards import (
     Action_Card,
+    Building_Card,
     Small_Building_Card,
     Large_Building_Card,
 )
