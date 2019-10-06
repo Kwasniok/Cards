@@ -11,7 +11,9 @@ class Window:
         )
         self._toplevel.geometry("%dx%d+%d+%d" % (width, height, x, y))
         self._toplevel.title(title)
-        self._toplevel.protocol("WM_DELETE_WINDOW", lambda: self.at_close())
+        self._toplevel.protocol(
+            "WM_DELETE_WINDOW", lambda: self.on_close_requested()
+        )
         self._icon_image = None
 
     def destroy(self):
@@ -48,8 +50,11 @@ class Window:
     def close(self):
         self.destroy()
 
-    def at_close(self):
+    def on_close_requested(self):
         if messagebox.askokcancel(
             "Close Window", "Do you want to close this window?"
         ):
             self.close()
+
+    def on_next_frame(self):
+        pass
