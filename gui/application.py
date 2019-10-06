@@ -30,10 +30,12 @@ class Application:
 
     def register_window(self, window):
         self._windows.append(window)
+        self._next_frame_trigger.register(window, "on_next_frame")
 
     def unregister_window(self, window):
         if window in self._windows:
             self._windows.remove(window)
+        self._next_frame_trigger.unregister(window)  # safe; so not in if clause
 
     def run(self):
         if len(self._windows) == 0:

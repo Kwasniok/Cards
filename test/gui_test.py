@@ -56,11 +56,7 @@ class Test_Window(Window):
 def main():
     application = Application()
     window = Test_Window(application, x=100, y=100)
-    application.get_next_frame_trigger().register(
-        window, Test_Window.on_next_frame
-    )
     application.run()
-    application.get_next_frame_trigger().unregister(window)
 
 
 if __name__ == "__main__":
