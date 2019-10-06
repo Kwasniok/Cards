@@ -3,8 +3,12 @@ from .trigger import Trigger
 
 
 # IDEA:
-# A `Pulsed_Trigger` calls is `pull` method with a frequency of at most `max_pps` (pulls per second).
-# Call its `update` method as frequently as possible (e.g. inside the man loop) to ensure a high frequency.
+# A `Pulsed_Trigger` calls is `pull` method with a frequency of at most
+# `max_pps` (pulls per second).
+#
+# IMPORTANT:
+# Call `Pulsed_Trigger.update_all()`  as frequently as possible (e.g. inside
+# the main loop) to ensure the highest pulse frequency possible.
 
 
 class Pulsed_Trigger(Trigger):
