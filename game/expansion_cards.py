@@ -63,9 +63,6 @@ class Monastery_Card(Small_Building_Card):
     def cost(self, context):
         return [LOGS, IRON, BRICKS]
 
-    def text(self, context):
-        return "Monastery"
-
 
 register_expansion_card(Monastery_Card, 2)
 
@@ -79,9 +76,6 @@ class Storage_Card(Small_Building_Card):
 
     def mill_points(self, context):
         return 1
-
-    def text(self, context):
-        return "Storage"
 
 
 register_expansion_card(Storage_Card, 2)
