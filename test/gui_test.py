@@ -60,7 +60,6 @@ def main():
         window, Test_Window.on_next_frame
     )
     application.run()
-    application.quit()
     application.get_next_frame_trigger().unregister(window)
 
 
