@@ -1,7 +1,6 @@
 import tkinter as tk
+from core.pulsed_trigger import Pulsed_Trigger
 from .root import Root
-from .update import Updater
-from .frequency_updater import Frequency_Updater
 from .window import Window
 
 
@@ -10,7 +9,9 @@ class Application:
         Root.register_application(self)
         self._tk_root = Root.get_root()
         self._windows = []
-        self._frame_updater = Frequency_Updater(max_ups=max_fps)
+        self._next_frame_trigger = Pulsed_Trigger(
+            max_pps=max_fps, starts_stopped=True
+        )
 
     def destroy_all_windows(self):
         for window in self._windows:
@@ -18,15 +19,14 @@ class Application:
         self._windows = []
 
     def destroy(self):
-        self._frame_updater.clear()
         self.destroy_all_windows()
         Root.unregister_application()
 
     def get_tk_root(self):
         return self._tk_root
 
-    def get_frame_updater(self):
-        return self._frame_updater
+    def get_next_frame_trigger(self):
+        return self._next_frame_trigger
 
     def register_window(self, window):
         self._windows.append(window)
@@ -40,12 +40,16 @@ class Application:
             raise (
                 RuntimeError("Application needs at least one window to run.")
             )
+        self._next_frame_trigger.restart()
         # main loop
         while len(self._windows) > 0:
-            self._frame_updater.update_all()
+            # update all components
+            Pulsed_Trigger.update_all()
             self._tk_root.update_idletasks()
             self._tk_root.update()
+        self._next_frame_trigger.stop()
 
     def quit(self):
+        self._next_frame_trigger.stop()
         for window in self._windows:
             window.close()
