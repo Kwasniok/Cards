@@ -7,6 +7,9 @@ class Structure_Card(Card):
     def __init__(self, name):
         Card.__init__(self, name=name)
 
+    def title(self, context):
+        return self.get_name()
+
     def text(self, context):
         return (
             self._name
