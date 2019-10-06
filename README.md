@@ -64,13 +64,18 @@ cd Cards
 python run_all_unittests.py
 ```
 
-## Test/Example
-Run a test/example via
+## Interactive Tests
+Run all interactive tests sequentially via
 ```
 cd Cards
-python -m test.<test>
+python run_all_interactive_tests.py
 ```
-where `<test>` might be the name of any [test module](test).
+or run a single interactive test via
+```
+cd Cards
+python -m interactive_tests.<test>
+```
+where `<test>` might be the name of any [test modules](interactive_tests).
 *Note: Remeber to strip the file extension `.py` like in `example_test.py` --> `example_test`.*
 
 ## Tested with
