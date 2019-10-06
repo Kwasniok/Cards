@@ -9,8 +9,8 @@ class Trigger(Listenable):
     def pull(self):
         pass
 
-    def register(listener, listener_method):
+    def register(self, listener, listener_method):
         return self.register_listener("pull", listener, listener_method)
 
-    def unregister(listener):
+    def unregister(self, listener):
         return self.unregister_listener("pull", listener)
