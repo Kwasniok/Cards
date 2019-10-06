@@ -1,11 +1,35 @@
 from collections import defaultdict
 
+# IDEA:
+# Whenever
+#     listenable_object.action(arg1, ..., argN)
+# is called
+#     listener_object.on_action()
+# should be called (afterwards) as well.
+
+# IMPLEMENTATION:
+# i) `listenable_object` must be a Listenable
+# ii) `action` must be decorated with `@listenable`
+# iii) `listener_object` must be registered via:
+#     listenable_object.register_listener("action",
+#                                         listener_object,
+#                                         Listener.on_Action
+#                                        )
+#
+# Note: At most one on_action per listener_object per action per
+#       listenable_object.
+
 
 class Listenable:
     def __init__(self):
-        self._listenings = defaultdict(
-            lambda: {}
-        )  # method: list of lambdas to call
+        # dict of listenings:
+        # key: method_name (string, name of a method of self, method must be
+        #      decorated with listenable)
+        # value: dict where
+        #            key: listener (object)
+        #            value: listener_method (function taking the listener
+        #                   as its argument)
+        self._listenings = defaultdict(lambda: {})
 
     def register_listener(self, method_name, listener, listener_method):
         # self.<method_name> must exist
@@ -48,7 +72,7 @@ class Listenable:
 
 
 def listenable(old_method):
-    # decorator
+    # decorator, to define method as listenable
     # call old_method first
     # call all listeners afterwards
     def new_method(self, *args, **kwargs):
