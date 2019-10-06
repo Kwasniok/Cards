@@ -71,8 +71,13 @@ class Test(unittest.TestCase):
             listener.reset()
             pulsed_trigger.restart()
             t0 = time.perf_counter()
+            counter = 0
             while listener.pull_count() < N:
                 Pulsed_Trigger.update_all()
+                counter += 1
+                if (counter % 10000 == 0) and (time.perf_counter() - t0 > 1):
+                    self.fail("Test timed out")
+
             t1 = time.perf_counter()
             # check pull count
             self.assertEquals(N, listener._pulled)
