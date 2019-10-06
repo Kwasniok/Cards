@@ -30,6 +30,9 @@ class Card_Slot(Owned):
     def __contains__(self, card):
         return card in self._cards
 
+    def get_name(self):
+        return self._name
+
     def is_empty(self):
         return len(self._cards) == 0
 
