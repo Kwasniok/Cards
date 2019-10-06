@@ -26,12 +26,62 @@ class Listenable:
         # key: method_name (string, name of a method of self, method must be
         #      decorated with listenable)
         # value: dict where
-        #            key: listener (object)
+        #            key: listener (object; can be `None` for global listening)
         #            value: listener_method (function taking the listener
-        #                   as its argument)
+        #                   as its argument or method name (non-global
+        #                   listening only))
         self._listenings = defaultdict(lambda: {})
 
+    # method_name : str; self.<method_name> must be a defined method
+    # listener: None or object; None means global listening
+    # listener_method: function or str; if str then listener != None and
+    #                  listener.<listener_method> must be a defined method
+    #                  taking nor arguments; if function then listener_method
+    #                  == listener.<listener_method> or some function taking #                  one argument
     def register_listener(self, method_name, listener, listener_method):
+        if not (callable(listener_method) or type(listener_method) is str):
+            raise (
+                ValueError(
+                    "Cannot register listener: "
+                    + str(self)
+                    + " because its method "
+                    + str(listener_method)
+                    + " is neither callable nor a string."
+                )
+            )
+        if (listener is None) and (not callable(listener_method)):
+            raise (
+                ValueError(
+                    "Cannot register listener (NONE) "
+                    + " because "
+                    + str(listener_method)
+                    + " must be callable."
+                )
+            )
+        if (type(listener_method) is str) and (
+            not hasattr(listener, listener_method)
+        ):
+            raise (
+                ValueError(
+                    "Cannot register listener: "
+                    + str(self)
+                    + " because its method "
+                    + listener_method
+                    + " is not defined."
+                )
+            )
+        if type(listener_method) is str:
+            attr = getattr(listener, listener_method)
+            if not callable(attr):
+                raise (
+                    ValueError(
+                        "Cannot register listener: "
+                        + str(self)
+                        + " because "
+                        + listener_method
+                        + " is not a callable method."
+                    )
+                )
         # self.<method_name> must exist
         if not (hasattr(self, method_name)):
             raise (
@@ -83,7 +133,13 @@ def listenable(old_method):
         for listener, listener_method in self._listenings[
             old_method.__name__
         ].items():
-            listener_method(listener)
+            if not callable(listener_method):
+                # listener_method is a string --> execute listener.<listener_method>()
+                listener_method = getattr(listener, listener_method)
+                listener_method()
+            else:
+                # listener_method is a function
+                listener_method(listener)
 
     # mark decorated method as listenable
     new_method._listenable = None
