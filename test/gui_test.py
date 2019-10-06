@@ -1,10 +1,9 @@
 import tkinter as tk
 from gui.application import Application
 from gui.window import Window
-from gui.update import Updatable
 
 
-class Test_Window(Window, Updatable):
+class Test_Window(Window):
     def __init__(self, application, x, y):
         width = 512
         height = 512
@@ -17,7 +16,6 @@ class Test_Window(Window, Updatable):
             x=x,
             y=y,
         )
-        Updatable.__init__(self)
         self.make_non_resizable()
         self.center()
         self.set_icon("res/test.gif")
@@ -49,7 +47,7 @@ class Test_Window(Window, Updatable):
         self._canvas = None
         Window.destroy(self)
 
-    def on_update(self):
+    def on_next_frame(self):
         self._counter += 1
         self._canvas.itemconfig(self._arc_id, start=self._counter)
         self._canvas.itemconfig(self._text_id, text=str(self._counter))
@@ -58,9 +56,12 @@ class Test_Window(Window, Updatable):
 def main():
     application = Application()
     window = Test_Window(application, x=100, y=100)
-    application.get_frame_updater().register(window)
+    application.get_next_frame_trigger().register(
+        window, Test_Window.on_next_frame
+    )
     application.run()
     application.quit()
+    application.get_next_frame_trigger().unregister(window)
 
 
 if __name__ == "__main__":

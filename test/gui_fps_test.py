@@ -1,7 +1,7 @@
 import time
 import tkinter as tk
+from core.pulsed_trigger import Pulsed_Trigger
 from gui.application import Application
-from gui.update import Updatable
 from gui.window import Window
 
 
@@ -9,23 +9,22 @@ def on_click():
     print("clicked")
 
 
-class Test_Updatable(Updatable):
+class Test_Triggered:
     def __init__(self):
-        Updatable.__init__(self)
         self._counter = 0
-        self._t0 = time.time()
+        self._t0 = time.perf_counter()
         self._n = 5
         self._fps = None
 
-    def on_update(self):
+    def on_next_frame(self):
         self._counter += 1
         if self._counter % self._n == 0:
-            t = time.time()
+            t = time.perf_counter()
             self._fps = float(self._n) / (t - self._t0)
             self._t0 = t
-        print("frame_nr = " + str(self._counter) + " fps = " + str(self._fps))
-        for i in range(100000):
-            pass
+            print(
+                "frame_nr = " + str(self._counter) + " fps = " + str(self._fps)
+            )
 
 
 def main():
@@ -33,10 +32,12 @@ def main():
     window = Window(application, title="A", x=100, y=100, width=150, height=150)
     button = tk.Button(window._toplevel, text="text", command=on_click)
     button.grid()
-    updatable = Test_Updatable()
-    application.get_frame_updater().register(updatable)
+    triggered = Test_Triggered()
+    application.get_next_frame_trigger().register(
+        triggered, Test_Triggered.on_next_frame
+    )
     application.run()
-    application.destroy()
+    application.get_next_frame_trigger().unregister(triggered)
 
 
 if __name__ == "__main__":
