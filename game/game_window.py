@@ -1,10 +1,9 @@
 import tkinter as tk
 from gui.window import Window
-from gui.update import Updatable
 from .game_canvas import Game_Canvas
 
 
-class Game_Window(Window, Updatable):
+class Game_Window(Window):
     def __init__(self, game_application, x, y):
         width = 1920
         height = 1080
@@ -17,7 +16,6 @@ class Game_Window(Window, Updatable):
             x=x,
             y=y,
         )
-        Updatable.__init__(self)
         self.make_non_resizable()
         self.center()
         self.set_icon("res/game_icon.gif")
@@ -28,7 +26,3 @@ class Game_Window(Window, Updatable):
             self._game_canvas.destroy()
             self._game_canvas = None
         Window.destroy(self)
-
-    def on_update(self):
-        Updatable.on_update(self)
-        self._game_canvas.on_update()

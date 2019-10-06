@@ -13,5 +13,4 @@ class Game_Application(Application):
 
     def run(self):
         window = Game_Window(self, x=100, y=100)
-        self.get_frame_updater().register(window)
         Application.run(self)

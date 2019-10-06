@@ -2,10 +2,9 @@ import tkinter as tk
 import tkinter.font as tkfont
 import core.color as color
 from gui.util import px_to_pt, pt_to_px
-from gui.update import Updatable
 
 
-class Game_Canvas(Updatable):
+class Game_Canvas:
     def __init__(self, game_window):
         self._game_window = game_window
         self._canvas = tk.Canvas(self._game_window.get_tk_toplevel())
@@ -15,6 +14,7 @@ class Game_Canvas(Updatable):
         self._player1_text_id = None
         self._player2_text_id = None
         self._font = None
+        self._initialize_canvas()
 
     def destroy(self):
         self._player1_rectangle_id = None
@@ -27,7 +27,7 @@ class Game_Canvas(Updatable):
             self._canvas = None
         self._canvas = None
 
-    def on_update(self):
+    def _initialize_canvas(self):
         if self._canvas is None:
             return
         # game / state
@@ -50,39 +50,35 @@ class Game_Canvas(Updatable):
         #
         text_offset = 5
         hand_zone_heigt = int(height * 0.4)
-        if self._player1_rectangle_id is None:
-            self._player1_rectangle_id = self._canvas.create_rectangle(
-                0,
-                0,
-                width,
-                hand_zone_heigt,
-                fill=color.GRAY,
-                outline=color.INVISIBLE,
-            )
-        if self._player2_rectangle_id is None:
-            self._player2_rectangle_id = self._canvas.create_rectangle(
-                0,
-                height - hand_zone_heigt,
-                width,
-                height,
-                fill=color.GRAY,
-                outline=color.INVISIBLE,
-            )
-        if self._player1_text_id is None:
-            self._player1_text_id = self._canvas.create_text(
-                text_offset,
-                hand_zone_heigt / 2,
-                anchor=tk.W,
-                text=str(player1),
-                fill=player1.color(),
-                font=self._font,
-            )
-        if self._player2_text_id is None:
-            self._player2_text_id = self._canvas.create_text(
-                text_offset,
-                height - hand_zone_heigt / 2,
-                anchor=tk.W,
-                text=str(player2),
-                fill=player2.color(),
-                font=self._font,
-            )
+        self._player1_rectangle_id = self._canvas.create_rectangle(
+            0,
+            0,
+            width,
+            hand_zone_heigt,
+            fill=color.GRAY,
+            outline=color.INVISIBLE,
+        )
+        self._player2_rectangle_id = self._canvas.create_rectangle(
+            0,
+            height - hand_zone_heigt,
+            width,
+            height,
+            fill=color.GRAY,
+            outline=color.INVISIBLE,
+        )
+        self._player1_text_id = self._canvas.create_text(
+            text_offset,
+            hand_zone_heigt / 2,
+            anchor=tk.W,
+            text=str(player1),
+            fill=player1.color(),
+            font=self._font,
+        )
+        self._player2_text_id = self._canvas.create_text(
+            text_offset,
+            height - hand_zone_heigt / 2,
+            anchor=tk.W,
+            text=str(player2),
+            fill=player2.color(),
+            font=self._font,
+        )
