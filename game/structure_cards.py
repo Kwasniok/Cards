@@ -31,6 +31,9 @@ class Settlement_Card(Structure_Card):
     def cost(self, context):
         return [LOGS, WOOL, BRICKS, GRAIN]
 
+    def win_points(self, context):
+        return 1
+
 
 class Town_Card(Structure_Card):
     def __init__(self):
