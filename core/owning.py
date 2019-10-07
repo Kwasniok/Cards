@@ -6,8 +6,12 @@ class Owner:
     def __str__(self):
         return self._name
 
-    def color(self):
-        return self._color
+    def color(self, new=None):
+        if new is None:
+            old = self._color
+            self._color = new
+        else:
+            return self._color
 
 
 neutral_owner = Owner("neutral")

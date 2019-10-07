@@ -14,6 +14,10 @@ class Test(unittest.TestCase):
 
     def test_general(self):
         r = Realm(name="realm", owner=self.dummy_owner)
+        slot_grid = r.get_card_slot_grid()
+        self.assertEquals(len(slot_grid), 0)
+        # prepare initial state
+        r.on_prepare_initial_state()
         # realm state: S-R-S (R:Road, S:Settlement)
         # check state
         slot_grid = r.get_card_slot_grid()
