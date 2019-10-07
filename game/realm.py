@@ -35,10 +35,15 @@ class Realm(Owned):
 
     def on_place_initial_resources(self, resource_cards):
         for card in Randomized(resource_cards):
+            added = False
             for card_slot_column in self._card_slot_grid:
                 for card_slot in card_slot_column:
                     if card_slot.accepts_card(card):
                         card_slot.add(card)
+                        added = True
+                        break
+                if added:
+                    break
 
     def on_prepare_initial_state(self):
         rsc = self._add_road_slot_column(RIGHT)
