@@ -52,9 +52,9 @@ class Test(unittest.TestCase):
         # not present
         with self.assertRaises(ValueError):
             cs.remove(c1c)
-        # supports
-        self.assertTrue(cs.supports(c1c))
-        self.assertFalse(cs.supports(c2a))
+        # accepts
+        self.assertTrue(cs.accepts(c1c))
+        self.assertFalse(cs.accepts(c2a))
         # __contains__
         self.assertTrue(c1a in cs)
         self.assertTrue(c1b in cs)

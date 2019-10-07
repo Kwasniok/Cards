@@ -39,7 +39,7 @@ class Card_Slot(Owned):
     def is_full(self):
         return len(self._cards) >= self._limit
 
-    def supports(self, card):
+    def accepts(self, card):
         return isinstance(card, tuple(self._possible_card_types))
 
     def possible_card_types(self):
@@ -58,7 +58,7 @@ class Card_Slot(Owned):
                 + str(self._limit)
                 + ")."
             )
-        if not self.supports(card):
+        if not self.accepts(card):
             raise ValueError(
                 "Cannot add card `"
                 + str(card)
