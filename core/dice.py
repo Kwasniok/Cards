@@ -1,4 +1,4 @@
-from .util import random_pick
+from .random import random_pick
 from .owning import Owned
 
 

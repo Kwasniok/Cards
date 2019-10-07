@@ -1,5 +1,5 @@
 from itertools import cycle
-from core.util import random_pop
+from core.random import random_pop
 from core.owning import Owner
 from core.dice import Dice
 from core.card_stack import Card_Stack
