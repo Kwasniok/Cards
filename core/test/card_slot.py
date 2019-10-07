@@ -36,25 +36,31 @@ class Test(unittest.TestCase):
             possible_card_types=pct,
             limit=2,
         )
+        self.assertTrue(cs.accepts_card(c1a))
         cs.add(c1a)
         cs.remove(c1a)
+        self.assertTrue(cs.accepts_card(c1a))
         cs.add(c1a)
         # wrong type
+        self.assertFalse(cs.accepts_card(c2a))
         with self.assertRaises(ValueError):
             cs.add(c2a)
         # allreay present
+        self.assertFalse(cs.accepts_card(c1a))
         with self.assertRaises(ValueError):
             cs.add(c1a)
+        self.assertTrue(cs.accepts_card(c1b))
         cs.add(c1b)
         # limit reached
+        self.assertFalse(cs.accepts_card(c1c))
         with self.assertRaises(ValueError):
             cs.add(c1c)
         # not present
         with self.assertRaises(ValueError):
             cs.remove(c1c)
-        # accepts
-        self.assertTrue(cs.accepts(c1c))
-        self.assertFalse(cs.accepts(c2a))
+        # accepts card_type
+        self.assertTrue(cs.accepts_card_of_type(Test_Card1))
+        self.assertFalse(cs.accepts_card_of_type(Test_Card2))
         # __contains__
         self.assertTrue(c1a in cs)
         self.assertTrue(c1b in cs)
