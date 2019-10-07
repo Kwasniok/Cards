@@ -22,9 +22,9 @@ class Card_Slot(Owned):
             + str(self._possible_card_types)
             + ", limit="
             + str(self._limit)
-            + ", cards="
-            + str(self._cards)
-            + ")"
+            + ", cards=["
+            + (", ".join(repr(c) for c in self._cards))
+            + "])"
         )
 
     def __contains__(self, card):
