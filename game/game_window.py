@@ -62,8 +62,9 @@ class Game_Window(Window):
         # draw ream 1 GUI
         columns = len(realm1._card_slot_grid)
         rows = 5
-        button_width = 200
+        button_width = 180
         button_height = 50
+        button_padding = 10
         x_0 = (width - button_width * (columns - 1)) / 2
         y_0 = 150 + int(button_height * 0.5)
         self._update_realm(
@@ -76,6 +77,7 @@ class Game_Window(Window):
             y_0,
             button_width,
             button_height,
+            button_padding,
         )
         y_0 = height - int(button_height * ((rows - 1))) - y_0
         self._update_realm(
@@ -88,6 +90,7 @@ class Game_Window(Window):
             y_0,
             button_width,
             button_height,
+            button_padding,
         )
 
     def _update_realm(
@@ -101,6 +104,7 @@ class Game_Window(Window):
         y_0,
         button_width,
         button_height,
+        button_padding,
     ):
         for x in range(columns):
             button_column = []
@@ -127,8 +131,8 @@ class Game_Window(Window):
                     anchor=tk.CENTER,
                     x=x_0 + x * button_width,
                     y=y_0 + y * button_height,
-                    width=int(button_width * 0.8),
-                    height=int(button_height * 0.8),
+                    width=int(button_width - 0.5 * button_padding),
+                    height=int(button_height - 0.5 * button_padding),
                 )
                 button_column.append(button)
             buttons.append(button_column)
