@@ -40,6 +40,22 @@ class Realm(Owned):
                     if card_slot.accepts_card(card):
                         card_slot.add(card)
 
+    def on_prepare_initial_state(self):
+        rsc = self._add_road_slot_column(RIGHT)
+        srsc = self._add_settlement_slot_column(RIGHT)
+        slsc = self._add_settlement_slot_column(LEFT)
+        card = Road_Card()
+        card.owner(self.owner())
+        rsc[2].add(card)
+        card = Settlement_Card()
+        card.owner(self.owner())
+        srsc[2].add(card)
+        card = Settlement_Card()
+        card.owner(self.owner())
+        slsc[2].add(card)
+        self._add_road_slot_column(RIGHT)
+        self._add_road_slot_column(LEFT)
+
     def _draw_to_str(self):
         s = ""
         X = len(self._card_slot_grid)
@@ -63,22 +79,6 @@ class Realm(Owned):
             row = " ".join(row)
             s += row + "\n"
         return s
-
-    def on_prepare_initial_state(self):
-        rsc = self._add_road_slot_column(RIGHT)
-        srsc = self._add_settlement_slot_column(RIGHT)
-        slsc = self._add_settlement_slot_column(LEFT)
-        card = Road_Card()
-        card.owner(self.owner())
-        rsc[2].add(card)
-        card = Settlement_Card()
-        card.owner(self.owner())
-        srsc[2].add(card)
-        card = Settlement_Card()
-        card.owner(self.owner())
-        slsc[2].add(card)
-        self._add_road_slot_column(RIGHT)
-        self._add_road_slot_column(LEFT)
 
     def _add_road_slot_column(self, direction):
         column = [
