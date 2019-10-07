@@ -1,4 +1,5 @@
 from collections import defaultdict
+from core.random import Randomized
 from core.two_sided_stack import Two_Sided_Stack
 from core.directions import RIGHT, LEFT
 from core.owning import Owned
@@ -31,6 +32,13 @@ class Realm(Owned):
 
     def size(self):
         return len(self._card_slot_grid)
+
+    def on_place_initial_resources(self, resource_cards):
+        for card in Randomized(resource_cards):
+            for card_slot_column in self._card_slot_grid:
+                for card_slot in card_slot_column:
+                    if card_slot.accepts_card(card):
+                        card_slot.add(card)
 
     def _draw_to_str(self):
         s = ""
