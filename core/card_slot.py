@@ -33,6 +33,9 @@ class Card_Slot(Owned):
     def get_name(self):
         return self._name
 
+    def get_limit(self):
+        return self._limit
+
     def is_empty(self):
         return len(self._cards) == 0
 
@@ -93,6 +96,9 @@ class Card_Slot(Owned):
 
     def remove(self, card):
         self._cards.remove(card)
+
+    def __len__(self):
+        return len(self._cards)
 
     def __getitem__(self, index):
         return self._cards[index]
