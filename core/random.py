@@ -24,3 +24,9 @@ class Randomized:
     def __iter__(self):
         for x in self._order:
             yield self._list[x]
+
+    def __getitem__(self, i):
+        return self._list[self._order[i]]
+
+    def __setitem__(self, i, value):
+        self._list[self._order[i]] = value
