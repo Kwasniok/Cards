@@ -34,16 +34,27 @@ class Realm(Owned):
         return len(self._card_slot_grid)
 
     def on_place_initial_resources(self, resource_cards):
-        for card in Randomized(resource_cards):
-            added = False
-            for card_slot_column in self._card_slot_grid:
-                for card_slot in card_slot_column:
-                    if card_slot.accepts_card(card):
-                        card_slot.add(card)
-                        added = True
+        card_types = set([type(c) for c in resource_cards])
+        card_slots = []
+        for card_slot_column in self._card_slot_grid:
+            for card_slot in card_slot_column:
+                for card_type in card_types:
+                    if card_slot.accepts_card_of_type(card_type):
+                        card_slots.append(card_slot)
                         break
-                if added:
-                    break
+        if len(resource_cards) != len(card_slots):
+            raise (
+                ValueError(
+                    "Cannot place initial resources. Missmatch in number of available slots ("
+                    + str(len(card_slots))
+                    + ") and provided cards("
+                    + str(len(resource_cards))
+                    + ")"
+                )
+            )
+        resource_cards = Randomized(resource_cards)
+        for i in range(len(card_slots)):
+            card_slots[i].add(resource_cards[i])
 
     def on_prepare_initial_state(self):
         rsc = self._add_road_slot_column(RIGHT)
