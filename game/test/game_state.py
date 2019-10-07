@@ -1,7 +1,7 @@
 import unittest
-from ..game_state import Game_State
+from ..neutral_zone import Neutral_Zone
 
 
 class Test(unittest.TestCase):
     def test_general(self):
-        g = Game_State(name="test game state")
+        g = Neutral_Zone(name="test game state")

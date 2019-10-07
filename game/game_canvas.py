@@ -32,7 +32,7 @@ class Game_Canvas:
             return
         # game / state
         game = self._game_window.get_application().get_game()
-        game_state = game.get_game_state()
+        neutral_zone = game.get_neutral_zone()
         player1 = game.get_player1()
         player2 = game.get_player2()
         # dimensions
