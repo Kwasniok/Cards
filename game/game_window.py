@@ -57,8 +57,9 @@ class Game_Window(Window):
 
         # clear realm 1 GUI
         for column in self._ream1_buttons:
-            for button in column:
-                button.destroy()
+            for cell in column:
+                for button in cell:
+                    button.destroy()
         # draw ream 1 GUI
         columns = len(realm1._card_slot_grid)
         rows = 5
@@ -109,22 +110,21 @@ class Game_Window(Window):
         for x in range(columns):
             button_column = []
             for y in range(rows):
+                button_cell = []
+                # slot
                 slot = realm.get_card_slot_grid()[x][y]
-                slot_name = slot.get_name()
-                possible_card_types_symbol = ""
-                for possible_card_type in slot.possible_card_types():
-                    possible_card_types_symbol += possible_card_type.__name__
-                card_symbol = []
-                for card in slot:
-                    card_symbol.append(card.title(context))
-                card_symbol = "-".join(card_symbol)
+                slot_symbol = slot.get_name()
+                slot_symbol += (
+                    " (" + str(len(slot)) + "/" + str(slot.get_limit()) + ")"
+                )
+                slot_symbol += "\n"
+                slot_symbol += "|".join(
+                    pct.__name__ for pct in slot.possible_card_types()
+                )
+                # slot button
                 button = tk.Button(
                     self.get_tk_toplevel(),
-                    text=slot_name
-                    + "\n"
-                    + card_symbol
-                    + "/"
-                    + possible_card_types_symbol,
+                    text=slot_symbol,
                     command=lambda slot=slot: print("clicked on " + repr(slot)),
                 )
                 button.place(
@@ -134,5 +134,28 @@ class Game_Window(Window):
                     width=int(button_width - 0.5 * button_padding),
                     height=int(button_height - 0.5 * button_padding),
                 )
-                button_column.append(button)
+                button_cell.append(button)
+                # cards in slot
+                shift = 0
+                for card in slot:
+                    card_symbol = card.get_name()
+                    button = tk.Button(
+                        self.get_tk_toplevel(),
+                        text=card_symbol,
+                        command=lambda card=card: print(
+                            "clicked on " + repr(card)
+                        ),
+                    )
+                    button.place(
+                        anchor=tk.CENTER,
+                        x=x_0 + x * button_width + shift,
+                        y=y_0 + y * button_height + int(button_height / 4),
+                        width=int((button_width - 0.5 * button_padding) * 0.9),
+                        height=int(
+                            (button_height - 0.5 * button_padding) * 0.5
+                        ),
+                    )
+                    button_cell.append(button)
+                    shift += 10
+                button_column.append(button_cell)
             buttons.append(button_column)
