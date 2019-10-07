@@ -10,6 +10,17 @@ class Resource_Card(Card):
         self.counter = initial_count
         self.dice_number = dice_number
 
+    def __repr__(self):
+        return (
+            "Resource_Card(resource_type="
+            + str(self.resource_type)
+            + ",dice_number="
+            + str(self.dice_number)
+            + ",counter="
+            + repr(self.counter)
+            + ")"
+        )
+
     def title(self, context):
         return str(self.resource_type.source_name())
 
