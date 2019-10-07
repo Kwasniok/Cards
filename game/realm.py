@@ -11,7 +11,6 @@ class Realm(Owned):
         Owned.__init__(self, owner=owner)
         self._name = name
         self._card_slot_grid = Two_Sided_Stack()
-        self._prepare_initial_state()
 
     def __str__(self):
         return self._name
@@ -57,7 +56,7 @@ class Realm(Owned):
             s += row + "\n"
         return s
 
-    def _prepare_initial_state(self):
+    def on_prepare_initial_state(self):
         rsc = self._add_road_slot_column(RIGHT)
         srsc = self._add_settlement_slot_column(RIGHT)
         slsc = self._add_settlement_slot_column(LEFT)
