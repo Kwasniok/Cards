@@ -30,11 +30,11 @@ class Game_Canvas:
     def _initialize_canvas(self):
         if self._canvas is None:
             return
-        # game / state
-        game = self._game_window.get_application().get_game()
-        neutral_zone = game.get_neutral_zone()
-        player1 = game.get_player1()
-        player2 = game.get_player2()
+        # game_state / state
+        game_state = self._game_window.get_application().get_game_state()
+        neutral_zone = game_state.get_neutral_zone()
+        player1 = game_state.get_player1()
+        player2 = game_state.get_player2()
         # dimensions
         self._canvas.update_idletasks()
         width = self._canvas.winfo_width()

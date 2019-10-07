@@ -48,10 +48,10 @@ class Game_Window(Window):
         toplevel.update_idletasks()
         width = toplevel.winfo_width()
         height = toplevel.winfo_height()
-        game = self.get_application().get_game()
+        game_state = self.get_application().get_game_state()
         context = None
-        player1 = game.get_player1()
-        player2 = game.get_player2()
+        player1 = game_state.get_player1()
+        player2 = game_state.get_player2()
         realm1 = player1.get_realm()
         realm2 = player2.get_realm()
 
