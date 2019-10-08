@@ -6,6 +6,7 @@ import game.directions as directions
 from game.all_cards import *
 from .canvas import Canvas
 from .realm_viewer import Realm_Viewer
+from .hand_viewer import Hand_Viewer
 
 
 class Window(Base_Window):
@@ -56,6 +57,22 @@ class Window(Base_Window):
             width=200,
             height=100,
         )
+        self._hand_viewer1 = Hand_Viewer(
+            window=self,
+            hand=self.get_application()
+            .get_game_state()
+            .get_player1()
+            .get_hand(),
+            direction=directions.UP,
+        )
+        self._hand_viewer2 = Hand_Viewer(
+            window=self,
+            hand=self.get_application()
+            .get_game_state()
+            .get_player2()
+            .get_hand(),
+            direction=directions.DOWN,
+        )
         self._update_hands_button = tk.Button(
             self.get_tk_toplevel(),
             text="update hands",
@@ -71,8 +88,6 @@ class Window(Base_Window):
             width=200,
             height=100,
         )
-        self._hand1_buttons = []
-        self._hand2_buttons = []
 
     def destroy(self):
         if not (self._game_canvas is None):
@@ -84,8 +99,12 @@ class Window(Base_Window):
         if not (self._realm_viwer2 is None):
             self._realm_viwer2.destroy()
             self._realm_viwer2 = None
-        self._destroy_hand_buttons(self._hand1_buttons)
-        self._destroy_hand_buttons(self._hand2_buttons)
+        if not (self._hand_viewer1 is None):
+            self._hand_viewer1.destroy()
+            self._hand_viewer1 = None
+        if not (self._hand_viewer2 is None):
+            self._hand_viewer2.destroy()
+            self._hand_viewer2 = None
         Base_Window.destroy(self)
 
     def _destroy_realm_buttons(self, realm_buttons):
@@ -103,90 +122,5 @@ class Window(Base_Window):
         self._realm_viwer2.on_update(context)
 
     def on_update_hands(self, context):
-        toplevel = self.get_tk_toplevel()
-        toplevel.update_idletasks()
-        width = toplevel.winfo_width()
-        height = toplevel.winfo_height()
-        game_state = self.get_application().get_game_state()
-        player1 = game_state.get_player1()
-        player2 = game_state.get_player2()
-        hand1 = player1.get_hand()
-        hand2 = player2.get_hand()
-
-        # clear hand GUI
-        self._destroy_hand_buttons(self._hand1_buttons)
-        self._destroy_hand_buttons(self._hand2_buttons)
-
-        # draw hand GUI
-        button_width = 180
-        button_height = 50
-        button_padding = 10
-        # hand 1
-        columns = hand1.get_size()
-        x_0 = (width - button_width * (columns - 1)) / 2
-        y_0 = int(button_height * 0.5)
-        self._create_hand_buttons(
-            context,
-            hand1,
-            self._hand1_buttons,
-            columns,
-            x_0,
-            y_0,
-            button_width,
-            button_height,
-            button_padding,
-        )
-        # hand 2
-        columns = hand2.get_size()
-        x_0 = (width - button_width * (columns - 1)) / 2
-        y_0 = height - int(button_height * 0.5)
-        self._create_hand_buttons(
-            context,
-            hand2,
-            self._hand2_buttons,
-            columns,
-            x_0,
-            y_0,
-            button_width,
-            button_height,
-            button_padding,
-        )
-
-    def _create_hand_buttons(
-        self,
-        context,
-        hand,
-        buttons,
-        columns,
-        x_0,
-        y_0,
-        button_width,
-        button_height,
-        button_padding,
-    ):
-        for x in range(columns):
-            card = hand[x]
-            card_symbol = card.get_title(context)
-            if card.is_face_up():
-                card_symbol += " (FU)"
-            else:
-                card_symbol += " (FD)"
-            card_symbol += (
-                "\n["
-                + (",".join([c.get_name() for c in card.get_cost(context)]))
-                + "]"
-            )
-            card_symbol += "\n" + card.get_text(context)
-            button = tk.Button(
-                self.get_tk_toplevel(),
-                text=card_symbol,
-                command=lambda card=card: print("clicked on " + repr(card)),
-            )
-            button.place(
-                anchor=tk.CENTER,
-                x=x_0 + x * button_width,
-                y=y_0,
-                width=int(button_width - 0.5 * button_padding),
-                height=int(button_height - 0.5 * button_padding),
-            )
-            buttons.append(button)
+        self._hand_viewer1.on_update(context)
+        self._hand_viewer2.on_update(context)
