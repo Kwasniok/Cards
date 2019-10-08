@@ -14,7 +14,7 @@ class Test_Small_Building_Card(Small_Building_Card):
     def get_cost(self, context):
         return [LOGS, BRICKS]
 
-    def get_mill(self, context):
+    def get_mill_points(self, context):
         return 1
 
 
@@ -55,7 +55,7 @@ class Test(unittest.TestCase):
             slot_grid[4][2].get_accepted_base_types(), [Road_Card]
         )
         # initial points
-        self.assertEquals(r.get_mill(self._context), 0)
+        self.assertEquals(r.get_mill_points(self._context), 0)
         self.assertEquals(r.get_knight_points(self._context), 0)
         self.assertEquals(r.get_win_points(self._context), 2)
         # add storage (small building)
@@ -65,6 +65,6 @@ class Test(unittest.TestCase):
         with self.assertRaises(TypeError):
             slot_grid[2][1].add(small_building_card)
         # points with storage
-        self.assertEquals(r.get_mill(self._context), 1)
+        self.assertEquals(r.get_mill_points(self._context), 1)
         self.assertEquals(r.get_knight_points(self._context), 0)
         self.assertEquals(r.get_win_points(self._context), 2)

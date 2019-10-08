@@ -43,7 +43,7 @@ class Card(ABC, Internally_Named, Owned):
     def get_cost(self, context):
         return []
 
-    def get_mill(self, context):
+    def get_mill_points(self, context):
         return 0
 
     def get_knight_points(self, context):

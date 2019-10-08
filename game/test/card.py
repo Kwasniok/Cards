@@ -33,6 +33,6 @@ class Test(unittest.TestCase):
         self.assertFalse(c.is_face_up())
         # default card properties
         self.assertEquals(c.get_cost(self._context), [])
-        self.assertEquals(c.get_mill(self._context), 0)
+        self.assertEquals(c.get_mill_points(self._context), 0)
         self.assertEquals(c.get_knight_points(self._context), 0)
         self.assertEquals(c.get_win_points(self._context), 0)

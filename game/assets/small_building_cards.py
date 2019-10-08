@@ -23,7 +23,7 @@ class Storage_Card(Small_Building_Card):
     def get_cost(self, context):
         return [LOGS, BRICKS]
 
-    def get_mill(self, context):
+    def get_mill_points(self, context):
         return 1
 
 

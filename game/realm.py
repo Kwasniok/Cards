@@ -172,12 +172,12 @@ class Realm(Internally_Named, Owned):
             self._card_slot_grid.push_left(column)
         return column
 
-    def get_mill(self, context):
+    def get_mill_points(self, context):
         ps = 0
         for column in self._card_slot_grid:
             for slot in column:
                 for card in slot:
-                    ps += card.get_mill(context)
+                    ps += card.get_mill_points(context)
         return ps
 
     def get_knight_points(self, context):
