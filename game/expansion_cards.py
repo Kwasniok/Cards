@@ -10,7 +10,7 @@ class Expansion_Card(Card):
         Card.__init__(self, name)
 
     @abstractmethod
-    def playable(self, context):
+    def is_playable(self, context):
         pass
 
 
@@ -25,7 +25,7 @@ class Building_Card(Expansion_Card):
     def __init__(self, name):
         Expansion_Card.__init__(self, name)
 
-    def playable(self, context):
+    def is_playable(self, context):
         # TODO: on own turn
         return True
 
