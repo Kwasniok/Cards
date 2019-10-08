@@ -12,6 +12,9 @@ class Hand(Internally_Named, Owned):
     def get_name(self):
         return str(name)
 
+    def __getitem__(self, index):
+        return self._cards[index]
+
     def __contains__(self, card):
         return card in self._cards
 
