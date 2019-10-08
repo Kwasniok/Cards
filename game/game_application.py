@@ -2,7 +2,7 @@ import gui.color as color
 from gui.application import Application
 from .game_window import Game_Window
 from .game_state import Game_State
-from .initial_resource_cards import (
+from assets.initial_resource_cards import (
     black as initial_resource_cards_black,
     white as initial_resource_cards_white,
 )

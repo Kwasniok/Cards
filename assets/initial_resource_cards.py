@@ -1,5 +1,5 @@
-from .resource_cards import Resource_Card
-from .resource_types import LOGS, BRICKS, GRAIN, IRON, WOOL, GOLD
+from game.resource_cards import Resource_Card
+from game.resource_types import LOGS, BRICKS, GRAIN, IRON, WOOL, GOLD
 
 black = [
     Resource_Card(resource_type=GOLD, dice_number=1, initial_count=1),
