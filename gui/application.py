@@ -1,10 +1,6 @@
 from core.gui.application import Application as Base_Application
 from .window import Window
 from game.game_state import Game_State
-from game.assets.initial_resource_cards import (
-    black as initial_resource_cards_black,
-    white as initial_resource_cards_white,
-)
 
 
 class Application(Base_Application):
