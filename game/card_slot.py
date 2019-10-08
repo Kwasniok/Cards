@@ -3,6 +3,7 @@ from core.owning import Owned
 
 class Card_Slot(Owned):
     def __init__(self, name, owner, possible_card_types, limit=None):
+        Owned.__init__(self, owner)
         self._name = name
         self._owner = owner
         self._possible_card_types = possible_card_types
