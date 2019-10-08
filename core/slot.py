@@ -80,6 +80,10 @@ class Slot:
     def is_accepted_type(self, type):
         return issubclass(type, tuple(self._accepted_base_types))
 
+    # checks allways in this order:
+    # 1) obj allready in slot --> ValueError
+    # 2) slot full --> Slot_Full_Error
+    # 3) not of accepted type --> TypeError
     def add(self, obj):
         if obj in self:
             raise ValueError(
