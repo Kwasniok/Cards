@@ -3,10 +3,7 @@ import core.gui.color as color
 from core.internally_named import Internally_Named
 from game.neutral_zone import Neutral_Zone
 from game.player import Player
-from game.assets.initial_resource_cards import (
-    black as initial_resource_cards_black,
-    white as initial_resource_cards_white,
-)
+import game.assets.initial_resource_cards as initial_resource_cards
 
 
 class Game_State:
@@ -37,6 +34,6 @@ class Game_State:
         realm_white = player_white.get_realm()
         realm_black = player_black.get_realm()
         realm_white.on_prepare_initial_state()
-        realm_white.on_place_initial_resources(initial_resource_cards_white)
+        realm_white.on_place_initial_resources(initial_resource_cards.white)
         realm_black.on_prepare_initial_state()
-        realm_black.on_place_initial_resources(initial_resource_cards_black)
+        realm_black.on_place_initial_resources(initial_resource_cards.black)
