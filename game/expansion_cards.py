@@ -53,6 +53,7 @@ expansion_card_histogram = {}
 
 def register_expansion_card(card_class, amount):
     global expansion_card_histogram
+    # print("expansion card registered: " + card_class.__name__)
     expansion_card_histogram[card_class] = amount
 
 
