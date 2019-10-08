@@ -52,6 +52,7 @@ class Realm(Internally_Named, Owned):
             )
         resource_cards = Randomized_List_View(resource_cards)
         for i in range(len(card_slots)):
+            resource_cards[i].change_owner(self.get_owner())
             card_slots[i].add(resource_cards[i])
 
     def on_prepare_initial_state(self):
