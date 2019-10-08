@@ -1,3 +1,6 @@
+import math
+
+
 class Slot_Error(RuntimeError):
     def __init__(self, msg):
         RuntimeError.__init__(self, msg)
@@ -14,7 +17,7 @@ class Slot_Full_Error(Slot_Error):
 
 
 class Slot:
-    def __init__(self, accepted_base_types, limit=None):
+    def __init__(self, accepted_base_types, limit=math.inf):
         self._accepted_base_types = accepted_base_types
         self._limit = limit
         self._objects = []
