@@ -1,3 +1,4 @@
+from abc import abstractmethod
 from collections import defaultdict
 
 # IDEA:
@@ -21,6 +22,7 @@ from collections import defaultdict
 
 
 class Listenable:
+    @abstractmethod
     def __init__(self):
         # dict of listenings:
         # key: method_name (string, name of a method of self, method must be
