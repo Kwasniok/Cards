@@ -1,4 +1,4 @@
-from core.color import BLACK, WHITE
+from gui.color import BLACK, WHITE
 from .neutral_zone import Neutral_Zone
 from .player import Player
 

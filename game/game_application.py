@@ -1,4 +1,4 @@
-import core.color as color
+import gui.color as color
 from gui.application import Application
 from .game_window import Game_Window
 from .game_state import Game_State

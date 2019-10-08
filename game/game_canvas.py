@@ -1,6 +1,6 @@
 import tkinter as tk
 import tkinter.font as tkfont
-import core.color as color
+import gui.color as color
 from gui.util import px_to_pt, pt_to_px
 
 
