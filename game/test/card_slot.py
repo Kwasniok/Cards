@@ -9,7 +9,7 @@ class Test_Card1(Card):
     def __init__(self, name, face_up=False):
         Card.__init__(self, name, face_up=face_up)
 
-    def text(self):
+    def get_text(self):
         return "test card type 1"
 
 
@@ -17,7 +17,7 @@ class Test_Card2(Card):
     def __init__(self, name, face_up=False):
         Card.__init__(self, name, face_up=face_up)
 
-    def text(self):
+    def get_text(self):
         return "test card type 2"
 
 

@@ -44,9 +44,9 @@ class Test(unittest.TestCase):
             slot_grid[4][2].get_accepted_base_types(), [Road_Card]
         )
         # initial points
-        self.assertEquals(r.mill_points(self._context), 0)
-        self.assertEquals(r.knight_points(self._context), 0)
-        self.assertEquals(r.win_points(self._context), 2)
+        self.assertEquals(r.get_mill(self._context), 0)
+        self.assertEquals(r.get_knight_points(self._context), 0)
+        self.assertEquals(r.get_win_points(self._context), 2)
         # add storage (small building)
         storage_card = Storage_Card()
         storage_card.change_owner(self.dummy_owner)
@@ -54,6 +54,6 @@ class Test(unittest.TestCase):
         with self.assertRaises(TypeError):
             slot_grid[2][1].add(storage_card)
         # points with storage
-        self.assertEquals(r.mill_points(self._context), 1)
-        self.assertEquals(r.knight_points(self._context), 0)
-        self.assertEquals(r.win_points(self._context), 2)
+        self.assertEquals(r.get_mill(self._context), 1)
+        self.assertEquals(r.get_knight_points(self._context), 0)
+        self.assertEquals(r.get_win_points(self._context), 2)

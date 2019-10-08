@@ -7,14 +7,14 @@ class Structure_Card(Card):
     def __init__(self, name):
         Card.__init__(self, name=name)
 
-    def title(self, context):
+    def get_title(self, context):
         return self._get_internal_name()
 
-    def text(self, context):
+    def get_text(self, context):
         return (
             self._get_internal_name()
             + " ("
-            + " ".join([res.name() for res in self.cost(context)])
+            + " ".join([res.name() for res in self.get_cost(context)])
             + ")"
         )
 
@@ -23,7 +23,7 @@ class Road_Card(Structure_Card):
     def __init__(self):
         Card.__init__(self, name="Road")
 
-    def cost(self, context):
+    def get_cost(self, context):
         return [BRICKS, BRICKS, LOGS]
 
 
@@ -31,10 +31,10 @@ class Settlement_Card(Structure_Card):
     def __init__(self):
         Card.__init__(self, name="Settlement")
 
-    def cost(self, context):
+    def get_cost(self, context):
         return [LOGS, WOOL, BRICKS, GRAIN]
 
-    def win_points(self, context):
+    def get_win_points(self, context):
         return 1
 
 
@@ -42,5 +42,5 @@ class Town_Card(Structure_Card):
     def __init__(self):
         Card.__init__(self, name="Twon")
 
-    def cost(self, context):
+    def get_cost(self, context):
         return [IRON, IRON, IRON, GRAIN, GRAIN]

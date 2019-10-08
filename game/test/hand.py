@@ -8,7 +8,7 @@ class Test_Card(Card):
     def __init__(self, name, face_up=False):
         Card.__init__(self, name, face_up=face_up)
 
-    def text(self):
+    def get_text(self):
         return "test"
 
 

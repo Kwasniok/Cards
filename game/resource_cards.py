@@ -21,10 +21,10 @@ class Resource_Card(Card):
             + ")"
         )
 
-    def title(self, context):
+    def get_title(self, context):
         return str(self.resource_type.source_name())
 
-    def text(self, context):
+    def get_text(self, context):
         return (
             str(self.resource_type.source_name())
             + " ["

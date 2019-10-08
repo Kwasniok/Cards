@@ -65,7 +65,7 @@ class Monastery_Card(Small_Building_Card):
     def __init__(self):
         Small_Building_Card.__init__(self, "Monastery")
 
-    def cost(self, context):
+    def get_cost(self, context):
         return [LOGS, IRON, BRICKS]
 
 
@@ -76,10 +76,10 @@ class Storage_Card(Small_Building_Card):
     def __init__(self):
         Small_Building_Card.__init__(self, "Storage")
 
-    def cost(self, context):
+    def get_cost(self, context):
         return [LOGS, BRICKS]
 
-    def mill_points(self, context):
+    def get_mill(self, context):
         return 1
 
 

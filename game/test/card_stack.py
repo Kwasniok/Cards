@@ -7,7 +7,7 @@ class Test_Card(Card):
     def __init__(self, name):
         Card.__init__(self, name)
 
-    def text(self):
+    def get_text(self):
         return "test"
 
 

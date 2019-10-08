@@ -23,20 +23,20 @@ class Card(ABC, Internally_Named, Owned):
     def toggle_face(self):
         self._face_up = not self._face_up
 
-    def title(self, context):
+    def get_title(self, context):
         return name
 
-    def text(self, context):
+    def get_text(self, context):
         return ""
 
-    def cost(self, context):
+    def get_cost(self, context):
         return []
 
-    def mill_points(self, context):
+    def get_mill(self, context):
         return 0
 
-    def knight_points(self, context):
+    def get_knight_points(self, context):
         return 0
 
-    def win_points(self, context):
+    def get_win_points(self, context):
         return 0

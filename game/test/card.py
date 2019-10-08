@@ -17,7 +17,7 @@ class Test(unittest.TestCase):
             def __init__(self, name, face_up=False):
                 Card.__init__(self, name, face_up)
 
-            def text(self, context):
+            def get_text(self, context):
                 return "test card text"
 
         c = Derived_Card("test card name", face_up=True)
@@ -32,7 +32,7 @@ class Test(unittest.TestCase):
         c.make_face_down()
         self.assertFalse(c.is_face_up())
         # default card properties
-        self.assertEquals(c.cost(self._context), [])
-        self.assertEquals(c.mill_points(self._context), 0)
-        self.assertEquals(c.knight_points(self._context), 0)
-        self.assertEquals(c.win_points(self._context), 0)
+        self.assertEquals(c.get_cost(self._context), [])
+        self.assertEquals(c.get_mill(self._context), 0)
+        self.assertEquals(c.get_knight_points(self._context), 0)
+        self.assertEquals(c.get_win_points(self._context), 0)

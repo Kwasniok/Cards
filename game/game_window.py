@@ -138,7 +138,7 @@ class Game_Window(Window):
                 # cards in slot
                 shift = 0
                 for card in slot:
-                    card_symbol = card.title(context)
+                    card_symbol = card.get_title(context)
                     button = tk.Button(
                         self.get_tk_toplevel(),
                         text=card_symbol,
