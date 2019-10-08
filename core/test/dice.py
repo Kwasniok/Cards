@@ -7,7 +7,7 @@ class Test(unittest.TestCase):
     def test_general(self):
         F = 6
         outcomes = range(1, F + 1)
-        d = Dice(name="d6", outcomes=outcomes)
+        d = Dice(outcomes=outcomes)
         # roll / last outcome
         self.assertEqual(d.number_of_faces(), F)
         with self.assertRaises(RuntimeError):

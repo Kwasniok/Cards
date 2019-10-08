@@ -2,13 +2,9 @@ from .random import random_pick
 
 
 class Dice:
-    def __init__(self, name, outcomes):
-        self._name = name
+    def __init__(self, outcomes):
         self._outcomes = outcomes
         self._last = None
-
-    def __str__(self):
-        return self._name
 
     def number_of_faces(self):
         return len(self._outcomes)
