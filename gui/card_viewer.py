@@ -38,11 +38,11 @@ class Card_Viewer:
         if display_knight_points:
             kp = card.get_knight_points(context)
             if kp:
-                card_symbol += " Kx" + str(mp)
+                card_symbol += " Kx" + str(kp)
         if display_win_points:
             wp = card.get_win_points(context)
             if wp:
-                card_symbol += " Wx" + str(mp)
+                card_symbol += " Wx" + str(wp)
         if display_text:
             card_symbol += "\n" + card.get_text(context)
         button = tk.Button(
