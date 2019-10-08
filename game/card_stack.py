@@ -1,10 +1,12 @@
 from core.internally_named import Internally_Named
 from core.owning import Owned
+from .neutral_owner import neutral_owner
 
 
 class Card_Stack(Internally_Named, Owned):
     def __init__(self, name, cards=None):
         Internally_Named.__init__(self, name)
+        Owned.__init__(self, neutral_owner)
         if cards is None:
             self._cards = []
         else:
