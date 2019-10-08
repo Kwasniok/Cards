@@ -12,7 +12,13 @@ class Resource_Card(Card):
 
     def __repr__(self):
         return (
-            "Resource_Card(resource_type="
+            "Resource_Card(name="
+            + repr(self._get_internal_name())
+            + ",owner="
+            + str(self.get_owner())
+            + ",face_up="
+            + str(self._face_up)
+            + ",resource_type="
             + str(self.resource_type)
             + ",dice_number="
             + str(self.dice_number)

@@ -11,6 +11,17 @@ class Card(ABC, Internally_Named, Owned):
         Owned.__init__(self, neutral_owner)
         self._face_up = face_up
 
+    def __repr__(self):
+        return (
+            "Card(name="
+            + repr(self._get_internal_name())
+            + ",owner="
+            + str(self.get_owner())
+            + ",face_up="
+            + str(self._face_up)
+            + ")"
+        )
+
     def is_face_up(self):
         return self._face_up
 

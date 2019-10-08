@@ -9,6 +9,17 @@ class Expansion_Card(Card):
     def __init__(self, name):
         Card.__init__(self, name)
 
+    def __repr__(self):
+        return (
+            "Expansion_Card(name="
+            + repr(self._get_internal_name())
+            + ",owner="
+            + str(self.get_owner())
+            + ",face_up="
+            + str(self._face_up)
+            + ")"
+        )
+
     @abstractmethod
     def is_playable(self, context):
         pass
@@ -19,11 +30,33 @@ class Action_Card(Expansion_Card):
     def __init__(self, name):
         Expansion_Card.__init__(self, name)
 
+    def __repr__(self):
+        return (
+            "Action_Card(name="
+            + repr(self._get_internal_name())
+            + ",owner="
+            + str(self.get_owner())
+            + ",face_up="
+            + str(self._face_up)
+            + ")"
+        )
+
 
 class Building_Card(Expansion_Card):
     @abstractmethod
     def __init__(self, name):
         Expansion_Card.__init__(self, name)
+
+    def __repr__(self):
+        return (
+            "Building_Card(name="
+            + repr(self._get_internal_name())
+            + ",owner="
+            + str(self.get_owner())
+            + ",face_up="
+            + str(self._face_up)
+            + ")"
+        )
 
     def is_playable(self, context):
         # TODO: on own turn
@@ -41,11 +74,33 @@ class Small_Building_Card(Building_Card):
     def __init__(self, name):
         Building_Card.__init__(self, name)
 
+    def __repr__(self):
+        return (
+            "Small_Building_Card(name="
+            + repr(self._get_internal_name())
+            + ",owner="
+            + str(self.get_owner())
+            + ",face_up="
+            + str(self._face_up)
+            + ")"
+        )
+
 
 class Large_Building_Card(Building_Card):
     @abstractmethod
     def __init__(self, name):
         Building_Card.__init__(self, name)
+
+    def __repr__(self):
+        return (
+            "Large_Building_Card(name="
+            + repr(self._get_internal_name())
+            + ",owner="
+            + str(self.get_owner())
+            + ",face_up="
+            + str(self._face_up)
+            + ")"
+        )
 
 
 expansion_card_histogram = {}
