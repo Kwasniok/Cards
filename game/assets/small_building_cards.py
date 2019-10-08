@@ -6,6 +6,9 @@ class Monastery_Card(Small_Building_Card):
     def __init__(self):
         Small_Building_Card.__init__(self, "Monastery")
 
+    def get_text(self, context):
+        return "<-protected form robber->"
+
     def get_cost(self, context):
         return [LOGS, IRON, BRICKS]
 
