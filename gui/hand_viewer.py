@@ -1,6 +1,7 @@
 import tkinter as tk
 import tkinter.font as tkfont
 import game.directions as directions
+from .card_viewer import Card_Viewer
 
 
 class Hand_Viewer:
@@ -41,7 +42,6 @@ class Hand_Viewer:
         button_width = 180
         button_height = 50
         button_padding = 10
-        # hand 1
         columns = self._hand.get_size()
         x_0 = (width - button_width * (columns - 1)) / 2
         y_0 = int(button_height * 0.5)
@@ -49,27 +49,14 @@ class Hand_Viewer:
             y_0 = height - int(button_height * 0.5)
         for x in range(columns):
             card = self._hand[x]
-            card_symbol = card.get_title(context)
-            if card.is_face_up():
-                card_symbol += " (FU)"
-            else:
-                card_symbol += " (FD)"
-            card_symbol += (
-                "\n["
-                + (",".join([c.get_name() for c in card.get_cost(context)]))
-                + "]"
+            self._buttons.append(
+                Card_Viewer.create_button(
+                    context,
+                    window=self._window,
+                    card=card,
+                    x=x_0 + x * button_width,
+                    y=y_0,
+                    width=int(button_width - 0.5 * button_padding),
+                    height=int(button_height - 0.5 * button_padding),
+                )
             )
-            card_symbol += "\n" + card.get_text(context)
-            button = tk.Button(
-                self._window.get_tk_toplevel(),
-                text=card_symbol,
-                command=lambda card=card: print("clicked on " + repr(card)),
-            )
-            button.place(
-                anchor=tk.CENTER,
-                x=x_0 + x * button_width,
-                y=y_0,
-                width=int(button_width - 0.5 * button_padding),
-                height=int(button_height - 0.5 * button_padding),
-            )
-            self._buttons.append(button)

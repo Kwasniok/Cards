@@ -1,0 +1,51 @@
+import tkinter as tk
+import tkinter.font as tkfont
+
+
+class Card_Viewer:
+    @staticmethod
+    def create_button(
+        context,
+        window,
+        card,
+        x,
+        y,
+        width,
+        height,
+        display_face_indicator=True,
+        display_text=True,
+        display_cost=True,
+        display_mill_points=True,
+        display_knight_points=True,
+        display_win_points=True,
+    ):
+        card_symbol = card.get_title(context)
+        if display_face_indicator:
+            if card.is_face_up():
+                card_symbol += " (FU)"
+            else:
+                card_symbol += " (FD)"
+        if display_cost:
+            card_symbol += (
+                "\n["
+                + (",".join([c.get_name() for c in card.get_cost(context)]))
+                + "]"
+            )
+        if display_mill_points:
+            mp = card.get_mill_points(context)
+            card_symbol += " Mx" + str(mp)
+        if display_knight_points:
+            kp = card.get_knight_points(context)
+            card_symbol += " Kx" + str(mp)
+        if display_win_points:
+            wp = card.get_win_points(context)
+            card_symbol += " Wx" + str(mp)
+        if display_text:
+            card_symbol += "\n" + card.get_text(context)
+        button = tk.Button(
+            window.get_tk_toplevel(),
+            text=card_symbol,
+            command=lambda card=card: print("clicked on " + repr(card)),
+        )
+        button.place(anchor=tk.CENTER, x=x, y=y, width=width, height=height)
+        return button

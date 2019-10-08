@@ -1,6 +1,7 @@
 import tkinter as tk
 import tkinter.font as tkfont
 import game.directions as directions
+from .card_viewer import Card_Viewer
 
 
 class Realm_Viewer:
@@ -80,28 +81,24 @@ class Realm_Viewer:
                 # cards in slot
                 shift = 0
                 for card in slot:
-                    card_symbol = card.get_title(context)
-                    if card.is_face_up():
-                        card_symbol += " (FU)"
-                    else:
-                        card_symbol += " (FD)"
-                    button = tk.Button(
-                        self._window.get_tk_toplevel(),
-                        text=card_symbol,
-                        command=lambda card=card: print(
-                            "clicked on " + repr(card)
-                        ),
+                    cx = x_0 + x * button_width + shift
+                    cy = y_0 + y * button_height + int(button_height / 4)
+                    cwidth = int((button_width - 0.5 * button_padding) * 0.9)
+                    cheight = (
+                        int((button_height - 0.5 * button_padding) * 0.5),
                     )
-                    button.place(
-                        anchor=tk.CENTER,
-                        x=x_0 + x * button_width + shift,
-                        y=y_0 + y * button_height + int(button_height / 4),
-                        width=int((button_width - 0.5 * button_padding) * 0.9),
-                        height=int(
-                            (button_height - 0.5 * button_padding) * 0.5
-                        ),
+                    button_cell.append(
+                        Card_Viewer.create_button(
+                            context,
+                            window=self._window,
+                            card=card,
+                            x=cx,
+                            y=cy,
+                            width=cwidth,
+                            height=cheight,
+                            display_cost=False,
+                        )
                     )
-                    button_cell.append(button)
                     shift += 10
                 button_column.append(button_cell)
             self._buttons.append(button_column)
