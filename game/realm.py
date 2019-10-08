@@ -31,9 +31,6 @@ class Realm(Internally_Named, Owned):
     def get_card_slot_grid(self):
         return self._card_slot_grid
 
-    def size(self):
-        return len(self._card_slot_grid)
-
     def on_place_initial_resources(self, resource_cards):
         card_types = set([type(c) for c in resource_cards])
         card_slots = []
