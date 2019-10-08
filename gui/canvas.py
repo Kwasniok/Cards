@@ -49,7 +49,7 @@ class Canvas:
         internal_text_offset = pt_to_px(self._font.actual()["size"]) / 6
         #
         text_offset = 5
-        hand_zone_heigt = int(height * 0.4)
+        hand_zone_heigt = int(height * 0.45)
         self._player1_rectangle_id = self._canvas.create_rectangle(
             0,
             0,

@@ -42,12 +42,12 @@ class Realm_Viewer:
 
         # create buttons
         button_width = 180
-        button_height = 50
+        button_height = 80
         button_padding = 10
         columns = len(self._realm.get_card_slot_grid())
         rows = 5
         x_0 = (width - button_width * (columns - 1)) / 2
-        y_0 = 150 + int(button_height * 0.5)
+        y_0 = 50 + int(button_height * 0.5)
         if self._direction == directions.DOWN:
             y_0 = height - int(button_height * ((rows - 1))) - y_0
         for x in range(columns):
