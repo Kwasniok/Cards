@@ -26,20 +26,23 @@ class Card_Viewer:
             else:
                 card_symbol += " (FD)"
         if display_cost:
-            card_symbol += (
-                "\n["
-                + (",".join([c.get_name() for c in card.get_cost(context)]))
-                + "]"
-            )
+            cost = card.get_cost(context)
+            if cost:
+                card_symbol += (
+                    "\n[" + (",".join([c.get_name() for c in cost])) + "]"
+                )
         if display_mill_points:
             mp = card.get_mill_points(context)
-            card_symbol += " Mx" + str(mp)
+            if mp:
+                card_symbol += " Mx" + str(mp)
         if display_knight_points:
             kp = card.get_knight_points(context)
-            card_symbol += " Kx" + str(mp)
+            if kp:
+                card_symbol += " Kx" + str(mp)
         if display_win_points:
             wp = card.get_win_points(context)
-            card_symbol += " Wx" + str(mp)
+            if wp:
+                card_symbol += " Wx" + str(mp)
         if display_text:
             card_symbol += "\n" + card.get_text(context)
         button = tk.Button(
