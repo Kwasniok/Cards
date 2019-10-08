@@ -25,17 +25,17 @@ class Test(unittest.TestCase):
         pulsed_trigger.register(listener, Listener.on_pull)
         # test pull
         listener.reset()
-        Pulsed_Trigger.pull_all()
+        Pulsed_Trigger.force_pull_all()
         self.assertEquals(listener.pull_count(), 1)
         # stop
         pulsed_trigger.stop()
         listener.reset()
-        Pulsed_Trigger.pull_all()
+        Pulsed_Trigger.force_pull_all()
         self.assertEquals(listener.pull_count(), 0)
         # restart
         pulsed_trigger.restart()
         listener.reset()
-        Pulsed_Trigger.pull_all()
+        Pulsed_Trigger.force_pull_all()
         self.assertEquals(listener.pull_count(), 1)
 
     def test_registration(self):
@@ -45,12 +45,12 @@ class Test(unittest.TestCase):
         pulsed_trigger.register(listener, Listener.on_pull)
         # test pull (forced pull)
         listener.reset()
-        Pulsed_Trigger.pull_all()
+        Pulsed_Trigger.force_pull_all()
         self.assertEquals(listener.pull_count(), 1)
         # unregister listener
         listener.reset()
         pulsed_trigger.unregister(listener)
-        Pulsed_Trigger.pull_all()
+        Pulsed_Trigger.force_pull_all()
         self.assertEquals(listener.pull_count(), 0)
 
     def test_performance(self):
@@ -60,7 +60,7 @@ class Test(unittest.TestCase):
         pulsed_trigger.register(listener, Listener.on_pull)
         # test pull (forced pull)
         listener.reset()
-        Pulsed_Trigger.pull_all()
+        Pulsed_Trigger.force_pull_all()
         self.assertEquals(listener.pull_count(), 1)
         # measure the pull frequency R times
         R = 10

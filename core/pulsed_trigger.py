@@ -43,7 +43,7 @@ class Pulsed_Trigger(Trigger):
             pulsed_trigger._update()
 
     @staticmethod
-    def pull_all():
+    def force_pull_all():
         for pulsed_trigger in Pulsed_Trigger._active_pulsed_triggers:
             pulsed_trigger.pull()
 
