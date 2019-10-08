@@ -1,5 +1,5 @@
 import unittest
-from ..owning import Owner
+from core.owning import Owner
 from ..card import Card
 from ..hand import Hand
 

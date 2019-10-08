@@ -2,7 +2,7 @@ from itertools import cycle
 from core.random import random_pop
 from core.owning import Owner
 from core.dice import Dice
-from core.card_stack import Card_Stack
+from .card_stack import Card_Stack
 from .all_cards import *
 from .expansion_cards import get_all_expansion_cards
 from .events import EVENT_DICE_OUTCOMES

@@ -1,5 +1,5 @@
 from core.owning import Owner
-from core.hand import Hand
+from .hand import Hand
 from .realm import Realm
 
 

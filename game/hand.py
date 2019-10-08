@@ -1,4 +1,4 @@
-from .owning import Owned
+from core.owning import Owned
 
 
 class Hand(Owned):
