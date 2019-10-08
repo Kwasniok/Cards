@@ -101,31 +101,31 @@ class Realm(Owned):
             Card_Slot(
                 name="locked slot",
                 owner=self._owner,
-                possible_card_types=[],
+                accepted_base_types=[],
                 limit=1,
             ),
             Card_Slot(
                 name="resource slot",
                 owner=self._owner,
-                possible_card_types=[Resource_Card],
+                accepted_base_types=[Resource_Card],
                 limit=1,
             ),
             Card_Slot(
                 name="road slot",
                 owner=self._owner,
-                possible_card_types=[Road_Card],
+                accepted_base_types=[Road_Card],
                 limit=1,
             ),
             Card_Slot(
                 name="resource slot",
                 owner=self._owner,
-                possible_card_types=[Resource_Card],
+                accepted_base_types=[Resource_Card],
                 limit=1,
             ),
             Card_Slot(
                 name="locked slot",
                 owner=self._owner,
-                possible_card_types=[],
+                accepted_base_types=[],
                 limit=1,
             ),
         ]
@@ -136,31 +136,31 @@ class Realm(Owned):
             Card_Slot(
                 name="town building slot",
                 owner=self._owner,
-                possible_card_types=[Building_Card],
+                accepted_base_types=[Building_Card],
                 limit=1,
             ),
             Card_Slot(
                 name="building slot",
                 owner=self._owner,
-                possible_card_types=[Building_Card],
+                accepted_base_types=[Building_Card],
                 limit=1,
             ),
             Card_Slot(
                 name="settlement slot",
                 owner=self._owner,
-                possible_card_types=[Settlement_Card],
+                accepted_base_types=[Settlement_Card],
                 limit=1,
             ),
             Card_Slot(
                 name="building slot",
                 owner=self._owner,
-                possible_card_types=[Building_Card],
+                accepted_base_types=[Building_Card],
                 limit=1,
             ),
             Card_Slot(
                 name="town building slot",
                 owner=self._owner,
-                possible_card_types=[Building_Card],
+                accepted_base_types=[Building_Card],
                 limit=1,
             ),
         ]

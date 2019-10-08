@@ -25,15 +25,21 @@ class Test(unittest.TestCase):
         card_slot_grid = r.get_card_slot_grid()
         for column in card_slot_grid:
             self.assertEquals(len(column), 5)
-        self.assertEquals(slot_grid[0][2].possible_card_types(), [Road_Card])
         self.assertEquals(
-            slot_grid[1][2].possible_card_types(), [Settlement_Card]
+            slot_grid[0][2].get_accepted_base_types(), [Road_Card]
         )
-        self.assertEquals(slot_grid[2][2].possible_card_types(), [Road_Card])
         self.assertEquals(
-            slot_grid[3][2].possible_card_types(), [Settlement_Card]
+            slot_grid[1][2].get_accepted_base_types(), [Settlement_Card]
         )
-        self.assertEquals(slot_grid[4][2].possible_card_types(), [Road_Card])
+        self.assertEquals(
+            slot_grid[2][2].get_accepted_base_types(), [Road_Card]
+        )
+        self.assertEquals(
+            slot_grid[3][2].get_accepted_base_types(), [Settlement_Card]
+        )
+        self.assertEquals(
+            slot_grid[4][2].get_accepted_base_types(), [Road_Card]
+        )
         # initial points
         self.assertEquals(r.mill_points(self._context), 0)
         self.assertEquals(r.knight_points(self._context), 0)
@@ -42,7 +48,7 @@ class Test(unittest.TestCase):
         storage_card = Storage_Card()
         storage_card.owner(self.dummy_owner)
         slot_grid[1][1].add(storage_card)
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             slot_grid[2][1].add(storage_card)
         # points with storage
         self.assertEquals(r.mill_points(self._context), 1)

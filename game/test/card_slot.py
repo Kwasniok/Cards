@@ -1,5 +1,6 @@
 import unittest
 from core.owning import Owner
+from core.slot import Slot_Full_Error
 from ..card import Card
 from ..card_slot import Card_Slot
 
@@ -33,34 +34,36 @@ class Test(unittest.TestCase):
         cs = Card_Slot(
             name="test card slot 1",
             owner=self.dummy_owner,
-            possible_card_types=pct,
+            accepted_base_types=pct,
             limit=2,
         )
-        self.assertTrue(cs.accepts_card(c1a))
+        # accepts card_type
+        self.assertTrue(cs.accepts_type(Test_Card1))
+        self.assertFalse(cs.accepts_type(Test_Card2))
+        # empty
+        self.assertTrue(cs.is_empty())
+        # add/remove
+        self.assertTrue(cs.would_accept(c1a))
         cs.add(c1a)
         cs.remove(c1a)
-        self.assertTrue(cs.accepts_card(c1a))
+        self.assertTrue(cs.would_accept(c1a))
         cs.add(c1a)
         # wrong type
-        self.assertFalse(cs.accepts_card(c2a))
-        with self.assertRaises(ValueError):
+        self.assertFalse(cs.would_accept(c2a))
+        with self.assertRaises(TypeError):
             cs.add(c2a)
         # allreay present
-        self.assertFalse(cs.accepts_card(c1a))
+        self.assertFalse(cs.would_accept(c1a))
         with self.assertRaises(ValueError):
             cs.add(c1a)
-        self.assertTrue(cs.accepts_card(c1b))
+        self.assertTrue(cs.would_accept(c1b))
         cs.add(c1b)
         # limit reached
-        self.assertFalse(cs.accepts_card(c1c))
-        with self.assertRaises(ValueError):
+        self.assertFalse(cs.would_accept(c1c))
+        with self.assertRaises(Slot_Full_Error):
             cs.add(c1c)
-        # not present
-        with self.assertRaises(ValueError):
-            cs.remove(c1c)
-        # accepts card_type
-        self.assertTrue(cs.accepts_card_of_type(Test_Card1))
-        self.assertFalse(cs.accepts_card_of_type(Test_Card2))
+        # remove (not present)
+        cs.remove(c1c)
         # __contains__
         self.assertTrue(c1a in cs)
         self.assertTrue(c1b in cs)
