@@ -9,5 +9,8 @@ class Internally_Named:
     def __str__(self):
         return self._internal_name
 
+    def _get_internal_name(self):
+        return self._internal_name
+
     def _set_internal_name(self, name):
         self._internal_name = name
