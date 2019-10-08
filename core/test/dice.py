@@ -8,15 +8,13 @@ class Test(unittest.TestCase):
         F = 6
         outcomes = range(1, F + 1)
         d = Dice(outcomes=outcomes)
+        self.assertEqual(d.get_number_of_faces(), F)
         # roll / last outcome
-        self.assertEqual(d.number_of_faces(), F)
-        with self.assertRaises(RuntimeError):
-            d.last_outcome()
         histogram = defaultdict(lambda: 0, {})
         for i in range(1000):
             last = d.roll()
             self.assertTrue(last in outcomes)
-            self.assertEqual(d.last_outcome(), last)
+            self.assertEqual(d.get_last_outcome(), last)
             histogram[last] += 1
         # all outcomes used
         for outcome in outcomes:
