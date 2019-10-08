@@ -41,7 +41,15 @@ class Window(Base_Window):
         if not (self._game_canvas is None):
             self._game_canvas.destroy()
             self._game_canvas = None
+        self._destroy_realm_buttons(self._ream1_buttons)
+        self._destroy_realm_buttons(self._ream2_buttons)
         Base_Window.destroy(self)
+
+    def _destroy_realm_buttons(self, realm_buttons):
+        for column in realm_buttons:
+            for cell in column:
+                for button in cell:
+                    button.destroy()
 
     def on_update_realms(self, context):
         toplevel = self.get_tk_toplevel()
@@ -54,20 +62,20 @@ class Window(Base_Window):
         realm1 = player1.get_realm()
         realm2 = player2.get_realm()
 
-        # clear realm 1 GUI
-        for column in self._ream1_buttons:
-            for cell in column:
-                for button in cell:
-                    button.destroy()
-        # draw ream 1 GUI
+        # clear realm GUI
+        self._destroy_realm_buttons(self._ream1_buttons)
+        self._destroy_realm_buttons(self._ream2_buttons)
+
+        # draw ream GUI
         columns = len(realm1._card_slot_grid)
         rows = 5
         button_width = 180
         button_height = 50
         button_padding = 10
+        # realm 1
         x_0 = (width - button_width * (columns - 1)) / 2
         y_0 = 150 + int(button_height * 0.5)
-        self._update_realm(
+        self._create_realm_buttons(
             context,
             realm1,
             self._ream1_buttons,
@@ -79,8 +87,10 @@ class Window(Base_Window):
             button_height,
             button_padding,
         )
+        # realm 2
+        columns = len(realm2._card_slot_grid)
         y_0 = height - int(button_height * ((rows - 1))) - y_0
-        self._update_realm(
+        self._create_realm_buttons(
             context,
             realm2,
             self._ream2_buttons,
@@ -93,7 +103,7 @@ class Window(Base_Window):
             button_padding,
         )
 
-    def _update_realm(
+    def _create_realm_buttons(
         self,
         context,
         realm,
