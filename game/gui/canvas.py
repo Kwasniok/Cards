@@ -4,7 +4,7 @@ import core.gui.color as color
 from core.gui.util import px_to_pt, pt_to_px
 
 
-class Game_Canvas:
+class Canvas:
     def __init__(self, game_window):
         self._game_window = game_window
         self._canvas = tk.Canvas(self._game_window.get_tk_toplevel())

@@ -1,6 +1,6 @@
 import core.gui.color as color
-from core.gui.application import Application
-from .game_window import Game_Window
+from core.gui.application import Application as Base_Application
+from .window import Window
 from game.game_state import Game_State
 from assets.initial_resource_cards import (
     black as initial_resource_cards_black,
@@ -8,9 +8,9 @@ from assets.initial_resource_cards import (
 )
 
 
-class Game_Application(Application):
+class Application(Base_Application):
     def __init__(self):
-        Application.__init__(self)
+        Base_Application.__init__(self)
         self._game_state = Game_State(name="game state")
 
     def get_game_state(self):
@@ -29,6 +29,6 @@ class Game_Application(Application):
         realm_black.on_place_initial_resources(initial_resource_cards_black)
 
     def run(self):
-        window = Game_Window(self, x=100, y=100)
+        window = Window(self, x=100, y=100)
         self.on_prepare_game()
-        Application.run(self)
+        Base_Application.run(self)

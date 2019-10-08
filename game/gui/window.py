@@ -1,18 +1,18 @@
 import tkinter as tk
 import tkinter.font as tkfont
 from core.gui.util import px_to_pt, pt_to_px
-from core.gui.window import Window
+from core.gui.window import Window as Base_Window
 from game.all_cards import *
-from .game_canvas import Game_Canvas
+from .canvas import Canvas
 
 
-class Game_Window(Window):
-    def __init__(self, game_application, x, y):
+class Window(Base_Window):
+    def __init__(self, application, x, y):
         width = 1920
         height = 1080
-        Window.__init__(
+        Base_Window.__init__(
             self,
-            application=game_application,
+            application=application,
             title="Game Window",
             width=width,
             height=height,
@@ -22,7 +22,7 @@ class Game_Window(Window):
         self.make_non_resizable()
         self.center()
         self.set_icon("res/game_icon.gif")
-        self._game_canvas = Game_Canvas(self)
+        self._game_canvas = Canvas(self)
         self._update_realms_button = tk.Button(
             self.get_tk_toplevel(),
             text="update realms",
@@ -41,7 +41,7 @@ class Game_Window(Window):
         if not (self._game_canvas is None):
             self._game_canvas.destroy()
             self._game_canvas = None
-        Window.destroy(self)
+        Base_Window.destroy(self)
 
     def update_realms(self):
         toplevel = self.get_tk_toplevel()

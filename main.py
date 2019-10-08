@@ -1,8 +1,8 @@
-from game.gui.game_application import Game_Application
+from game.gui.application import Application
 
 
 def main():
-    application = Game_Application()
+    application = Application()
     application.run()
     application.destroy()
 
