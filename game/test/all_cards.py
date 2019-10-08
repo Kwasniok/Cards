@@ -36,5 +36,3 @@ class Test(unittest.TestCase):
         for c in cards:
             self.assertTrue(isinstance(str(c), str))
             self.assertTrue(isinstance(c.get_text(self._context), str))
-            # card name in card text (might not be a good idea)
-            self.assertTrue(str(c) in c.get_text(self._context))
