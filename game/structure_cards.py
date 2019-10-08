@@ -21,14 +21,6 @@ class Structure_Card(Card):
     def get_title(self, context):
         return self._get_internal_name()
 
-    def get_text(self, context):
-        return (
-            self._get_internal_name()
-            + " ("
-            + " ".join([res.get_name() for res in self.get_cost(context)])
-            + ")"
-        )
-
 
 class Road_Card(Structure_Card):
     def __init__(self):
