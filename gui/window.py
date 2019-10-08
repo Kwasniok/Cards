@@ -269,6 +269,12 @@ class Window(Base_Window):
                 card_symbol += " (FU)"
             else:
                 card_symbol += " (FD)"
+            card_symbol += (
+                "\n["
+                + (",".join([c.get_name() for c in card.get_cost(context)]))
+                + "]"
+            )
+            card_symbol += "\n" + card.get_text(context)
             button = tk.Button(
                 self.get_tk_toplevel(),
                 text=card_symbol,
