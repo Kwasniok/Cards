@@ -35,5 +35,5 @@ class Hand(Internally_Named, Owned):
     def is_above_limit(self):
         return len(self._cards) > self._limit
 
-    def size(self):
+    def get_size(self):
         return len(self._cards)
