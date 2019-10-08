@@ -67,8 +67,6 @@ class Slot:
         return len(self._objects) >= self._limit
 
     def accepts_type(self, type):
-        print(type)
-        print(tuple(self._accepted_base_types))
         return issubclass(type, tuple(self._accepted_base_types))
 
     def would_accept(self, obj):
