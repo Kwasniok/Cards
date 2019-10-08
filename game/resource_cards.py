@@ -32,8 +32,7 @@ class Resource_Card(Card):
 
     def get_text(self, context):
         return (
-            str(self.resource_type.get_source_name())
-            + " ["
+            "["
             + str(self.dice_number)
             + "] ("
             + str(self.counter)
