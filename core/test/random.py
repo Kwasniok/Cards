@@ -1,7 +1,7 @@
 import unittest
 from collections import defaultdict
 from ..random import random_pick, random_pop
-from ..random import Randomized
+from ..random import Randomized_List_View
 
 
 class Test(unittest.TestCase):
@@ -37,7 +37,7 @@ class Test(unittest.TestCase):
             histograms = [defaultdict(lambda: 0) for element in list]
             n = 10000
             for i in range(n):
-                rand_list = Randomized(list)
+                rand_list = Randomized_List_View(list)
                 # same content
                 self.assertTrue(len(list) == len(rand_list))
                 for element in list:

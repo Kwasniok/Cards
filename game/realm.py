@@ -1,5 +1,5 @@
 from collections import defaultdict
-from core.random import Randomized
+from core.random import Randomized_List_View
 from core.two_sided_stack import Two_Sided_Stack
 from core.directions import RIGHT, LEFT
 from core.internally_named import Internally_Named
@@ -53,7 +53,7 @@ class Realm(Internally_Named, Owned):
                     + ")"
                 )
             )
-        resource_cards = Randomized(resource_cards)
+        resource_cards = Randomized_List_View(resource_cards)
         for i in range(len(card_slots)):
             card_slots[i].add(resource_cards[i])
 

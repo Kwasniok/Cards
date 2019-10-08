@@ -12,7 +12,7 @@ def random_pop(list):
     return elem
 
 
-class Randomized:
+class Randomized_List_View:
     def __init__(self, list):
         self._list = list
         self._order = builtins.list(range(len(self._list)))
