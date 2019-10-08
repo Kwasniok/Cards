@@ -225,6 +225,10 @@ class Window(Base_Window):
                 shift = 0
                 for card in slot:
                     card_symbol = card.get_title(context)
+                    if card.is_face_up():
+                        card_symbol += " (FU)"
+                    else:
+                        card_symbol += " (FD)"
                     button = tk.Button(
                         self.get_tk_toplevel(),
                         text=card_symbol,
@@ -261,6 +265,10 @@ class Window(Base_Window):
         for x in range(columns):
             card = hand[x]
             card_symbol = card.get_title(context)
+            if card.is_face_up():
+                card_symbol += " (FU)"
+            else:
+                card_symbol += " (FD)"
             button = tk.Button(
                 self.get_tk_toplevel(),
                 text=card_symbol,
