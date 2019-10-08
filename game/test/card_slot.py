@@ -23,7 +23,10 @@ class Test_Card2(Card):
 
 class Test(unittest.TestCase):
     def setUp(self):
-        self.dummy_owner = Owner("dummy")
+        class Test_Owner(Owner):
+            pass
+
+        self.dummy_owner = Test_Owner()
 
     def test_general(self):
         c1a = Test_Card1(name="test 1 A")

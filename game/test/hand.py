@@ -1,5 +1,5 @@
 import unittest
-from core.owning import Owner
+from core.owning import Owner, Owned
 from ..card import Card
 from ..hand import Hand
 
@@ -14,12 +14,15 @@ class Test_Card(Card):
 
 class Test(unittest.TestCase):
     def setUp(self):
-        self.dummy_owner = Owner("dummy")
+        class Test_Owner(Owner):
+            pass
+
+        self.dummy_owner = Test_Owner()
 
     def test_general(self):
         limit = 2
         h = Hand(name="test hand", owner=self.dummy_owner, limit=limit)
-        h.owner()
+        self.assertTrue(isinstance(h, Owned))
         self.assertTrue(h.size() == 0)
         c1 = Test_Card("test card 1")
         c2 = Test_Card("test card 2")

@@ -71,7 +71,7 @@ class Game_Canvas:
             hand_zone_heigt / 2,
             anchor=tk.W,
             text=str(player1),
-            fill=player1.color(),
+            fill=player1.get_color(),
             font=self._font,
         )
         self._player2_text_id = self._canvas.create_text(
@@ -79,6 +79,6 @@ class Game_Canvas:
             height - hand_zone_heigt / 2,
             anchor=tk.W,
             text=str(player2),
-            fill=player2.color(),
+            fill=player2.get_color(),
             font=self._font,
         )

@@ -21,7 +21,7 @@ class Realm(Owned):
             "Realm(name='"
             + self._name
             + "', owner="
-            + str(self.owner())
+            + str(self.get_owner())
             + ", card_slot_grid="
             + repr(self._card_slot_grid)
             + ")"
@@ -61,13 +61,13 @@ class Realm(Owned):
         srsc = self._add_settlement_slot_column(RIGHT)
         slsc = self._add_settlement_slot_column(LEFT)
         card = Road_Card()
-        card.owner(self.owner())
+        card.change_owner(self.get_owner())
         rsc[2].add(card)
         card = Settlement_Card()
-        card.owner(self.owner())
+        card.change_owner(self.get_owner())
         srsc[2].add(card)
         card = Settlement_Card()
-        card.owner(self.owner())
+        card.change_owner(self.get_owner())
         slsc[2].add(card)
         self._add_road_slot_column(RIGHT)
         self._add_road_slot_column(LEFT)

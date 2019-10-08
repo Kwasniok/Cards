@@ -19,8 +19,8 @@ class Game_Application(Application):
     def on_prepare_game(self):
         player_white = self._game_state.get_player1()
         player_black = self._game_state.get_player2()
-        player_white.color(color.WHITE)
-        player_black.color(color.BLACK)
+        player_white.change_color(color.WHITE)
+        player_black.change_color(color.BLACK)
         realm_white = player_white.get_realm()
         realm_black = player_black.get_realm()
         realm_white.on_prepare_initial_state()

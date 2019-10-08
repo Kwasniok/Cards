@@ -5,9 +5,20 @@ from .realm import Realm
 
 class Player(Owner):
     def __init__(self, name, color):
-        Owner.__init__(self, name=name, color=color)
+        Owner.__init__(self)
+        self._name = name
+        self._color = color
         self._hand = Hand(name="hand of " + name, owner=self)
-        self._realm = Realm("realm of " + name, owner=self)
+        self._realm = Realm(name="realm of " + name, owner=self)
+
+    def get_name(self):
+        return self._name
+
+    def get_color(self):
+        return self._color
+
+    def change_color(self, color):
+        self._color = color
 
     def get_hand(self):
         return self._hand

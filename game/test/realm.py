@@ -9,7 +9,10 @@ from ..realm import Realm
 
 class Test(unittest.TestCase):
     def setUp(self):
-        self.dummy_owner = Owner(name="dummy owner")
+        class Test_Owner(Owner):
+            pass
+
+        self.dummy_owner = Test_Owner()
         self._context = None
 
     def test_general(self):
@@ -46,7 +49,7 @@ class Test(unittest.TestCase):
         self.assertEquals(r.win_points(self._context), 2)
         # add storage (small building)
         storage_card = Storage_Card()
-        storage_card.owner(self.dummy_owner)
+        storage_card.change_owner(self.dummy_owner)
         slot_grid[1][1].add(storage_card)
         with self.assertRaises(TypeError):
             slot_grid[2][1].add(storage_card)

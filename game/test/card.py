@@ -1,5 +1,6 @@
 import unittest
-from core.owning import neutral_owner
+from core.owning import Owned
+from ..neutral_owner import neutral_owner
 from ..card import Card
 
 
@@ -20,9 +21,8 @@ class Test(unittest.TestCase):
                 return "test card text"
 
         c = Derived_Card("test card name", face_up=True)
-        # owner
-        c.owner()
-        self.assertEquals(c.owner(), neutral_owner)
+        self.assertTrue(isinstance(c, Owned))
+        self.assertEquals(c.get_owner(), neutral_owner)
         # facing
         self.assertTrue(c.is_face_up())
         c.toggle_face()
