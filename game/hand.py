@@ -40,3 +40,6 @@ class Hand(Internally_Named, Owned):
 
     def get_size(self):
         return len(self._cards)
+
+    def get_limit(self):
+        return self._limit
