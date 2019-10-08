@@ -1,9 +1,9 @@
 from collections import defaultdict
 from core.random import Randomized_List_View
 from core.two_sided_stack import Two_Sided_Stack
-from core.directions import RIGHT, LEFT
 from core.internally_named import Internally_Named
 from core.owning import Owned
+from .directions import RIGHT, LEFT
 from .card_slot import Card_Slot
 from .all_cards import Road_Card, Settlement_Card, Resource_Card, Building_Card
 
