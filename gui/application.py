@@ -1,4 +1,5 @@
 import core.gui.color as color
+from core.random import random_pop
 from core.gui.application import Application as Base_Application
 from .window import Window
 from game.game_state import Game_State
@@ -17,8 +18,12 @@ class Application(Base_Application):
         return self._game_state
 
     def on_prepare_game(self):
-        player_white = self._game_state.get_player1()
-        player_black = self._game_state.get_player2()
+        player = [
+            self._game_state.get_player1(),
+            self._game_state.get_player2(),
+        ]
+        player_white = random_pop(player)
+        player_black = random_pop(player)
         player_white.change_color(color.WHITE)
         player_black.change_color(color.BLACK)
         realm_white = player_white.get_realm()
@@ -29,6 +34,6 @@ class Application(Base_Application):
         realm_black.on_place_initial_resources(initial_resource_cards_black)
 
     def run(self):
-        window = Window(self, x=100, y=100)
         self.on_prepare_game()
+        window = Window(self, x=100, y=100)
         Base_Application.run(self)
