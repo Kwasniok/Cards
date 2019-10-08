@@ -5,7 +5,7 @@ class Resource_Card(Card):
     RESOURCE_LIMIT = 3
 
     def __init__(self, resource_type, dice_number, initial_count):
-        Card.__init__(self, resource_type.source_name())
+        Card.__init__(self, resource_type.get_source_name())
         self.resource_type = resource_type
         self.counter = initial_count
         self.dice_number = dice_number
@@ -22,17 +22,17 @@ class Resource_Card(Card):
         )
 
     def get_title(self, context):
-        return str(self.resource_type.source_name())
+        return str(self.resource_type.get_source_name())
 
     def get_text(self, context):
         return (
-            str(self.resource_type.source_name())
+            str(self.resource_type.get_source_name())
             + " ["
             + str(self.dice_number)
             + "] ("
             + str(self.counter)
             + "/3 "
-            + self.resource_type.name()
+            + self.resource_type.get_name()
             + ")"
         )
 
@@ -51,7 +51,7 @@ class Resource_Card(Card):
                     + " resources from "
                     + str(self.counter)
                     + " "
-                    + self.resource_type.name()
+                    + self.resource_type.get_name()
                     + " resources of card "
                     + str(self)
                 )

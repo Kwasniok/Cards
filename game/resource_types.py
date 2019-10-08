@@ -6,10 +6,10 @@ class Resource_Type(Internally_Named):
         Internally_Named.__init__(self, name)
         self.source = source_name
 
-    def name(self):
+    def get_name(self):
         return str(self)
 
-    def source_name(self):
+    def get_source_name(self):
         return self.source
 
 

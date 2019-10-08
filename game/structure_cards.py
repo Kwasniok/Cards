@@ -14,7 +14,7 @@ class Structure_Card(Card):
         return (
             self._get_internal_name()
             + " ("
-            + " ".join([res.name() for res in self.get_cost(context)])
+            + " ".join([res.get_name() for res in self.get_cost(context)])
             + ")"
         )
 
