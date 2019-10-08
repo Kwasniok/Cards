@@ -19,6 +19,7 @@ class Hand(Internally_Named, Owned):
         return card in self._cards
 
     def add(self, card):
+        card.change_owner(self.get_owner())
         self._cards.append(card)
 
     def remove(self, card):
