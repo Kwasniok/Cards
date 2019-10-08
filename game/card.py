@@ -35,7 +35,7 @@ class Card(ABC, Internally_Named, Owned):
         self._face_up = not self._face_up
 
     def get_title(self, context):
-        return name
+        return self._get_internal_name()
 
     def get_text(self, context):
         return ""
