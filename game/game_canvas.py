@@ -70,7 +70,7 @@ class Game_Canvas:
             text_offset,
             hand_zone_heigt / 2,
             anchor=tk.W,
-            text=str(player1),
+            text=player1.get_name(),
             fill=player1.get_color(),
             font=self._font,
         )
@@ -78,7 +78,7 @@ class Game_Canvas:
             text_offset,
             height - hand_zone_heigt / 2,
             anchor=tk.W,
-            text=str(player2),
+            text=player2.get_name(),
             fill=player2.get_color(),
             font=self._font,
         )
