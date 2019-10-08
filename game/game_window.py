@@ -119,7 +119,7 @@ class Game_Window(Window):
                 )
                 slot_symbol += "\n"
                 slot_symbol += "|".join(
-                    pct.__name__ for pct in slot.possible_card_types()
+                    pct.__name__ for pct in slot.get_accepted_base_types()
                 )
                 # slot button
                 button = tk.Button(

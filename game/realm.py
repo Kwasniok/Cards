@@ -39,7 +39,7 @@ class Realm(Owned):
         for card_slot_column in self._card_slot_grid:
             for card_slot in card_slot_column:
                 for card_type in card_types:
-                    if card_slot.accepts_card_of_type(card_type):
+                    if card_slot.accepts_type(card_type):
                         card_slots.append(card_slot)
                         break
         if len(resource_cards) != len(card_slots):
