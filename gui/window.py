@@ -29,7 +29,7 @@ class Window(Base_Window):
             font=tkfont.Font(
                 family="Helvetica", size=px_to_pt(24), weight="bold"
             ),
-            command=lambda: self.update_realms(),
+            command=lambda: self.on_update_realms(None),
         )
         self._update_realms_button.place(
             anchor=tk.CENTER, x=width / 2, y=height / 2, width=200, height=100
@@ -43,13 +43,12 @@ class Window(Base_Window):
             self._game_canvas = None
         Base_Window.destroy(self)
 
-    def update_realms(self):
+    def on_update_realms(self, context):
         toplevel = self.get_tk_toplevel()
         toplevel.update_idletasks()
         width = toplevel.winfo_width()
         height = toplevel.winfo_height()
         game_state = self.get_application().get_game_state()
-        context = None
         player1 = game_state.get_player1()
         player2 = game_state.get_player2()
         realm1 = player1.get_realm()
