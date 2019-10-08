@@ -78,7 +78,7 @@ class Slot:
             return False
         return True
 
-    def is_accepted_type(self, type):
+    def accepts_type(self, type):
         return issubclass(type, tuple(self._accepted_base_types))
 
     # checks allways in this order:
