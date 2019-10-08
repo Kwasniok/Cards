@@ -1,7 +1,7 @@
 from core.internally_named import Internally_Named
-from gui.color import BLACK, WHITE
-from .neutral_zone import Neutral_Zone
-from .player import Player
+from core.gui.color import BLACK, WHITE
+from game.neutral_zone import Neutral_Zone
+from game.player import Player
 
 
 class Game_State:

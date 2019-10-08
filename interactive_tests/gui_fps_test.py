@@ -1,8 +1,8 @@
 import time
 import tkinter as tk
 from core.pulsed_trigger import Pulsed_Trigger
-from gui.application import Application
-from gui.window import Window
+from core.gui.application import Application
+from core.gui.window import Window
 
 
 def on_click():

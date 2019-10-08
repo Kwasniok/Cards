@@ -1,5 +1,5 @@
 import unittest
-from gui.color import BLACK, WHITE
+from core.gui.color import BLACK, WHITE
 from ..player import Player
 
 

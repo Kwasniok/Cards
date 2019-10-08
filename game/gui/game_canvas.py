@@ -1,7 +1,7 @@
 import tkinter as tk
 import tkinter.font as tkfont
-import gui.color as color
-from gui.util import px_to_pt, pt_to_px
+import core.gui.color as color
+from core.gui.util import px_to_pt, pt_to_px
 
 
 class Game_Canvas:

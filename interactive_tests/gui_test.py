@@ -1,6 +1,6 @@
 import tkinter as tk
-from gui.application import Application
-from gui.window import Window
+from core.gui.application import Application
+from core.gui.window import Window
 
 
 class Test_Window(Window):

@@ -1,9 +1,9 @@
 import tkinter as tk
 import tkinter.font as tkfont
-from gui.util import px_to_pt, pt_to_px
-from gui.window import Window
+from core.gui.util import px_to_pt, pt_to_px
+from core.gui.window import Window
+from game.all_cards import *
 from .game_canvas import Game_Canvas
-from .all_cards import *
 
 
 class Game_Window(Window):
