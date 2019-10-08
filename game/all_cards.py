@@ -8,3 +8,4 @@ from .expansion_cards import (
     Large_Building_Card,
 )
 from .event_cards import Event_Card
+import assets.small_building_cards

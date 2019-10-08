@@ -2,9 +2,20 @@ import unittest
 from core.directions import RIGHT, LEFT
 from core.owning import Owner
 from ..all_cards import Road_Card, Settlement_Card, Town_Card, Resource_Card
-from ..expansion_cards import Storage_Card
+from ..expansion_cards import Small_Building_Card
 from ..resource_types import *
 from ..realm import Realm
+
+
+class Test_Small_Building_Card(Small_Building_Card):
+    def __init__(self):
+        Small_Building_Card.__init__(self, "test small building card")
+
+    def get_cost(self, context):
+        return [LOGS, BRICKS]
+
+    def get_mill(self, context):
+        return 1
 
 
 class Test(unittest.TestCase):
@@ -48,11 +59,11 @@ class Test(unittest.TestCase):
         self.assertEquals(r.get_knight_points(self._context), 0)
         self.assertEquals(r.get_win_points(self._context), 2)
         # add storage (small building)
-        storage_card = Storage_Card()
-        storage_card.change_owner(self.dummy_owner)
-        slot_grid[1][1].add(storage_card)
+        small_building_card = Test_Small_Building_Card()
+        small_building_card.change_owner(self.dummy_owner)
+        slot_grid[1][1].add(small_building_card)
         with self.assertRaises(TypeError):
-            slot_grid[2][1].add(storage_card)
+            slot_grid[2][1].add(small_building_card)
         # points with storage
         self.assertEquals(r.get_mill(self._context), 1)
         self.assertEquals(r.get_knight_points(self._context), 0)
