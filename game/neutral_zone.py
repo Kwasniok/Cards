@@ -1,5 +1,6 @@
 from itertools import cycle
 from core.random import random_pop
+from core.internally_named import Internally_Named
 from core.owning import Owner
 from .dice import Dice
 from .card_stack import Card_Stack
@@ -9,9 +10,9 @@ from .events import EVENT_DICE_OUTCOMES
 from .player import Player
 
 
-class Neutral_Zone:
+class Neutral_Zone(Internally_Named):
     def __init__(self, name):
-        self._name = name
+        Internally_Named.__init__(self, name)
         self._number_dice = Dice(name="number dice", outcomes=range(1, 7))
         self._event_dice = Dice(name="event dice", outcomes=EVENT_DICE_OUTCOMES)
         self._number_of_expansion_card_stacks = 5
@@ -20,9 +21,6 @@ class Neutral_Zone:
         self._settement_card_stack = None
         self._town_card_stack = None
         self.reset()
-
-    def __str__(self):
-        return self._name
 
     def reset(self):
         self._number_dice.roll()

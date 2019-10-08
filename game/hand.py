@@ -1,15 +1,16 @@
+from core.internally_named import Internally_Named
 from core.owning import Owned
 
 
-class Hand(Owned):
+class Hand(Internally_Named, Owned):
     def __init__(self, name, owner, limit=3):
+        Internally_Named.__init__(self, name)
         Owned.__init__(self, owner=owner)
-        self._name = name
         self._cards = []
         self._limit = limit
 
-    def __str__(self):
-        return self._name
+    def get_name(self):
+        return str(name)
 
     def __contains__(self, card):
         return card in self._cards

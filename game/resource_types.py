@@ -1,13 +1,13 @@
-class Resource_Type:
+from core.internally_named import Internally_Named
+
+
+class Resource_Type(Internally_Named):
     def __init__(self, name, source_name):
-        self._name = name
+        Internally_Named.__init__(self, name)
         self.source = source_name
 
-    def __str__(self):
-        return self._name
-
     def name(self):
-        return self._name
+        return str(self)
 
     def source_name(self):
         return self.source

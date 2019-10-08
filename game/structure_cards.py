@@ -8,11 +8,11 @@ class Structure_Card(Card):
         Card.__init__(self, name=name)
 
     def title(self, context):
-        return self.get_name()
+        return self._get_internal_name()
 
     def text(self, context):
         return (
-            self.get_name()
+            self._get_internal_name()
             + " ("
             + " ".join([res.name() for res in self.cost(context)])
             + ")"

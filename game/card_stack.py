@@ -1,16 +1,14 @@
+from core.internally_named import Internally_Named
 from core.owning import Owned
 
 
-class Card_Stack(Owned):
+class Card_Stack(Internally_Named, Owned):
     def __init__(self, name, cards=None):
-        self._name = name
+        Internally_Named.__init__(self, name)
         if cards is None:
             self._cards = []
         else:
             self._cards = cards
-
-    def __str__(self):
-        return self._name
 
     def __len__(self):
         return len(self._cards)

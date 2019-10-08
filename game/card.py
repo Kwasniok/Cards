@@ -1,20 +1,15 @@
 from abc import ABC, abstractmethod
+from core.internally_named import Internally_Named
 from core.owning import Owned
 from .neutral_owner import neutral_owner
 
 
-class Card(ABC, Owned):
+class Card(ABC, Internally_Named, Owned):
     @abstractmethod
     def __init__(self, name, face_up=False):
+        Internally_Named.__init__(self, name)
         Owned.__init__(self, neutral_owner)
-        self._name = name
         self._face_up = face_up
-
-    def __str__(self):
-        return self._name
-
-    def get_name(self):
-        return self._name
 
     def is_face_up(self):
         return self._face_up

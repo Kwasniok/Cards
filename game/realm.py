@@ -2,24 +2,25 @@ from collections import defaultdict
 from core.random import Randomized
 from core.two_sided_stack import Two_Sided_Stack
 from core.directions import RIGHT, LEFT
+from core.internally_named import Internally_Named
 from core.owning import Owned
 from .card_slot import Card_Slot
 from .all_cards import Road_Card, Settlement_Card, Resource_Card, Building_Card
 
 
-class Realm(Owned):
+class Realm(Internally_Named, Owned):
     def __init__(self, name, owner):
+        Internally_Named.__init__(self, name)
         Owned.__init__(self, owner=owner)
-        self._name = name
         self._card_slot_grid = Two_Sided_Stack()
 
-    def __str__(self):
-        return self._name
+    def get_name(self):
+        return str(self)
 
     def __repr__(self):
         return (
             "Realm(name='"
-            + self._name
+            + self.get_name()
             + "', owner="
             + str(self.get_owner())
             + ", card_slot_grid="
