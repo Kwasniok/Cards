@@ -44,3 +44,9 @@ class Hand(Internally_Named, Owned):
 
     def get_limit(self):
         return self._limit
+
+    def is_empty(self):
+        return len(self._cards) == 0
+
+    def is_full(self):
+        return len(self._cards) == self._limit
