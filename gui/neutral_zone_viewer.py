@@ -31,12 +31,16 @@ class Neutral_Zone_Viewer:
         self._expansion_card_stack_buttons = []
         # structure card stacks
         self._structure_card_stack_buttons = []
+        # event card stacks
+        self._event_card_intake_stack_buttons = []
+        self._event_card_tray_stack_buttons = []
 
     def destroy(self):
         safe_destroy(self._dice_viewer_number)
         safe_destroy(self._dice_viewer_event)
         self._destroy_expansion_card_stack_buttons()
         self._destroy_structure_card_stack_buttons()
+        self._destroy_event_card_stack_buttons()
 
     def _destroy_expansion_card_stack_buttons(self):
         for button_stack in self._expansion_card_stack_buttons:
@@ -49,6 +53,14 @@ class Neutral_Zone_Viewer:
             for button in button_stack:
                 button.destroy()
         self._structure_card_stack_buttons = []
+
+    def _destroy_event_card_stack_buttons(self):
+        for button in self._event_card_intake_stack_buttons:
+            button.destroy()
+        self._event_card_intake_stack = []
+        for button in self._event_card_tray_stack_buttons:
+            button.destroy()
+        self._event_card_tray_stack = []
 
     def on_update_dices(self, context):
         self._dice_viewer_number.on_update(context)
@@ -127,3 +139,38 @@ class Neutral_Zone_Viewer:
         )
         self._structure_card_stack_buttons.append(card_stack_buttons)
         x_card_stack += button_width
+
+    def on_update_event_card_stacks(self, context):
+        toplevel = self._window.get_tk_toplevel()
+        toplevel.update_idletasks()
+        width = toplevel.winfo_width()
+        height = toplevel.winfo_height()
+
+        # clear buttons
+        self._destroy_event_card_stack_buttons()
+
+        # create buttons
+        button_width = 150
+        button_height = 80
+        x_card_stack = width / 2 + 4 * button_width
+        y_card_stack = height / 2
+        card_stack_buttons = Card_Stack_Viewer.create_buttons(
+            context=context,
+            window=self._window,
+            card_stack=self._neutral_zone.get_event_card_intake_stack(),
+            x=x_card_stack,
+            y=y_card_stack,
+            width=button_width,
+            height=button_height,
+        )
+        self._structure_card_stack_buttons.append(card_stack_buttons)
+        x_card_stack += button_width
+        card_stack_buttons = Card_Stack_Viewer.create_buttons(
+            context=context,
+            window=self._window,
+            card_stack=self._neutral_zone.get_event_card_tray_stack(),
+            x=x_card_stack,
+            y=y_card_stack,
+            width=button_width,
+            height=button_height,
+        )
