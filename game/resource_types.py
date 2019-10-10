@@ -13,7 +13,7 @@ class Resource_Type(Internally_Named):
         return self.source
 
 
-LOGS = Resource_Type("Logs", "Woods")
+LOGS = Resource_Type("Logs", "Wood")
 BRICKS = Resource_Type("Bricks", "Clay Pit")
 GRAIN = Resource_Type("Grain", "Field")
 IRON = Resource_Type("Iron", "Mountain")
