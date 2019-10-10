@@ -1,10 +1,10 @@
 class Subtype_Library:
-    def __init__(self, card_base_class):
-        self._card_base_class = card_base_class
-        self._card_histogram = {}
+    def __init__(self, base_class):
+        self._base_class = base_class
+        self._histogram = {}
 
     def register(self, card_class, amount):
-        if not issubclass(card_class, self._card_base_class):
+        if not issubclass(card_class, self._base_class):
             raise (
                 ValueError(
                     "Cannot register card class "
@@ -15,11 +15,12 @@ class Subtype_Library:
                 )
             )
         # print("event card registered: " + card_class.__name__)
-        self._card_histogram[card_class] = amount
+        self._histogram[card_class] = amount
 
     def get_all(self):
-        all_event_cards = []
-        for card_type, count in self._card_histogram.items():
+        objects = []
+        for clss, count in self._histogram.items():
             for i in range(count):
-                all_event_cards.append(card_type())
-        return all_event_cards
+                print(clss)
+                objects.append(clss())
+        return objects
