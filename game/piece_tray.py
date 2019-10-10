@@ -35,3 +35,12 @@ class Piece_Tray(Internally_Named, Owned):
     def remove(self, piece):
         if piece in self._pieces:
             self._pieces.remove(piece)
+
+    def get_mill_points(self, context):
+        return sum([piece.get_mill_points(context) for piece in self._pieces])
+
+    def get_knight_points(self, context):
+        return sum([piece.get_knight_points(context) for piece in self._pieces])
+
+    def get_win_points(self, context):
+        return sum([piece.get_win_points(context) for piece in self._pieces])
