@@ -1,5 +1,5 @@
 from game.resource_types import *
-from game.expansion_cards import register_expansion_card, Large_Building_Card
+from game.expansion_cards import expansion_card_library, Large_Building_Card
 
 
 class Habour_Card(Large_Building_Card):
@@ -13,4 +13,4 @@ class Habour_Card(Large_Building_Card):
         return 1
 
 
-register_expansion_card(Habour_Card, 1)
+expansion_card_library.register(Habour_Card, amount=1)

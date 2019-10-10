@@ -1,6 +1,7 @@
 from abc import abstractmethod
 from collections import Counter
 from game.card import Card
+from .card_subtype_library import Card_Subtype_Library
 from .resource_types import *
 
 
@@ -69,6 +70,9 @@ class Building_Card(Expansion_Card):
         return
 
 
+expansion_card_library = Card_Subtype_Library(Expansion_Card)
+
+
 class Small_Building_Card(Building_Card):
     @abstractmethod
     def __init__(self, name):
@@ -101,21 +105,3 @@ class Large_Building_Card(Building_Card):
             + str(self._face_up)
             + ")"
         )
-
-
-expansion_card_histogram = {}
-
-
-def register_expansion_card(card_class, amount):
-    global expansion_card_histogram
-    # print("expansion card registered: " + card_class.__name__)
-    expansion_card_histogram[card_class] = amount
-
-
-def get_all_expansion_cards():
-    global expansion_card_histogram
-    all_expansion_cards = []
-    for card_type, count in expansion_card_histogram.items():
-        for i in range(count):
-            all_expansion_cards.append(card_type())
-    return all_expansion_cards

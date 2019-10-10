@@ -5,7 +5,7 @@ from core.owning import Owner
 from .dice import Dice
 from .card_stack import Card_Stack
 from .all_cards import *
-from .expansion_cards import get_all_expansion_cards
+from .expansion_cards import expansion_card_library
 from .events import EVENT_DICE_OUTCOMES
 from .player import Player
 
@@ -53,7 +53,7 @@ class Neutral_Zone(Internally_Named):
         return self._town_card_stack
 
     def _fill_stacks(self):
-        expansion_cards = get_all_expansion_cards()
+        expansion_cards = expansion_card_library.get_all_cards()
         self._fill_expension_card_stacks(expansion_cards)
         self._fill_road_card_stack(7)
         self._fill_settlement_card_stack(5)
