@@ -65,7 +65,7 @@ class Settlement_Card(Structure_Card):
 
 class Town_Card(Structure_Card):
     def __init__(self):
-        Card.__init__(self, name="Twon")
+        Card.__init__(self, name="Town")
 
     def __repr__(self):
         return (
