@@ -21,6 +21,12 @@ class Card_Stack(Internally_Named, Owned):
     def __iter__(self):
         return iter(self._cards)
 
+    def __getitem__(self, index):
+        return self._cards[index]
+
+    def is_empty(self):
+        return len(self._cards) == 0
+
     def can_pop_top(self):
         return len(self._cards) > 0
 
