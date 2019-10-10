@@ -1,15 +1,13 @@
 import unittest
 from ..resource_types import LOGS, BRICKS, GRAIN, IRON, WOOL, GOLD
-from ..all_cards import (
-    Road_Card,
-    Settlement_Card,
-    Town_Card,
-    Resource_Card,
+from ..structure_cards import Road_Card, Settlement_Card, Town_Card
+from ..resource_cards import Resource_Card
+from ..expansion_cards import (
     Action_Card,
     Small_Building_Card,
     Large_Building_Card,
-    Event_Card,
 )
+from ..event_cards import Event_Card
 
 
 class Test(unittest.TestCase):
