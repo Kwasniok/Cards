@@ -66,8 +66,8 @@ class Neutral_Zone(Internally_Named):
         return self._event_card_tray_stack
 
     def _fill_stacks(self):
-        expansion_cards = expansion_card_library.get_all_cards()
-        event_cards = event_card_library.get_all_cards()
+        expansion_cards = expansion_card_library.get_all()
+        event_cards = event_card_library.get_all()
         self._fill_expension_card_stacks(expansion_cards)
         self._fill_road_card_stack(7)
         self._fill_settlement_card_stack(5)

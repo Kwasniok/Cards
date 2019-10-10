@@ -17,7 +17,7 @@ class Subtype_Library:
         # print("event card registered: " + card_class.__name__)
         self._card_histogram[card_class] = amount
 
-    def get_all_cards(self):
+    def get_all(self):
         all_event_cards = []
         for card_type, count in self._card_histogram.items():
             for i in range(count):
