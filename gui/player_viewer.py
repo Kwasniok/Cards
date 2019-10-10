@@ -64,7 +64,7 @@ class Player_Viewer:
             self._window.get_tk_toplevel(),
             text=symbol,
             command=lambda player=self._player: print(
-                "clicked on " + repr(player)
+                "clicked on " + str(player)
             ),
         )
         self._player_button.place(
