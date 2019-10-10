@@ -4,7 +4,10 @@ from core.internally_named import Internally_Named
 from .player import Player
 from .neutral_zone import Neutral_Zone
 from .piece import Piece
-import game.assets.initial_resource_cards as initial_resource_cards
+from .assets.initial_resource_cards import (
+    get_initial_resource_cards_black,
+    get_initial_resource_cards_white,
+)
 
 
 class Game_State:
@@ -38,6 +41,10 @@ class Game_State:
         realm_white = player_white.get_realm()
         realm_black = player_black.get_realm()
         realm_white.on_prepare_initial_state()
-        realm_white.on_place_initial_resources(initial_resource_cards.white)
+        realm_white.on_place_initial_resources(
+            get_initial_resource_cards_black()
+        )
         realm_black.on_prepare_initial_state()
-        realm_black.on_place_initial_resources(initial_resource_cards.black)
+        realm_black.on_place_initial_resources(
+            get_initial_resource_cards_white()
+        )
