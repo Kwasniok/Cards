@@ -16,7 +16,6 @@ class Canvas:
     def destroy(self):
         self._player1_rectangle_id = None
         self._player2_rectangle_id = None
-        self._font = None
         if not (self._canvas is None):
             self._canvas.destroy()
             self._canvas = None
