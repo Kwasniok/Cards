@@ -26,7 +26,6 @@ class Neutral_Zone(Internally_Named):
         self._event_card_intake_stack = None
         self._event_card_tray_stack = None
         self.piece_tray = None
-        self.reset()
 
     def reset(self):
         self._number_dice.roll()

@@ -27,7 +27,10 @@ class Game_State:
         return self._neutral_zone
 
     def on_prepare_game(self):
+        # neutral zone
+        self._neutral_zone.reset()
         player = [self.get_player1(), self.get_player2()]
+        # player
         player_white = random_pop(player)
         player_black = random_pop(player)
         player_white.change_color(color.WHITE)
