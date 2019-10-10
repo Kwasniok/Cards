@@ -32,9 +32,6 @@ class Window(Base_Window):
         # update buttons
         button_width = 200
         button_height = 100
-        self._update_button_font = tkfont.Font(
-            family="Helvetica", size=px_to_pt(24), weight="bold"
-        )
         # realms
         self._realm_viewer1 = Realm_Viewer(
             window=self,
@@ -55,7 +52,6 @@ class Window(Base_Window):
         self._update_realms_button = tk.Button(
             self.get_tk_toplevel(),
             text="update realms",
-            font=self._update_button_font,
             command=lambda: self.on_update_realms(None),
         )
         self._update_realms_button.place(
@@ -85,7 +81,6 @@ class Window(Base_Window):
         self._update_hands_button = tk.Button(
             self.get_tk_toplevel(),
             text="update hands",
-            font=self._update_button_font,
             command=lambda: self.on_update_hands(None),
         )
         self._update_hands_button.place(
@@ -109,7 +104,6 @@ class Window(Base_Window):
         self._update_player_button = tk.Button(
             self.get_tk_toplevel(),
             text="update player",
-            font=self._update_button_font,
             command=lambda: self.on_update_players(None),
         )
         self._update_player_button.place(
@@ -126,12 +120,10 @@ class Window(Base_Window):
             .get_game_state()
             .get_neutral_zone(),
         )
-
         # dices
         self._update_dice_button = tk.Button(
             self.get_tk_toplevel(),
             text="update dices",
-            font=self._update_button_font,
             command=lambda: self.on_update_dices(None),
         )
         self._update_dice_button.place(
@@ -155,7 +147,6 @@ class Window(Base_Window):
         safe_destroy(self._update_player_button)
         safe_destroy(self._neutral_zone_viewer)
         safe_destroy(self._update_dice_button)
-        self._update_button_font = None
         Base_Window.destroy(self)
 
     def on_update_realms(self, context):
