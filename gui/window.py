@@ -29,7 +29,7 @@ class Window(Base_Window):
         self.set_icon("res/game_icon.gif")
         self._game_canvas = Canvas(self)
         # realms
-        self._realm_viwer1 = Realm_Viewer(
+        self._realm_viewer1 = Realm_Viewer(
             window=self,
             realm=self.get_application()
             .get_game_state()
@@ -37,7 +37,7 @@ class Window(Base_Window):
             .get_realm(),
             direction=directions.UP,
         )
-        self._realm_viwer2 = Realm_Viewer(
+        self._realm_viewer2 = Realm_Viewer(
             window=self,
             realm=self.get_application()
             .get_game_state()
@@ -117,8 +117,8 @@ class Window(Base_Window):
 
     def destroy(self):
         safe_destroy(self._game_canvas)
-        safe_destroy(self._realm_viwer1)
-        safe_destroy(self._realm_viwer2)
+        safe_destroy(self._realm_viewer1)
+        safe_destroy(self._realm_viewer2)
         safe_destroy(self._hand_viewer1)
         safe_destroy(self._hand_viewer2)
         safe_destroy(self._player_viewer1)
@@ -126,8 +126,8 @@ class Window(Base_Window):
         Base_Window.destroy(self)
 
     def on_update_realms(self, context):
-        self._realm_viwer1.on_update(context)
-        self._realm_viwer2.on_update(context)
+        self._realm_viewer1.on_update(context)
+        self._realm_viewer2.on_update(context)
 
     def on_update_hands(self, context):
         self._hand_viewer1.on_update(context)
