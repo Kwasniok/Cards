@@ -3,8 +3,8 @@ from ..piece import Piece
 
 
 class Mill_Piece(Piece):
-    def __int__(self, owner=neutral_owner):
-        Piece.__int__(self, "mill", owner)
+    def __init__(self, owner=neutral_owner):
+        Piece.__init__(self, name="mill", owner=owner)
 
-    def get_mill_points(self, context):
+    def get_win_points(self, context):
         return 1
