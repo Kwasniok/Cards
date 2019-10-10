@@ -4,7 +4,6 @@ from core.destroy import safe_destroy
 from core.gui.util import px_to_pt, pt_to_px
 from core.gui.window import Window as Base_Window
 import game.directions as directions
-from game.all_cards import *
 from .canvas import Canvas
 from .realm_viewer import Realm_Viewer
 from .hand_viewer import Hand_Viewer
