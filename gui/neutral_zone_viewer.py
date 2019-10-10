@@ -4,6 +4,7 @@ from core.destroy import safe_destroy
 import game.directions as directions
 from .dice_viewer import Dice_Viewer
 from .card_stack_viewer import Card_Stack_Viewer
+from .piece_tray_viewer import Piece_Tray_Viewer
 
 
 class Neutral_Zone_Viewer:
@@ -34,6 +35,8 @@ class Neutral_Zone_Viewer:
         # event card stacks
         self._event_card_intake_stack_buttons = []
         self._event_card_tray_stack_buttons = []
+        # pieces
+        self._piece_tray_buttons = []
 
     def destroy(self):
         safe_destroy(self._dice_viewer_number)
@@ -41,6 +44,7 @@ class Neutral_Zone_Viewer:
         self._destroy_expansion_card_stack_buttons()
         self._destroy_structure_card_stack_buttons()
         self._destroy_event_card_stack_buttons()
+        self._destroy_piece_tray_buttons()
 
     def _destroy_expansion_card_stack_buttons(self):
         for button_stack in self._expansion_card_stack_buttons:
@@ -61,6 +65,11 @@ class Neutral_Zone_Viewer:
         for button in self._event_card_tray_stack_buttons:
             button.destroy()
         self._event_card_tray_stack = []
+
+    def _destroy_piece_tray_buttons(self):
+        for button in self._piece_tray_buttons:
+            button.destroy()
+        self._piece_tray_buttons = []
 
     def on_update_dices(self, context):
         self._dice_viewer_number.on_update(context)
@@ -171,6 +180,30 @@ class Neutral_Zone_Viewer:
             card_stack=self._neutral_zone.get_event_card_tray_stack(),
             x=x_card_stack,
             y=y_card_stack,
+            width=button_width,
+            height=button_height,
+        )
+
+    def on_update_piece_tray(self, context):
+        toplevel = self._window.get_tk_toplevel()
+        toplevel.update_idletasks()
+        width = toplevel.winfo_width()
+        height = toplevel.winfo_height()
+
+        # clear buttons
+        self._destroy_piece_tray_buttons()
+
+        # create buttons
+        button_width = 80
+        button_height = 40
+        x = width - 2.5 * button_width
+        y = height / 2 - 100 - button_height
+        self._piece_tray_buttons = Piece_Tray_Viewer.create_buttons(
+            context=context,
+            window=self._window,
+            piece_tray=self._neutral_zone.get_piece_tray(),
+            x=x,
+            y=y,
             width=button_width,
             height=button_height,
         )
