@@ -7,6 +7,7 @@ from game.all_cards import *
 from .canvas import Canvas
 from .realm_viewer import Realm_Viewer
 from .hand_viewer import Hand_Viewer
+from .player_viewer import Player_Viewer
 
 
 class Window(Base_Window):
@@ -89,6 +90,32 @@ class Window(Base_Window):
             height=100,
         )
 
+        self._player_viewer1 = Player_Viewer(
+            window=self,
+            player=self.get_application().get_game_state().get_player1(),
+            direction=directions.UP,
+        )
+        self._player_viewer2 = Player_Viewer(
+            window=self,
+            player=self.get_application().get_game_state().get_player2(),
+            direction=directions.DOWN,
+        )
+        self._update_player_button = tk.Button(
+            self.get_tk_toplevel(),
+            text="update player",
+            font=tkfont.Font(
+                family="Helvetica", size=px_to_pt(24), weight="bold"
+            ),
+            command=lambda: self.on_update_players(None),
+        )
+        self._update_player_button.place(
+            anchor=tk.CENTER,
+            x=width / 2 + 300,
+            y=height / 2,
+            width=200,
+            height=100,
+        )
+
     def destroy(self):
         if not (self._game_canvas is None):
             self._game_canvas.destroy()
@@ -105,17 +132,13 @@ class Window(Base_Window):
         if not (self._hand_viewer2 is None):
             self._hand_viewer2.destroy()
             self._hand_viewer2 = None
+        if not (self._player_viewer1 is None):
+            self._player_viewer1.destroy()
+            self._player_viewer1 = None
+        if not (self._player_viewer2 is None):
+            self._player_viewer2.destroy()
+            self._player_viewer2 = None
         Base_Window.destroy(self)
-
-    def _destroy_realm_buttons(self, realm_buttons):
-        for column in realm_buttons:
-            for cell in column:
-                for button in cell:
-                    button.destroy()
-
-    def _destroy_hand_buttons(self, hand_buttons):
-        for button in hand_buttons:
-            button.destroy()
 
     def on_update_realms(self, context):
         self._realm_viwer1.on_update(context)
@@ -124,3 +147,7 @@ class Window(Base_Window):
     def on_update_hands(self, context):
         self._hand_viewer1.on_update(context)
         self._hand_viewer2.on_update(context)
+
+    def on_update_players(self, context):
+        self._player_viewer1.on_update(context)
+        self._player_viewer2.on_update(context)
