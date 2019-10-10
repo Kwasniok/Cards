@@ -145,6 +145,19 @@ class Window(Base_Window):
             width=button_width,
             height=button_height,
         )
+        # pieces
+        self._update_pieces_button = tk.Button(
+            self.get_tk_toplevel(),
+            text="update piece trays",
+            command=lambda: self.on_update_piece_trays(None),
+        )
+        self._update_pieces_button.place(
+            anchor=tk.CENTER,
+            x=width / 2,
+            y=height / 2 + 3 * button_height,
+            width=button_width,
+            height=button_height,
+        )
 
     def destroy(self):
         safe_destroy(self._game_canvas)
@@ -160,6 +173,7 @@ class Window(Base_Window):
         safe_destroy(self._neutral_zone_viewer)
         safe_destroy(self._update_dice_button)
         safe_destroy(self._update_card_stacks_button)
+        safe_destroy(self._update_pieces_button)
         Base_Window.destroy(self)
 
     def on_update_realms(self, context):
@@ -181,3 +195,8 @@ class Window(Base_Window):
         self._neutral_zone_viewer.on_update_expansion_card_stacks(context)
         self._neutral_zone_viewer.on_update_structure_card_stacks(context)
         self._neutral_zone_viewer.on_update_event_card_stacks(context)
+
+    def on_update_piece_trays(self, context):
+        self._neutral_zone_viewer.on_update_piece_tray(context)
+        self._player_viewer1.on_update_piece_tray(context)
+        self._player_viewer2.on_update_piece_tray(context)
