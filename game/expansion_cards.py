@@ -114,4 +114,8 @@ def register_expansion_card(card_class, amount):
 
 def get_all_expansion_cards():
     global expansion_card_histogram
-    return list(Counter(expansion_card_histogram).elements())
+    all_expansion_cards = []
+    for card_type, count in expansion_card_histogram.items():
+        for i in range(count):
+            all_expansion_cards.append(card_type())
+    return all_expansion_cards
