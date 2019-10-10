@@ -1,4 +1,4 @@
-from core.random import random_pop
+from core.random import random_pop, random_pick
 import core.gui.color as color
 from core.internally_named import Internally_Named
 from .player import Player
@@ -48,3 +48,20 @@ class Game_State:
         realm_black.on_place_initial_resources(
             get_initial_resource_cards_white()
         )
+
+        # fill hand with random cards (AGAINST RULES, dummy rule to test gui)
+        # TODO: REMOVE later!
+        def fill_hand_randomly(player):
+            expansion_card_stack = random_pick(
+                self._neutral_zone.get_expansion_card_stacks()
+            )
+            hand = player.get_hand()
+            while not hand.is_full() and not expansion_card_stack.is_empty():
+                card = random_pick(expansion_card_stack)
+                expansion_card_stack.remove(card)
+                card.change_owner(player_white)
+                card.make_face_down()
+                hand.add(card)
+
+        fill_hand_randomly(player_white)
+        fill_hand_randomly(player_black)
