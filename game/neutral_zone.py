@@ -6,6 +6,7 @@ from .dice import Dice
 from .card_stack import Card_Stack
 from .all_cards import *
 from .expansion_cards import expansion_card_library
+from .event_cards import event_card_library
 from .events import EVENT_DICE_OUTCOMES
 from .player import Player
 
@@ -20,6 +21,8 @@ class Neutral_Zone(Internally_Named):
         self._road_card_stack = None
         self._settement_card_stack = None
         self._town_card_stack = None
+        self._event_card_intake_stack = None
+        self._event_card_tray_stack = None
         self.reset()
 
     def reset(self):
@@ -32,6 +35,10 @@ class Neutral_Zone(Internally_Named):
         self._road_card_stack = Card_Stack(name="road card stack")
         self._settement_card_stack = Card_Stack(name="settlement card stack")
         self._town_card_stack = Card_Stack(name="town card stack")
+        self._event_card_intake_stack = Card_Stack(
+            name="event card intake stack"
+        )
+        self._event_card_tray_stack = Card_Stack(name="event card tray stack")
         self._fill_stacks()
 
     def get_number_dice(self):
@@ -52,12 +59,20 @@ class Neutral_Zone(Internally_Named):
     def get_town_card_stack(self):
         return self._town_card_stack
 
+    def get_event_card_intake_stack(self):
+        return self._event_card_intake_stack
+
+    def get_event_card_tray_stack(self):
+        return self._event_card_tray_stack
+
     def _fill_stacks(self):
         expansion_cards = expansion_card_library.get_all_cards()
+        event_cards = event_card_library.get_all_cards()
         self._fill_expension_card_stacks(expansion_cards)
         self._fill_road_card_stack(7)
         self._fill_settlement_card_stack(5)
         self._fill_town_card_stack(7)
+        self._fill_event_card_intake_stack(event_cards)
 
     def _fill_expension_card_stacks(self, expansion_cards):
         # fill cards in a random order while cycling over all stacks
@@ -77,3 +92,8 @@ class Neutral_Zone(Internally_Named):
     def _fill_town_card_stack(self, amount):
         for i in range(0, amount):
             self._town_card_stack.push_top(Town_Card())
+
+    def _fill_event_card_intake_stack(self, event_cards):
+        # fill cards in a random order
+        while len(event_cards) > 0:
+            self._event_card_intake_stack.push_top(random_pop(event_cards))
