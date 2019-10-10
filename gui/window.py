@@ -9,6 +9,7 @@ from .canvas import Canvas
 from .realm_viewer import Realm_Viewer
 from .hand_viewer import Hand_Viewer
 from .player_viewer import Player_Viewer
+from .dice_viewer import Dice_Viewer
 
 
 class Window(Base_Window):
@@ -114,6 +115,38 @@ class Window(Base_Window):
             width=200,
             height=100,
         )
+        # dices
+        self._dice_viewer_number = Dice_Viewer(
+            window=self,
+            dice=self.get_application()
+            .get_game_state()
+            .get_neutral_zone()
+            .get_number_dice(),
+            direction=directions.LEFT,
+        )
+        self._dice_viewer_event = Dice_Viewer(
+            window=self,
+            dice=self.get_application()
+            .get_game_state()
+            .get_neutral_zone()
+            .get_event_dice(),
+            direction=directions.RIGHT,
+        )
+        self._update_dice_button = tk.Button(
+            self.get_tk_toplevel(),
+            text="update dices",
+            font=tkfont.Font(
+                family="Helvetica", size=px_to_pt(24), weight="bold"
+            ),
+            command=lambda: self.on_update_dices(None),
+        )
+        self._update_dice_button.place(
+            anchor=tk.CENTER,
+            x=width / 2 + 400,
+            y=height / 2,
+            width=200,
+            height=100,
+        )
 
     def destroy(self):
         safe_destroy(self._game_canvas)
@@ -126,6 +159,9 @@ class Window(Base_Window):
         safe_destroy(self._player_viewer1)
         safe_destroy(self._player_viewer2)
         safe_destroy(self._update_player_button)
+        safe_destroy(self._dice_viewer_number)
+        safe_destroy(self._dice_viewer_event)
+        safe_destroy(self._update_dice_button)
         Base_Window.destroy(self)
 
     def on_update_realms(self, context):
@@ -139,3 +175,7 @@ class Window(Base_Window):
     def on_update_players(self, context):
         self._player_viewer1.on_update(context)
         self._player_viewer2.on_update(context)
+
+    def on_update_dices(self, context):
+        self._dice_viewer_number.on_update(context)
+        self._dice_viewer_event.on_update(context)
