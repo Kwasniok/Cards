@@ -34,6 +34,12 @@ class Neutral_Zone(Internally_Named):
         self._town_card_stack = Card_Stack(name="town card stack")
         self._fill_stacks()
 
+    def get_number_dice(self):
+        return self._number_dice
+
+    def get_event_dice(self):
+        return self._event_dice
+
     def _fill_stacks(self):
         expansion_cards = get_all_expansion_cards()
         self._fill_expension_card_stacks(expansion_cards)
