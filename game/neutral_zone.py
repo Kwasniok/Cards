@@ -7,8 +7,10 @@ from .card_stack import Card_Stack
 from .structure_cards import Road_Card, Settlement_Card, Town_Card
 from .expansion_cards import expansion_card_library
 from .event_cards import event_card_library
+from .piece import piece_library
 from .events import EVENT_DICE_OUTCOMES
 from .player import Player
+from .piece_tray import Piece_Tray
 
 
 class Neutral_Zone(Internally_Named):
@@ -23,6 +25,7 @@ class Neutral_Zone(Internally_Named):
         self._town_card_stack = None
         self._event_card_intake_stack = None
         self._event_card_tray_stack = None
+        self.piece_tray = None
         self.reset()
 
     def reset(self):
@@ -40,6 +43,8 @@ class Neutral_Zone(Internally_Named):
         )
         self._event_card_tray_stack = Card_Stack(name="event card tray stack")
         self._fill_stacks()
+        self._piece_tray = Piece_Tray(name="neutral piece tray")
+        self._fill_piece_tray()
 
     def get_number_dice(self):
         return self._number_dice
@@ -64,6 +69,9 @@ class Neutral_Zone(Internally_Named):
 
     def get_event_card_tray_stack(self):
         return self._event_card_tray_stack
+
+    def get_piece_tray(self):
+        return self._piece_tray
 
     def _fill_stacks(self):
         expansion_cards = expansion_card_library.get_all()
@@ -97,3 +105,7 @@ class Neutral_Zone(Internally_Named):
         # fill cards in a random order
         while len(event_cards) > 0:
             self._event_card_intake_stack.push_top(random_pop(event_cards))
+
+    def _fill_piece_tray(self):
+        for piece in piece_library.get_all():
+            self._piece_tray.add(piece)
