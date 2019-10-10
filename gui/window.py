@@ -30,8 +30,8 @@ class Window(Base_Window):
         self.set_icon("res/game_icon.gif")
         self._game_canvas = Canvas(self)
         # update buttons
-        button_width = 200
-        button_height = 100
+        button_width = 100
+        button_height = 20
         # realms
         self._realm_viewer1 = Realm_Viewer(
             window=self,
@@ -56,8 +56,8 @@ class Window(Base_Window):
         )
         self._update_realms_button.place(
             anchor=tk.CENTER,
-            x=width / 2 - 1.5 * button_width,
-            y=height / 2,
+            x=width / 2,
+            y=height / 2 - 2 * button_height,
             width=button_width,
             height=button_height,
         )
@@ -85,8 +85,8 @@ class Window(Base_Window):
         )
         self._update_hands_button.place(
             anchor=tk.CENTER,
-            x=width / 2 - 0.5 * button_width,
-            y=height / 2,
+            x=width / 2,
+            y=height / 2 - 1 * button_height,
             width=button_width,
             height=button_height,
         )
@@ -108,8 +108,8 @@ class Window(Base_Window):
         )
         self._update_player_button.place(
             anchor=tk.CENTER,
-            x=width / 2 + 0.5 * button_width,
-            y=height / 2,
+            x=width / 2,
+            y=height / 2 + 0 * button_height,
             width=button_width,
             height=button_height,
         )
@@ -128,8 +128,8 @@ class Window(Base_Window):
         )
         self._update_dice_button.place(
             anchor=tk.CENTER,
-            x=width / 2 + 1.5 * button_width,
-            y=height / 2,
+            x=width / 2,
+            y=height / 2 + 1 * button_height,
             width=button_width,
             height=button_height,
         )
