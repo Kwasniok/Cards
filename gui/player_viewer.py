@@ -42,7 +42,7 @@ class Player_Viewer:
         text_offset = 5
         hand_zone_heigt = int(height * 0.45)
         button_width = 100
-        button_height = 100
+        button_height = 50
         x = text_offset + int(button_width / 2)
         y = hand_zone_heigt / 2
         if self._direction == directions.DOWN:
