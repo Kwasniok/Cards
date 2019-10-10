@@ -3,6 +3,7 @@ import tkinter.font as tkfont
 from core.destroy import safe_destroy
 import game.directions as directions
 from .dice_viewer import Dice_Viewer
+from .card_stack_viewer import Card_Stack_Viewer
 
 
 class Neutral_Zone_Viewer:
@@ -26,11 +27,46 @@ class Neutral_Zone_Viewer:
             .get_event_dice(),
             direction=directions.RIGHT,
         )
+        # expansion card stacks
+        self._expansion_card_stack_buttons = []
 
     def destroy(self):
         safe_destroy(self._dice_viewer_number)
         safe_destroy(self._dice_viewer_event)
+        self._destroy_expansion_card_stack_buttons()
+
+    def _destroy_expansion_card_stack_buttons(self):
+        for button_stack in self._expansion_card_stack_buttons:
+            for button in button_stack:
+                button.destroy()
+        self._expansion_card_stack_buttons = []
 
     def on_update_dices(self, context):
         self._dice_viewer_number.on_update(context)
         self._dice_viewer_event.on_update(context)
+
+    def on_update_expansion_card_stacks(self, context):
+        toplevel = self._window.get_tk_toplevel()
+        toplevel.update_idletasks()
+        width = toplevel.winfo_width()
+        height = toplevel.winfo_height()
+
+        # clear buttons
+        self._destroy_expansion_card_stack_buttons()
+
+        # create buttons
+        button_width = 180
+        button_height = 80
+        x_card_stack = button_width / 2
+        y_card_stack = height / 2
+        for card_stack in self._neutral_zone.get_expansion_card_stacks():
+            card_stack_buttons = Card_Stack_Viewer.create_buttons(
+                context=context,
+                window=self._window,
+                card_stack=card_stack,
+                x=x_card_stack,
+                y=y_card_stack,
+                width=button_width,
+                height=button_height,
+            )
+            x_card_stack += button_width
