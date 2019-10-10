@@ -18,6 +18,9 @@ class Piece_Tray(Internally_Named, Owned):
     def __iter__(self):
         return iter(self._pieces)
 
+    def __getitem__(self, index):
+        return self._pieces[index]
+
     def add(self, piece):
         if piece in self._pieces:
             raise (
