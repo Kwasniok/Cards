@@ -119,10 +119,13 @@ class Window(Base_Window):
         safe_destroy(self._game_canvas)
         safe_destroy(self._realm_viewer1)
         safe_destroy(self._realm_viewer2)
+        safe_destroy(self._update_realms_button)
         safe_destroy(self._hand_viewer1)
         safe_destroy(self._hand_viewer2)
+        safe_destroy(self._update_hands_button)
         safe_destroy(self._player_viewer1)
         safe_destroy(self._player_viewer2)
+        safe_destroy(self._update_player_button)
         Base_Window.destroy(self)
 
     def on_update_realms(self, context):
