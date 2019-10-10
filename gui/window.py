@@ -9,7 +9,7 @@ from .canvas import Canvas
 from .realm_viewer import Realm_Viewer
 from .hand_viewer import Hand_Viewer
 from .player_viewer import Player_Viewer
-from .dice_viewer import Dice_Viewer
+from .neutral_zone_viewer import Neutral_Zone_Viewer
 
 
 class Window(Base_Window):
@@ -119,23 +119,15 @@ class Window(Base_Window):
             width=button_width,
             height=button_height,
         )
+        # neutral zone
+        self._neutral_zone_viewer = Neutral_Zone_Viewer(
+            window=self,
+            neutral_zone=self.get_application()
+            .get_game_state()
+            .get_neutral_zone(),
+        )
+
         # dices
-        self._dice_viewer_number = Dice_Viewer(
-            window=self,
-            dice=self.get_application()
-            .get_game_state()
-            .get_neutral_zone()
-            .get_number_dice(),
-            direction=directions.LEFT,
-        )
-        self._dice_viewer_event = Dice_Viewer(
-            window=self,
-            dice=self.get_application()
-            .get_game_state()
-            .get_neutral_zone()
-            .get_event_dice(),
-            direction=directions.RIGHT,
-        )
         self._update_dice_button = tk.Button(
             self.get_tk_toplevel(),
             text="update dices",
@@ -161,8 +153,7 @@ class Window(Base_Window):
         safe_destroy(self._player_viewer1)
         safe_destroy(self._player_viewer2)
         safe_destroy(self._update_player_button)
-        safe_destroy(self._dice_viewer_number)
-        safe_destroy(self._dice_viewer_event)
+        safe_destroy(self._neutral_zone_viewer)
         safe_destroy(self._update_dice_button)
         self._update_button_font = None
         Base_Window.destroy(self)
@@ -180,5 +171,4 @@ class Window(Base_Window):
         self._player_viewer2.on_update(context)
 
     def on_update_dices(self, context):
-        self._dice_viewer_number.on_update(context)
-        self._dice_viewer_event.on_update(context)
+        self._neutral_zone_viewer.on_update_dices(context)
