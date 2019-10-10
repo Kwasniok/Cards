@@ -2,6 +2,7 @@ from core.internally_named import Internally_Named
 from core.owning import Owner
 from .hand import Hand
 from .realm import Realm
+from .piece_tray import Piece_Tray
 
 
 class Player(Internally_Named, Owner):
@@ -11,6 +12,7 @@ class Player(Internally_Named, Owner):
         self._color = color
         self._hand = Hand(name="hand of " + name, owner=self)
         self._realm = Realm(name="realm of " + name, owner=self)
+        self._piece_tray = Piece_Tray(name="pice tray of " + name, owner=self)
 
     def get_name(self):
         return str(self)
@@ -27,11 +29,20 @@ class Player(Internally_Named, Owner):
     def get_realm(self):
         return self._realm
 
+    def get_piece_tray(self):
+        return self._piece_tray
+
     def get_mill_points(self, context):
-        return self._realm.get_mill_points(context)
+        return self._realm.get_mill_points(
+            context
+        ) + self._piece_tray.get_mill_points(context)
 
     def get_knight_points(self, context):
-        return self._realm.get_knight_points(context)
+        return self._realm.get_knight_points(
+            context
+        ) + self._piece_tray.get_knight_points(context)
 
     def get_win_points(self, context):
-        return self._realm.get_win_points(context)
+        return self._realm.get_win_points(
+            context
+        ) + self._piece_tray.get_win_points(context)
