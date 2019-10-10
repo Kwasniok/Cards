@@ -1,5 +1,6 @@
 import tkinter as tk
 import tkinter.font as tkfont
+from core.destroy import safe_destroy
 from core.gui.util import px_to_pt, pt_to_px
 from core.gui.window import Window as Base_Window
 import game.directions as directions
@@ -117,27 +118,13 @@ class Window(Base_Window):
         )
 
     def destroy(self):
-        if not (self._game_canvas is None):
-            self._game_canvas.destroy()
-            self._game_canvas = None
-        if not (self._realm_viwer1 is None):
-            self._realm_viwer1.destroy()
-            self._realm_viwer1 = None
-        if not (self._realm_viwer2 is None):
-            self._realm_viwer2.destroy()
-            self._realm_viwer2 = None
-        if not (self._hand_viewer1 is None):
-            self._hand_viewer1.destroy()
-            self._hand_viewer1 = None
-        if not (self._hand_viewer2 is None):
-            self._hand_viewer2.destroy()
-            self._hand_viewer2 = None
-        if not (self._player_viewer1 is None):
-            self._player_viewer1.destroy()
-            self._player_viewer1 = None
-        if not (self._player_viewer2 is None):
-            self._player_viewer2.destroy()
-            self._player_viewer2 = None
+        safe_destroy(self._game_canvas)
+        safe_destroy(self._realm_viwer1)
+        safe_destroy(self._realm_viwer2)
+        safe_destroy(self._hand_viewer1)
+        safe_destroy(self._hand_viewer2)
+        safe_destroy(self._player_viewer1)
+        safe_destroy(self._player_viewer2)
         Base_Window.destroy(self)
 
     def on_update_realms(self, context):
