@@ -30,6 +30,8 @@ class Window(Base_Window):
         self.set_icon("res/game_icon.gif")
         self._game_canvas = Canvas(self)
         # update buttons
+        button_width = 200
+        button_height = 100
         self._update_button_font = tkfont.Font(
             family="Helvetica", size=px_to_pt(24), weight="bold"
         )
@@ -58,10 +60,10 @@ class Window(Base_Window):
         )
         self._update_realms_button.place(
             anchor=tk.CENTER,
-            x=width / 2 - 200,
+            x=width / 2 - 1.5 * button_width,
             y=height / 2,
-            width=200,
-            height=100,
+            width=button_width,
+            height=button_height,
         )
         # hands
         self._hand_viewer1 = Hand_Viewer(
@@ -87,7 +89,11 @@ class Window(Base_Window):
             command=lambda: self.on_update_hands(None),
         )
         self._update_hands_button.place(
-            anchor=tk.CENTER, x=width / 2, y=height / 2, width=200, height=100
+            anchor=tk.CENTER,
+            x=width / 2 - 0.5 * button_width,
+            y=height / 2,
+            width=button_width,
+            height=button_height,
         )
         # player
         self._player_viewer1 = Player_Viewer(
@@ -108,10 +114,10 @@ class Window(Base_Window):
         )
         self._update_player_button.place(
             anchor=tk.CENTER,
-            x=width / 2 + 200,
+            x=width / 2 + 0.5 * button_width,
             y=height / 2,
-            width=200,
-            height=100,
+            width=button_width,
+            height=button_height,
         )
         # dices
         self._dice_viewer_number = Dice_Viewer(
@@ -138,10 +144,10 @@ class Window(Base_Window):
         )
         self._update_dice_button.place(
             anchor=tk.CENTER,
-            x=width / 2 + 400,
+            x=width / 2 + 1.5 * button_width,
             y=height / 2,
-            width=200,
-            height=100,
+            width=button_width,
+            height=button_height,
         )
 
     def destroy(self):
