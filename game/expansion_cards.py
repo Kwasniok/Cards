@@ -1,7 +1,7 @@
 from abc import abstractmethod
 from collections import Counter
 from game.card import Card
-from .card_subtype_library import Card_Subtype_Library
+from .subtype_library import Subtype_Library
 from .resource_types import *
 
 
@@ -24,6 +24,9 @@ class Expansion_Card(Card):
     @abstractmethod
     def is_playable(self, context):
         pass
+
+
+expansion_card_library = Subtype_Library(Expansion_Card)
 
 
 class Action_Card(Expansion_Card):
@@ -68,9 +71,6 @@ class Building_Card(Expansion_Card):
 
     def on_destruction(self, context):
         return
-
-
-expansion_card_library = Card_Subtype_Library(Expansion_Card)
 
 
 class Small_Building_Card(Building_Card):

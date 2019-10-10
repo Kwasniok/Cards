@@ -1,6 +1,6 @@
 from abc import abstractmethod
 from game.card import Card
-from .card_subtype_library import Card_Subtype_Library
+from .subtype_library import Subtype_Library
 
 
 class Event_Card(Card):
@@ -23,4 +23,4 @@ class Event_Card(Card):
         pass
 
 
-event_card_library = Card_Subtype_Library(Event_Card)
+event_card_library = Subtype_Library(Event_Card)

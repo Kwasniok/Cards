@@ -1,16 +1,5 @@
-from .card import Card
-
-
-class Card_Subtype_Library:
+class Subtype_Library:
     def __init__(self, card_base_class):
-        if not (issubclass(card_base_class, Card)):
-            raise (
-                ValueError(
-                    "Cannot create card subtype library with card base class "
-                    + str(cars_base_class)
-                    + "."
-                )
-            )
         self._card_base_class = card_base_class
         self._card_histogram = {}
 
