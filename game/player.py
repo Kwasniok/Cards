@@ -26,3 +26,12 @@ class Player(Internally_Named, Owner):
 
     def get_realm(self):
         return self._realm
+
+    def get_mill_points(self, context):
+        return self._realm.get_mill_points(context)
+
+    def get_knight_points(self, context):
+        return self._realm.get_knight_points(context)
+
+    def get_win_points(self, context):
+        return self._realm.get_win_points(context)
