@@ -17,7 +17,7 @@ class Neutral_Zone_Viewer:
             .get_game_state()
             .get_neutral_zone()
             .get_number_dice(),
-            direction=directions.LEFT,
+            direction=directions.UP,
         )
         self._dice_viewer_event = Dice_Viewer(
             window=self._window,
@@ -25,7 +25,7 @@ class Neutral_Zone_Viewer:
             .get_game_state()
             .get_neutral_zone()
             .get_event_dice(),
-            direction=directions.RIGHT,
+            direction=directions.DOWN,
         )
         # expansion card stacks
         self._expansion_card_stack_buttons = []

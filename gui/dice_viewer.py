@@ -6,7 +6,7 @@ import game.directions as directions
 
 class Dice_Viewer:
     def __init__(self, window, dice, direction):
-        possible_directions = (directions.LEFT, directions.RIGHT)
+        possible_directions = (directions.UP, directions.DOWN)
         if not (direction in possible_directions):
             raise (
                 ValueError(
@@ -38,14 +38,13 @@ class Dice_Viewer:
         self._destroy_button()
 
         # create button
-        offset_x = int(width * 0.9)
         button_width = 100
         button_height = 100
-        y = int(height / 2)
-        if self._direction == directions.LEFT:
-            x = offset_x - int(button_width / 2)
-        if self._direction == directions.RIGHT:
-            x = offset_x + int(button_width / 2)
+        x = width - button_width / 2
+        if self._direction == directions.UP:
+            y = height / 2 + button_height / 2
+        if self._direction == directions.DOWN:
+            y = height / 2 - button_height / 2
         symbol = self._dice.get_name()
         symbol += "\n" + str(self._dice.get_last_outcome())
 
