@@ -1,8 +1,8 @@
 from core.random import random_pop
 import core.gui.color as color
 from core.internally_named import Internally_Named
-from game.neutral_zone import Neutral_Zone
-from game.player import Player
+from .player import Player
+from .neutral_zone import Neutral_Zone
 import game.assets.initial_resource_cards as initial_resource_cards
 
 
