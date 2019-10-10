@@ -19,6 +19,7 @@ class Application:
         self._windows = []
 
     def destroy(self):
+        self._next_frame_trigger.stop()
         self.destroy_all_windows()
         Root.unregister_application()
 
