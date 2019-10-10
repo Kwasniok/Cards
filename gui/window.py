@@ -28,6 +28,7 @@ class Window(Base_Window):
         self.center()
         self.set_icon("res/game_icon.gif")
         self._game_canvas = Canvas(self)
+        # realms
         self._realm_viwer1 = Realm_Viewer(
             window=self,
             realm=self.get_application()
@@ -54,11 +55,12 @@ class Window(Base_Window):
         )
         self._update_realms_button.place(
             anchor=tk.CENTER,
-            x=width / 2 - 100,
+            x=width / 2 - 200,
             y=height / 2,
             width=200,
             height=100,
         )
+        # hands
         self._hand_viewer1 = Hand_Viewer(
             window=self,
             hand=self.get_application()
@@ -84,13 +86,9 @@ class Window(Base_Window):
             command=lambda: self.on_update_hands(None),
         )
         self._update_hands_button.place(
-            anchor=tk.CENTER,
-            x=width / 2 + 100,
-            y=height / 2,
-            width=200,
-            height=100,
+            anchor=tk.CENTER, x=width / 2, y=height / 2, width=200, height=100
         )
-
+        # player
         self._player_viewer1 = Player_Viewer(
             window=self,
             player=self.get_application().get_game_state().get_player1(),
@@ -111,7 +109,7 @@ class Window(Base_Window):
         )
         self._update_player_button.place(
             anchor=tk.CENTER,
-            x=width / 2 + 300,
+            x=width / 2 + 200,
             y=height / 2,
             width=200,
             height=100,
