@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+from core.destroy import safe_destroy
 
 
 class Window:
@@ -19,9 +20,7 @@ class Window:
     def destroy(self):
         self._icon_image = None
         self._application.unregister_window(self)
-        if not (self._toplevel is None):
-            self._toplevel.destroy()
-            self._toplevel = None
+        safe_destroy(self._toplevel)
 
     def get_application(self):
         return self._application
