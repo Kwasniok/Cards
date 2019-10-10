@@ -100,12 +100,12 @@ class Window(Base_Window):
             player=self.get_application().get_game_state().get_player2(),
             direction=directions.DOWN,
         )
-        self._update_player_button = tk.Button(
+        self._update_player_status_button = tk.Button(
             self.get_tk_toplevel(),
             text="update player",
-            command=lambda: self.on_update_players(None),
+            command=lambda: self.on_update_player_status(None),
         )
-        self._update_player_button.place(
+        self._update_player_status_button.place(
             anchor=tk.CENTER,
             x=width / 2,
             y=height / 2 + 0 * button_height,
@@ -156,7 +156,7 @@ class Window(Base_Window):
         safe_destroy(self._update_hands_button)
         safe_destroy(self._player_viewer1)
         safe_destroy(self._player_viewer2)
-        safe_destroy(self._update_player_button)
+        safe_destroy(self._update_player_status_button)
         safe_destroy(self._neutral_zone_viewer)
         safe_destroy(self._update_dice_button)
         safe_destroy(self._update_card_stacks_button)
@@ -170,9 +170,9 @@ class Window(Base_Window):
         self._hand_viewer1.on_update(context)
         self._hand_viewer2.on_update(context)
 
-    def on_update_players(self, context):
-        self._player_viewer1.on_update(context)
-        self._player_viewer2.on_update(context)
+    def on_update_player_status(self, context):
+        self._player_viewer1.on_update_status(context)
+        self._player_viewer2.on_update_status(context)
 
     def on_update_dices(self, context):
         self._neutral_zone_viewer.on_update_dices(context)

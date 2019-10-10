@@ -1,5 +1,6 @@
 import tkinter as tk
 import tkinter.font as tkfont
+from core.destroy import safe_destroy
 import game.directions as directions
 
 
@@ -19,24 +20,22 @@ class Player_Viewer:
         self._window = window
         self._player = player
         self._direction = direction
-        self._player_button = None
+        self._player_status_button = None
 
     def destroy(self):
-        self._destroy_button()
+        self._destroy_status_button()
 
-    def _destroy_button(self):
-        if not (self._player_button is None):
-            self._player_button.destroy()
-            self._player_button = None
+    def _destroy_status_button(self):
+        safe_destroy(self._player_status_button)
 
-    def on_update(self, context):
+    def on_update_status(self, context):
         toplevel = self._window.get_tk_toplevel()
         toplevel.update_idletasks()
         width = toplevel.winfo_width()
         height = toplevel.winfo_height()
 
         # clear button
-        self._destroy_button()
+        self._destroy_status_button()
 
         # create button
         text_offset = 5
@@ -60,13 +59,13 @@ class Player_Viewer:
         if wp:
             symbol += " " + str(wp) + "xW"
 
-        self._player_button = tk.Button(
+        self._player_status_button = tk.Button(
             self._window.get_tk_toplevel(),
             text=symbol,
             command=lambda player=self._player: print(
                 "clicked on " + str(player)
             ),
         )
-        self._player_button.place(
+        self._player_status_button.place(
             anchor=tk.CENTER, x=x, y=y, width=button_width, height=button_height
         )
