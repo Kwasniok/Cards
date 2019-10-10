@@ -21,6 +21,5 @@ class Subtype_Library:
         objects = []
         for clss, count in self._histogram.items():
             for i in range(count):
-                print(clss)
                 objects.append(clss())
         return objects
