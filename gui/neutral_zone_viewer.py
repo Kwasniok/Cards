@@ -29,6 +29,8 @@ class Neutral_Zone_Viewer:
         )
         # expansion card stacks
         self._expansion_card_stack_buttons = []
+        # structure card stacks
+        self._structure_card_stack_buttons = []
 
     def destroy(self):
         safe_destroy(self._dice_viewer_number)
@@ -40,6 +42,12 @@ class Neutral_Zone_Viewer:
             for button in button_stack:
                 button.destroy()
         self._expansion_card_stack_buttons = []
+
+    def _destroy_structure_card_stack_buttons(self):
+        for button_stack in self._structure_card_stack_buttons:
+            for button in button_stack:
+                button.destroy()
+        self._structure_card_stack_buttons = []
 
     def on_update_dices(self, context):
         self._dice_viewer_number.on_update(context)
@@ -70,3 +78,51 @@ class Neutral_Zone_Viewer:
                 height=button_height,
             )
             x_card_stack += button_width
+
+    def on_update_structure_card_stacks(self, context):
+        toplevel = self._window.get_tk_toplevel()
+        toplevel.update_idletasks()
+        width = toplevel.winfo_width()
+        height = toplevel.winfo_height()
+
+        # clear buttons
+        self._destroy_structure_card_stack_buttons()
+
+        # create buttons
+        button_width = 150
+        button_height = 80
+        x_card_stack = width / 2 + button_width
+        y_card_stack = height / 2
+        card_stack_buttons = Card_Stack_Viewer.create_buttons(
+            context=context,
+            window=self._window,
+            card_stack=self._neutral_zone.get_road_card_stack(),
+            x=x_card_stack,
+            y=y_card_stack,
+            width=button_width,
+            height=button_height,
+        )
+        self._structure_card_stack_buttons.append(card_stack_buttons)
+        x_card_stack += button_width
+        card_stack_buttons = Card_Stack_Viewer.create_buttons(
+            context=context,
+            window=self._window,
+            card_stack=self._neutral_zone.get_settlement_card_stack(),
+            x=x_card_stack,
+            y=y_card_stack,
+            width=button_width,
+            height=button_height,
+        )
+        self._structure_card_stack_buttons.append(card_stack_buttons)
+        x_card_stack += button_width
+        card_stack_buttons = Card_Stack_Viewer.create_buttons(
+            context=context,
+            window=self._window,
+            card_stack=self._neutral_zone.get_town_card_stack(),
+            x=x_card_stack,
+            y=y_card_stack,
+            width=button_width,
+            height=button_height,
+        )
+        self._structure_card_stack_buttons.append(card_stack_buttons)
+        x_card_stack += button_width
