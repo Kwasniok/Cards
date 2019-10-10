@@ -40,6 +40,5 @@ class Card_Stack_Viewer:
                 display_win_points=True,
             )
             buttons.append(button)
-            x_card += int(width / 10)
             y_card += int(width / 10)
         return buttons
