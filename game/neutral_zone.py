@@ -40,6 +40,18 @@ class Neutral_Zone(Internally_Named):
     def get_event_dice(self):
         return self._event_dice
 
+    def get_expansion_card_stacks(self):
+        return self._expansion_card_stacks
+
+    def get_road_card_stack(self):
+        return self._road_card_stack
+
+    def get_settlement_card_stack(self):
+        return self._settement_card_stack
+
+    def get_town_card_stack(self):
+        return self._town_card_stack
+
     def _fill_stacks(self):
         expansion_cards = get_all_expansion_cards()
         self._fill_expension_card_stacks(expansion_cards)
