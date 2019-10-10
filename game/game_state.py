@@ -3,6 +3,7 @@ import core.gui.color as color
 from core.internally_named import Internally_Named
 from .player import Player
 from .neutral_zone import Neutral_Zone
+from .piece import Piece
 import game.assets.initial_resource_cards as initial_resource_cards
 
 
@@ -12,6 +13,9 @@ class Game_State:
         self._player1 = Player(name="player 1", color=color.BLACK)
         self._player2 = Player(name="player 2", color=color.WHITE)
         self._neutral_zone = Neutral_Zone("neutral zone of " + str(self))
+        self._mill_piece = Piece(name="mill")
+        self._knight_piece = Piece(name="knight")
+        self._bandit_piece = Piece(name="bandit")
 
     def get_name(self):
         return str(self)
