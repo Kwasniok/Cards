@@ -1,5 +1,6 @@
 import tkinter as tk
 import tkinter.font as tkfont
+from core.destroy import safe_destroy
 import core.gui.color as color
 from core.gui.util import px_to_pt, pt_to_px
 
@@ -16,9 +17,7 @@ class Canvas:
     def destroy(self):
         self._player1_rectangle_id = None
         self._player2_rectangle_id = None
-        if not (self._canvas is None):
-            self._canvas.destroy()
-            self._canvas = None
+        safe_destroy(self._canvas)
         self._canvas = None
 
     def _initialize_canvas(self):
