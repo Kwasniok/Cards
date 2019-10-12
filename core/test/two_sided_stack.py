@@ -25,7 +25,7 @@ class Test(unittest.TestCase):
             reduce(operator.__and__, [x == y for x, y in zip(range(1, 5), s)])
         )
         # slicable
-        s[2]
+        self.assertEquals(s[2], 3)
         # no deletion
         with self.assertRaises(TypeError):
             del s[0]
