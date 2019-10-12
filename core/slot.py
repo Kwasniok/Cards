@@ -42,9 +42,6 @@ class Slot:
     def get_top(self):
         return self._objects[-1]
 
-    def __setitem__(self, index, obj):
-        self._objects[index] = obj
-
     def __contains__(self, obj):
         return obj in self._objects
 
