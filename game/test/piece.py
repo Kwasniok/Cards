@@ -18,6 +18,8 @@ class Test(unittest.TestCase):
 
     def test_general(self):
         p = Test_Piece(name="test piece")
+        self.assertEqual(str(p), "test piece")
+        self.assertEqual(p.get_owner(), neutral_owner)
         self.assertEqual(p.get_name(self.context), "test piece")
         self.assertEqual(p.get_mill_points(self.context), 0)
         self.assertEqual(p.get_knight_points(self.context), 0)
