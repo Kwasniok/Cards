@@ -11,6 +11,15 @@ class Piece(Internally_Named, Owned):
         Internally_Named.__init__(self, name=name)
         Owned.__init__(self, owner=owner)
 
+    def __repr__(self):
+        return (
+            'Piece(name="'
+            + str(self)
+            + '", owner='
+            + str(self.get_owner())
+            + ")"
+        )
+
     def get_name(self, context):
         return self._get_internal_name()
 
