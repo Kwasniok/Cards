@@ -20,7 +20,7 @@ class Window:
     def destroy(self):
         self._icon_image = None
         self._application.unregister_window(self)
-        safe_destroy(self._toplevel)
+        self._toplevel = safe_destroy(self._toplevel)
 
     def get_application(self):
         return self._application

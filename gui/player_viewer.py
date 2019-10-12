@@ -29,7 +29,7 @@ class Player_Viewer:
         self._destroy_piece_tray_buttons()
 
     def _destroy_status_button(self):
-        safe_destroy(self._player_status_button)
+        self._player_status_button = safe_destroy(self._player_status_button)
 
     def _destroy_piece_tray_buttons(self):
         for button in self._player_piece_tray_buttons:

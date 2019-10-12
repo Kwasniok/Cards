@@ -17,7 +17,7 @@ class Canvas:
     def destroy(self):
         self._player1_rectangle_id = None
         self._player2_rectangle_id = None
-        safe_destroy(self._canvas)
+        self._canvas = safe_destroy(self._canvas)
         self._canvas = None
 
     def _initialize_canvas(self):

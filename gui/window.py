@@ -160,20 +160,20 @@ class Window(Base_Window):
         )
 
     def destroy(self):
-        safe_destroy(self._game_canvas)
+        self._game_canvas = safe_destroy(self._game_canvas)
         safe_destroy(self._realm_viewer1)
         safe_destroy(self._realm_viewer2)
-        safe_destroy(self._update_realms_button)
+        self._update_realms_button = safe_destroy(self._update_realms_button)
         safe_destroy(self._hand_viewer1)
         safe_destroy(self._hand_viewer2)
-        safe_destroy(self._update_hands_button)
+        self._update_hands_button = safe_destroy(self._update_hands_button)
         safe_destroy(self._player_viewer1)
         safe_destroy(self._player_viewer2)
-        safe_destroy(self._update_player_status_button)
-        safe_destroy(self._neutral_zone_viewer)
-        safe_destroy(self._update_dice_button)
-        safe_destroy(self._update_card_stacks_button)
-        safe_destroy(self._update_pieces_button)
+        self._update_player_status_button = safe_destroy(self._update_player_status_button)
+        self._neutral_zone_viewer = safe_destroy(self._neutral_zone_viewer)
+        self._update_dice_button = safe_destroy(self._update_dice_button)
+        self._update_card_stacks_button = safe_destroy(self._update_card_stacks_button)
+        self._update_pieces_button = safe_destroy(self._update_pieces_button)
         Base_Window.destroy(self)
 
     def on_update_realms(self, context):

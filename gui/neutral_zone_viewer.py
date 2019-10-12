@@ -39,8 +39,8 @@ class Neutral_Zone_Viewer:
         self._piece_tray_buttons = []
 
     def destroy(self):
-        safe_destroy(self._dice_viewer_number)
-        safe_destroy(self._dice_viewer_event)
+        self._dice_viewer_number = safe_destroy(self._dice_viewer_number)
+        self._dice_viewer_event = safe_destroy(self._dice_viewer_event)
         self._destroy_expansion_card_stack_buttons()
         self._destroy_structure_card_stack_buttons()
         self._destroy_event_card_stack_buttons()

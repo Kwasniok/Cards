@@ -26,7 +26,7 @@ class Dice_Viewer:
         self._destroy_button()
 
     def _destroy_button(self):
-        safe_destroy(self._dice_button)
+        self._dice_button = safe_destroy(self._dice_button)
 
     def on_update(self, context):
         toplevel = self._window.get_tk_toplevel()
