@@ -29,7 +29,8 @@ class Game_State(Internally_Named):
     def get_neutral_zone(self):
         return self._neutral_zone
 
-    def on_prepare_game(self):
+    # context: dummy context
+    def on_prepare_game(self, context):
         # neutral zone
         self._neutral_zone.reset()
         player = [self.get_player1(), self.get_player2()]

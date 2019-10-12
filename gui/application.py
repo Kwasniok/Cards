@@ -12,6 +12,6 @@ class Application(Base_Application):
         return self._game_state
 
     def run(self):
-        self._game_state.on_prepare_game()
+        self._game_state.on_prepare_game(None)
         window = Window(self, x=100, y=100)
         Base_Application.run(self)
