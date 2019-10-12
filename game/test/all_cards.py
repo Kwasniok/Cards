@@ -7,7 +7,7 @@ from ..expansion_card import (
     Small_Building_Card,
     Large_Building_Card,
 )
-from ..event_cards import Event_Card
+from ..event_card import Event_Card
 
 
 class Test(unittest.TestCase):

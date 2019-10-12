@@ -6,7 +6,7 @@ from .dice import Dice
 from .card_stack import Card_Stack
 from .structure_card import Road_Card, Settlement_Card, Town_Card
 from .expansion_card import expansion_card_library
-from .event_cards import event_card_library
+from .event_card import event_card_library
 from .piece import piece_library
 from .events import EVENT_DICE_OUTCOMES
 from .player import Player

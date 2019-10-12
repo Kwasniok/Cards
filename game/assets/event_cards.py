@@ -1,4 +1,4 @@
-from game.event_cards import event_card_library, Event_Card
+from game.event_card import event_card_library, Event_Card
 
 
 class Turn_Of_The_Year_Card(Event_Card):
