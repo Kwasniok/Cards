@@ -2,7 +2,7 @@ import unittest
 from core.owning import Owner
 from ..directions import RIGHT, LEFT
 from ..structure_cards import Road_Card, Settlement_Card, Town_Card
-from ..resource_cards import Resource_Card
+from ..resource_card import Resource_Card
 from ..expansion_card import Small_Building_Card
 from ..resource_types import *
 from ..realm import Realm

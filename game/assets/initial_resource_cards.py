@@ -1,4 +1,4 @@
-from game.resource_cards import Resource_Card
+from game.resource_card import Resource_Card
 from game.resource_types import LOGS, BRICKS, GRAIN, IRON, WOOL, GOLD
 
 
