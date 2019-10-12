@@ -37,6 +37,8 @@ class Test(unittest.TestCase):
         # add (accepted)
         slot.add(obj_base)
         slot.add(obj_derived)
+        # slicable
+        self.assertEquals(slot[0], obj_base)
         # add (allready present)
         self.assertFalse(slot.would_accept(obj_base))
         with self.assertRaises(ValueError):
