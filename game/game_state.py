@@ -10,7 +10,7 @@ from .assets.initial_resource_cards import (
 )
 
 
-class Game_State:
+class Game_State(Internally_Named):
     def __init__(self, name):
         Internally_Named.__init__(self, name)
         self._player1 = Player(name="player 1", color=color.BLACK)
