@@ -5,7 +5,7 @@ from core.owning import Owner
 from .dice import Dice
 from .card_stack import Card_Stack
 from .structure_cards import Road_Card, Settlement_Card, Town_Card
-from .expansion_cards import expansion_card_library
+from .expansion_card import expansion_card_library
 from .event_cards import event_card_library
 from .piece import piece_library
 from .events import EVENT_DICE_OUTCOMES
@@ -73,20 +73,20 @@ class Neutral_Zone(Internally_Named):
         return self._piece_tray
 
     def _fill_stacks(self):
-        expansion_cards = expansion_card_library.get_all()
+        expansion_card = expansion_card_library.get_all()
         event_cards = event_card_library.get_all()
-        self._fill_expension_card_stacks(expansion_cards)
+        self._fill_expension_card_stacks(expansion_card)
         self._fill_road_card_stack(7)
         self._fill_settlement_card_stack(5)
         self._fill_town_card_stack(7)
         self._fill_event_card_intake_stack(event_cards)
 
-    def _fill_expension_card_stacks(self, expansion_cards):
+    def _fill_expension_card_stacks(self, expansion_card):
         # fill cards in a random order while cycling over all stacks
         for stack in cycle(self._expansion_card_stacks):
-            if len(expansion_cards) == 0:
+            if len(expansion_card) == 0:
                 break
-            stack.push_top(random_pop(expansion_cards))
+            stack.push_top(random_pop(expansion_card))
 
     def _fill_road_card_stack(self, amount):
         for i in range(0, amount):

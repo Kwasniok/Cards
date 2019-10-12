@@ -7,7 +7,7 @@ from .directions import RIGHT, LEFT
 from .card_slot import Card_Slot
 from .structure_cards import Road_Card, Settlement_Card
 from .resource_cards import Resource_Card
-from .expansion_cards import Building_Card
+from .expansion_card import Building_Card
 
 
 class Realm(Internally_Named, Owned):

@@ -2,7 +2,7 @@ import unittest
 from ..resource_types import LOGS, BRICKS, GRAIN, IRON, WOOL, GOLD
 from ..structure_cards import Road_Card, Settlement_Card, Town_Card
 from ..resource_cards import Resource_Card
-from ..expansion_cards import (
+from ..expansion_card import (
     Action_Card,
     Small_Building_Card,
     Large_Building_Card,

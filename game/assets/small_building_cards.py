@@ -1,6 +1,6 @@
 from abc import abstractmethod
 from game.resource_types import *
-from game.expansion_cards import expansion_card_library, Small_Building_Card
+from game.expansion_card import expansion_card_library, Small_Building_Card
 
 
 class Monastery_Card(Small_Building_Card):
