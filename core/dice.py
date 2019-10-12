@@ -7,6 +7,9 @@ class Dice:
         self._last = None
         self.roll()
 
+    def get_possible_outcomes(self):
+        return self._outcomes[:]
+
     def get_number_of_faces(self):
         return len(self._outcomes)
 
