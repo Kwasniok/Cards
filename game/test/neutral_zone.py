@@ -3,7 +3,7 @@ from ..neutral_zone import Neutral_Zone
 from ..dice import Dice
 from ..card_stack import Card_Stack
 from ..piece_tray import Piece_Tray
-from ..events import EVENT_DICE_OUTCOMES
+from ..events import get_event_dice_outcomes
 
 
 class Test(unittest.TestCase):
@@ -18,7 +18,7 @@ class Test(unittest.TestCase):
         event_dice = neutral_zone.get_event_dice()
         self.assertTrue(isinstance(event_dice, Dice))
         self.assertEquals(
-            event_dice.get_possible_outcomes(), EVENT_DICE_OUTCOMES
+            event_dice.get_possible_outcomes(), get_event_dice_outcomes()
         )
         # check stacks
         expansion_card_stacks = neutral_zone.get_expansion_card_stacks()

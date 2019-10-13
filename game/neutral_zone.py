@@ -8,7 +8,7 @@ from .structure_card import Road_Card, Settlement_Card, Town_Card
 from .expansion_card import expansion_card_library
 from .event_card import event_card_library
 from .piece import piece_library
-from .events import EVENT_DICE_OUTCOMES
+from .events import get_event_dice_outcomes
 from .player import Player
 from .piece_tray import Piece_Tray
 
@@ -17,7 +17,9 @@ class Neutral_Zone(Internally_Named):
     def __init__(self, name):
         Internally_Named.__init__(self, name)
         self._number_dice = Dice(name="number dice", outcomes=range(1, 7))
-        self._event_dice = Dice(name="event dice", outcomes=EVENT_DICE_OUTCOMES)
+        self._event_dice = Dice(
+            name="event dice", outcomes=get_event_dice_outcomes()
+        )
         self._number_of_expansion_card_stacks = 5
         self._expansion_card_stacks = None
         self._road_card_stack = None
