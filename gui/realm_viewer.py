@@ -2,6 +2,7 @@ import tkinter as tk
 import tkinter.font as tkfont
 import game.directions as directions
 from .card_viewer import Card_Viewer
+from .slot_viewer import Slot_Viewer
 
 
 class Realm_Viewer:
@@ -57,51 +58,18 @@ class Realm_Viewer:
                 button_cell = []
                 # slot
                 slot = self._realm.get_card_slot_grid()[x][y]
-                slot_symbol = slot.get_name()
-                slot_symbol += (
-                    " (" + str(len(slot)) + "/" + str(slot.get_limit()) + ")"
+                slot_x = x_0 + x * button_width
+                slot_y = y_0 + y * button_height
+                button_cell = Slot_Viewer.create_buttons(
+                    context=context,
+                    window=self._window,
+                    slot=slot,
+                    x=slot_x,
+                    y=slot_y,
+                    width=button_width,
+                    height=button_height,
+                    shift_x=0,
+                    shift_y=10,
                 )
-                slot_symbol += "\n"
-                slot_symbol += "|".join(
-                    pct.__name__ for pct in slot.get_accepted_base_types()
-                )
-                # slot button
-                button = tk.Button(
-                    self._window.get_tk_toplevel(),
-                    text=slot_symbol,
-                    command=lambda slot=slot: self._window.get_interaction_window().add_object(
-                        slot
-                    ),
-                )
-                button.place(
-                    anchor=tk.CENTER,
-                    x=x_0 + x * button_width,
-                    y=y_0 + y * button_height,
-                    width=int(button_width - 0.5 * button_padding),
-                    height=int(button_height - 0.5 * button_padding),
-                )
-                button_cell.append(button)
-                # cards in slot
-                shift = 0
-                for card in slot:
-                    cx = x_0 + x * button_width + shift
-                    cy = y_0 + y * button_height + int(button_height / 4)
-                    cwidth = int((button_width - 0.5 * button_padding) * 0.9)
-                    cheight = (
-                        int((button_height - 0.5 * button_padding) * 0.5),
-                    )
-                    button_cell.append(
-                        Card_Viewer.create_button(
-                            context,
-                            window=self._window,
-                            card=card,
-                            x=cx,
-                            y=cy,
-                            width=cwidth,
-                            height=cheight,
-                            display_cost=False,
-                        )
-                    )
-                    shift += 10
                 button_column.append(button_cell)
             self._buttons.append(button_column)
