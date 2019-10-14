@@ -70,8 +70,8 @@ class Player_Viewer:
         self._player_status_button = tk.Button(
             self._window.get_tk_toplevel(),
             text=symbol,
-            command=lambda player=self._player: print(
-                "clicked on " + str(player)
+            command=lambda player=self._player: self._window.get_interaction_window().add_object(
+                player
             ),
         )
         self._player_status_button.place(
