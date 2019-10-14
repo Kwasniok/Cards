@@ -69,7 +69,9 @@ class Realm_Viewer:
                 button = tk.Button(
                     self._window.get_tk_toplevel(),
                     text=slot_symbol,
-                    command=lambda slot=slot: print("clicked on " + repr(slot)),
+                    command=lambda slot=slot: self._window.get_interaction_window().add_object(
+                        slot
+                    ),
                 )
                 button.place(
                     anchor=tk.CENTER,
