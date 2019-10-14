@@ -12,6 +12,9 @@ class Card_Stack(Internally_Named, Owned):
         else:
             self._cards = cards
 
+    def get_name(self):
+        return self._get_internal_name()
+
     def __len__(self):
         return len(self._cards)
 
