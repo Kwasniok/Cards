@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from core.destroy import safe_destroy
+from core.owning import Owned
 from core.gui.window import Window as Base_Window
 from game.action import get_all_bound_action_methods
 
@@ -93,7 +94,8 @@ class Interaction_Window(Base_Window):
         for i in range(len(self._stack)):
             object = self._stack[i]
             symbol = str(object)
-            symbol += "\n" + str(object.get_owner())
+            if isinstance(object, Owned):
+                symbol += "\n" + str(object.get_owner())
             button = tk.Button(
                 toplevel,
                 text=symbol,
