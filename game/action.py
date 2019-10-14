@@ -146,3 +146,18 @@ def get_additional_action_argument_types(action_function):
             for additional_argument_name in additional_argument_names
         ]
     )
+
+
+def get_all_bound_action_methods(object):
+    bound_action_methods = []
+    # search for bound `@action` methods
+    for attribute_name in dir(object):
+        # skip private attributes
+        if attribute_name.startswith("_"):
+            continue
+        # check if `_is_game_action` attribute is present
+        attribute = getattr(object, attribute_name)
+        if callable(attribute) and hasattr(attribute, "_is_game_action"):
+            # found a `@action`
+            bound_action_methods.append(attribute)
+    return bound_action_methods
