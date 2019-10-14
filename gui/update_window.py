@@ -70,7 +70,7 @@ class Update_Window(Base_Window):
         # player
         self._update_player_status_button = tk.Button(
             self.get_tk_toplevel(),
-            text="update player",
+            text="update players",
             command=lambda: self._window.on_update_player_status(None),
         )
         self._update_player_status_button.place(
