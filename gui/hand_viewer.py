@@ -43,13 +43,13 @@ class Hand_Viewer:
         card_button_width = 180
         card_button_height = 50
         columns = self._hand.get_size()
-        x_0 = (width - card_button_width * (columns - 1)) / 2
+        x_0 = (width - card_button_width * max(0, columns - 1)) / 2
         y_0 = int(card_button_height * 0.5)
         if self._direction == directions.DOWN:
             y_0 = height - int(card_button_height * 0.5)
 
         # hand
-        hand_button_width = columns * card_button_width
+        hand_button_width = card_button_width * max(1, columns)
         hand_button_height = int(card_button_height * 0.4)
         hand_x = x_0 - (card_button_width - hand_button_width) / 2
         if self._direction == directions.UP:
