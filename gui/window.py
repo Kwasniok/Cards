@@ -189,6 +189,9 @@ class Window(Base_Window):
         self._interaction_window.close()
         Base_Window.close(self)
 
+    def get_interaction_window(self):
+        return self._interaction_window
+
     def on_update_realms(self, context):
         self._realm_viewer1.on_update(context)
         self._realm_viewer2.on_update(context)
