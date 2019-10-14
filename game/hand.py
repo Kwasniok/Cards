@@ -10,7 +10,7 @@ class Hand(Internally_Named, Owned):
         self._limit = limit
 
     def get_name(self):
-        return str(name)
+        return self._get_internal_name()
 
     def __getitem__(self, index):
         return self._cards[index]
