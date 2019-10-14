@@ -4,6 +4,7 @@ from core.destroy import safe_destroy
 from core.gui.util import px_to_pt, pt_to_px
 from core.gui.window import Window as Base_Window
 import game.directions as directions
+from .interaction_window import Interaction_Window
 from .canvas import Canvas
 from .realm_viewer import Realm_Viewer
 from .hand_viewer import Hand_Viewer
@@ -27,6 +28,9 @@ class Window(Base_Window):
         self.make_non_resizable()
         self.center()
         self.set_icon("res/game_icon.gif")
+        # interaction window
+        self._interaction_window = Interaction_Window(self.get_application())
+        # canvas
         self._game_canvas = Canvas(self)
         # update buttons
         button_width = 100
@@ -169,12 +173,21 @@ class Window(Base_Window):
         self._update_hands_button = safe_destroy(self._update_hands_button)
         safe_destroy(self._player_viewer1)
         safe_destroy(self._player_viewer2)
-        self._update_player_status_button = safe_destroy(self._update_player_status_button)
+        self._update_player_status_button = safe_destroy(
+            self._update_player_status_button
+        )
         self._neutral_zone_viewer = safe_destroy(self._neutral_zone_viewer)
         self._update_dice_button = safe_destroy(self._update_dice_button)
-        self._update_card_stacks_button = safe_destroy(self._update_card_stacks_button)
+        self._update_card_stacks_button = safe_destroy(
+            self._update_card_stacks_button
+        )
         self._update_pieces_button = safe_destroy(self._update_pieces_button)
+        self._interaction_window = safe_destroy(self._interaction_window)
         Base_Window.destroy(self)
+
+    def close(self):
+        self._interaction_window.close()
+        Base_Window.close(self)
 
     def on_update_realms(self, context):
         self._realm_viewer1.on_update(context)
