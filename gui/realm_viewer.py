@@ -30,6 +30,7 @@ class Realm_Viewer:
             for cell in column:
                 for button in cell:
                     button.destroy()
+        self._buttons = []
 
     def on_update(self, context):
         toplevel = self._window.get_tk_toplevel()
