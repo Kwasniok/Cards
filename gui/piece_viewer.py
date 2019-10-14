@@ -18,7 +18,9 @@ class Piece_Viewer:
         button = tk.Button(
             window.get_tk_toplevel(),
             text=piece_symbol,
-            command=lambda piece=piece: print("clicked on " + repr(piece)),
+            command=lambda piece=piece: window.get_interaction_window().add_object(
+                piece
+            ),
         )
         button.place(anchor=tk.CENTER, x=x, y=y, width=width, height=height)
         return button
