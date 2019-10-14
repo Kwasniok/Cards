@@ -43,31 +43,30 @@ class Realm_Viewer:
         self._destroy_buttons()
 
         # create buttons
-        button_width = 180
-        button_height = 80
-        button_padding = 10
+        slot_button_width = 180
+        slot_button_height = 80
         columns = len(self._realm.get_card_slot_grid())
         rows = 5
-        x_0 = (width - button_width * (columns - 1)) / 2
-        y_0 = 70 + int(button_height * 0.5)
+        x_0 = (width - slot_button_width * (columns - 1)) / 2
+        y_0 = 70 + int(slot_button_height * 0.5)
         if self._direction == directions.DOWN:
-            y_0 = height - int(button_height * ((rows - 1))) - y_0
+            y_0 = height - int(slot_button_height * ((rows - 1))) - y_0
         for x in range(columns):
             button_column = []
             for y in range(rows):
                 button_cell = []
                 # slot
                 slot = self._realm.get_card_slot_grid()[x][y]
-                slot_x = x_0 + x * button_width
-                slot_y = y_0 + y * button_height
+                slot_x = x_0 + x * slot_button_width
+                slot_y = y_0 + y * slot_button_height
                 button_cell = Slot_Viewer.create_buttons(
                     context=context,
                     window=self._window,
                     slot=slot,
                     x=slot_x,
                     y=slot_y,
-                    width=button_width,
-                    height=button_height,
+                    width=slot_button_width,
+                    height=slot_button_height,
                     shift_x=0,
                     shift_y=10,
                 )
