@@ -13,6 +13,8 @@ class Card_Stack_Viewer:
         y,
         width,
         height,
+        shift_x,
+        shift_y,
         display_face_indicator=True,
         display_text=True,
         display_cost=True,
@@ -64,5 +66,6 @@ class Card_Stack_Viewer:
                 display_win_points=True,
             )
             buttons.append(button)
-            y_card += int(width / 10)
+            card_x += shift_x
+            card_y += shift_y
         return buttons

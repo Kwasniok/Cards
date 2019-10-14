@@ -98,6 +98,8 @@ class Neutral_Zone_Viewer:
                 y=y_card_stack,
                 width=button_width,
                 height=button_height,
+                shift_x=0,
+                shift_y=int(button_width * 0.02),
             )
             x_card_stack += button_width
 
@@ -123,6 +125,8 @@ class Neutral_Zone_Viewer:
             y=y_card_stack,
             width=button_width,
             height=button_height,
+            shift_x=0,
+            shift_y=int(button_width * 0.02),
         )
         self._structure_card_stack_buttons.append(card_stack_buttons)
         x_card_stack += button_width
@@ -134,6 +138,8 @@ class Neutral_Zone_Viewer:
             y=y_card_stack,
             width=button_width,
             height=button_height,
+            shift_x=0,
+            shift_y=int(button_width * 0.02),
         )
         self._structure_card_stack_buttons.append(card_stack_buttons)
         x_card_stack += button_width
@@ -145,6 +151,8 @@ class Neutral_Zone_Viewer:
             y=y_card_stack,
             width=button_width,
             height=button_height,
+            shift_x=0,
+            shift_y=int(button_width * 0.02),
         )
         self._structure_card_stack_buttons.append(card_stack_buttons)
         x_card_stack += button_width
@@ -171,6 +179,8 @@ class Neutral_Zone_Viewer:
             y=y_card_stack,
             width=button_width,
             height=button_height,
+            shift_x=0,
+            shift_y=int(button_width * 0.02),
         )
         self._structure_card_stack_buttons.append(card_stack_buttons)
         x_card_stack += button_width
@@ -182,6 +192,8 @@ class Neutral_Zone_Viewer:
             y=y_card_stack,
             width=button_width,
             height=button_height,
+            shift_x=0,
+            shift_y=int(button_width * 0.02),
         )
 
     def on_update_piece_tray(self, context):
