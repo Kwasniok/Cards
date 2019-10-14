@@ -2,11 +2,14 @@ import tkinter as tk
 from tkinter import messagebox
 from core.destroy import safe_destroy
 from core.gui.window import Window as Base_Window
+from game.action import get_all_bound_action_methods
 
 update_button_with = 150
 update_button_height = 20
 object_button_width = update_button_with
 object_button_height = 50
+action_button_width = update_button_with
+action_button_height = 20
 
 
 class Interaction_Window(Base_Window):
@@ -67,6 +70,10 @@ class Interaction_Window(Base_Window):
         toplevel.update_idletasks()
         width = object_button_width * max(1, len(self._stack))
         height = update_button_height + object_button_height
+        actions = []
+        if len(self._stack) > 0:
+            actions = get_all_bound_action_methods(self._stack[0])
+        height += len(actions) * action_button_height
 
         # resize
         self._toplevel.geometry(
@@ -104,3 +111,23 @@ class Interaction_Window(Base_Window):
             )
             self._stack_buttons.append(button)
             x += object_button_width
+        x = 0
+        y = update_button_height + object_button_height
+        for action in actions:
+            symbol = action.__qualname__
+            button = tk.Button(
+                toplevel,
+                text=symbol,
+                command=lambda action=action: print(
+                    "clicked on action " + str(action) + " in interaction tray"
+                ),
+            )
+            button.place(
+                anchor=tk.NW,
+                x=x,
+                y=y,
+                width=action_button_width,
+                height=action_button_height,
+            )
+            self._stack_buttons.append(button)
+            y += action_button_height
