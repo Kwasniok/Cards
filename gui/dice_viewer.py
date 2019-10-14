@@ -51,7 +51,9 @@ class Dice_Viewer:
         self._dice_button = tk.Button(
             self._window.get_tk_toplevel(),
             text=symbol,
-            command=lambda dice=self._dice: print("clicked on " + str(dice)),
+            command=lambda dice=self._dice: self._window.get_interaction_window().add_object(
+                dice
+            ),
         )
         self._dice_button.place(
             anchor=tk.CENTER, x=x, y=y, width=button_width, height=button_height
