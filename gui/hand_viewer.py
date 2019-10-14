@@ -40,14 +40,13 @@ class Hand_Viewer:
         self._destroy_buttons()
 
         # create buttons
-        button_width = 180
-        button_height = 50
-        button_padding = 10
+        card_button_width = 180
+        card_button_height = 50
         columns = self._hand.get_size()
-        x_0 = (width - button_width * (columns - 1)) / 2
-        y_0 = int(button_height * 0.5)
+        x_0 = (width - card_button_width * (columns - 1)) / 2
+        y_0 = int(card_button_height * 0.5)
         if self._direction == directions.DOWN:
-            y_0 = height - int(button_height * 0.5)
+            y_0 = height - int(card_button_height * 0.5)
         for x in range(columns):
             card = self._hand[x]
             self._buttons.append(
@@ -55,9 +54,9 @@ class Hand_Viewer:
                     context,
                     window=self._window,
                     card=card,
-                    x=x_0 + x * button_width,
+                    x=x_0 + x * card_button_width,
                     y=y_0,
-                    width=int(button_width - 0.5 * button_padding),
-                    height=int(button_height - 0.5 * button_padding),
+                    width=card_button_width,
+                    height=card_button_height,
                 )
             )
