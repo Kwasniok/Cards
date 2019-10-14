@@ -48,7 +48,9 @@ class Card_Viewer:
         button = tk.Button(
             window.get_tk_toplevel(),
             text=card_symbol,
-            command=lambda card=card: print("clicked on " + repr(card)),
+            command=lambda card=card: window.get_interaction_window().add_object(
+                card
+            ),
         )
         button.place(anchor=tk.CENTER, x=x, y=y, width=width, height=height)
         return button
