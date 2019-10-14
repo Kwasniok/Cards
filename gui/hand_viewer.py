@@ -28,6 +28,7 @@ class Hand_Viewer:
     def _destroy_buttons(self):
         for button in self._buttons:
             button.destroy()
+        self._buttons = []
 
     def on_update(self, context):
         toplevel = self._window.get_tk_toplevel()
