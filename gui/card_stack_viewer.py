@@ -44,13 +44,16 @@ class Card_Stack_Viewer:
         )
         buttons.append(button)
 
+        # crards in card stack
+        card_x = x
+        card_y = y
         for card in card_stack:
             button = Card_Viewer.create_button(
                 context=context,
                 window=window,
                 card=card,
-                x=x_card,
-                y=y_card,
+                x=card_x,
+                y=card_y,
                 width=width,
                 height=height,
                 display_face_indicator=True,
