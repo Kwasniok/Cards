@@ -5,6 +5,7 @@ from core.gui.util import px_to_pt, pt_to_px
 from core.gui.window import Window as Base_Window
 import game.directions as directions
 from .interaction_window import Interaction_Window
+from .update_window import Update_Window
 from .canvas import Canvas
 from .realm_viewer import Realm_Viewer
 from .hand_viewer import Hand_Viewer
@@ -38,11 +39,22 @@ class Window(Base_Window):
             x=interaction_window_x,
             y=interaction_window_y,
         )
+        # update window (for debugging)
+        toplevel = self.get_tk_toplevel()
+        toplevel.update_idletasks()
+        interaction_window_x = toplevel.winfo_x() - 100
+        interaction_window_y = toplevel.winfo_y() + toplevel.winfo_height() / 2
+        self._update_window = Update_Window(
+            self.get_application(),
+            window=self,
+            interaction_window=self._interaction_window,
+            x=interaction_window_x,
+            y=interaction_window_y,
+        )
         # canvas
         self._game_canvas = Canvas(self)
-        # update buttons
-        button_width = 100
-        button_height = 20
+
+        ## viewer
         # realms
         self._realm_viewer1 = Realm_Viewer(
             window=self,
@@ -59,18 +71,6 @@ class Window(Base_Window):
             .get_player2()
             .get_realm(),
             direction=directions.DOWN,
-        )
-        self._update_realms_button = tk.Button(
-            self.get_tk_toplevel(),
-            text="update realms",
-            command=lambda: self.on_update_realms(None),
-        )
-        self._update_realms_button.place(
-            anchor=tk.CENTER,
-            x=width / 2,
-            y=height / 2 - 2 * button_height,
-            width=button_width,
-            height=button_height,
         )
         # hands
         self._hand_viewer1 = Hand_Viewer(
@@ -89,18 +89,6 @@ class Window(Base_Window):
             .get_hand(),
             direction=directions.DOWN,
         )
-        self._update_hands_button = tk.Button(
-            self.get_tk_toplevel(),
-            text="update hands",
-            command=lambda: self.on_update_hands(None),
-        )
-        self._update_hands_button.place(
-            anchor=tk.CENTER,
-            x=width / 2,
-            y=height / 2 - 1 * button_height,
-            width=button_width,
-            height=button_height,
-        )
         # player
         self._player_viewer1 = Player_Viewer(
             window=self,
@@ -112,18 +100,6 @@ class Window(Base_Window):
             player=self.get_application().get_game_state().get_player2(),
             direction=directions.DOWN,
         )
-        self._update_player_status_button = tk.Button(
-            self.get_tk_toplevel(),
-            text="update player",
-            command=lambda: self.on_update_player_status(None),
-        )
-        self._update_player_status_button.place(
-            anchor=tk.CENTER,
-            x=width / 2,
-            y=height / 2 + 0 * button_height,
-            width=button_width,
-            height=button_height,
-        )
         # neutral zone
         self._neutral_zone_viewer = Neutral_Zone_Viewer(
             window=self,
@@ -131,70 +107,23 @@ class Window(Base_Window):
             .get_game_state()
             .get_neutral_zone(),
         )
-        # dices
-        self._update_dice_button = tk.Button(
-            self.get_tk_toplevel(),
-            text="update dices",
-            command=lambda: self.on_update_dices(None),
-        )
-        self._update_dice_button.place(
-            anchor=tk.CENTER,
-            x=width / 2,
-            y=height / 2 + 1 * button_height,
-            width=button_width,
-            height=button_height,
-        )
-        # card stacks
-        self._update_card_stacks_button = tk.Button(
-            self.get_tk_toplevel(),
-            text="update card stacks",
-            command=lambda: self.on_update_card_stacks(None),
-        )
-        self._update_card_stacks_button.place(
-            anchor=tk.CENTER,
-            x=width / 2,
-            y=height / 2 + 2 * button_height,
-            width=button_width,
-            height=button_height,
-        )
-        # pieces
-        self._update_pieces_button = tk.Button(
-            self.get_tk_toplevel(),
-            text="update piece trays",
-            command=lambda: self.on_update_piece_trays(None),
-        )
-        self._update_pieces_button.place(
-            anchor=tk.CENTER,
-            x=width / 2,
-            y=height / 2 + 3 * button_height,
-            width=button_width,
-            height=button_height,
-        )
 
     def destroy(self):
         self._game_canvas = safe_destroy(self._game_canvas)
         safe_destroy(self._realm_viewer1)
         safe_destroy(self._realm_viewer2)
-        self._update_realms_button = safe_destroy(self._update_realms_button)
         safe_destroy(self._hand_viewer1)
         safe_destroy(self._hand_viewer2)
-        self._update_hands_button = safe_destroy(self._update_hands_button)
         safe_destroy(self._player_viewer1)
         safe_destroy(self._player_viewer2)
-        self._update_player_status_button = safe_destroy(
-            self._update_player_status_button
-        )
         self._neutral_zone_viewer = safe_destroy(self._neutral_zone_viewer)
-        self._update_dice_button = safe_destroy(self._update_dice_button)
-        self._update_card_stacks_button = safe_destroy(
-            self._update_card_stacks_button
-        )
-        self._update_pieces_button = safe_destroy(self._update_pieces_button)
+        self._update_window = safe_destroy(self._update_window)
         self._interaction_window = safe_destroy(self._interaction_window)
         Base_Window.destroy(self)
 
     def close(self):
         self._interaction_window.close()
+        self._update_window.close()
         Base_Window.close(self)
 
     def get_interaction_window(self):
