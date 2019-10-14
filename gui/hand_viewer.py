@@ -49,13 +49,13 @@ class Hand_Viewer:
             y_0 = height - int(card_button_height * 0.5)
 
         # hand
-        hand_card_button_width = columns * card_button_width
-        hand_card_button_height = int(card_button_height * 0.4)
-        hand_x = x_0 - (card_button_width - hand_card_button_width) / 2
+        hand_button_width = columns * card_button_width
+        hand_button_height = int(card_button_height * 0.4)
+        hand_x = x_0 - (card_button_width - hand_button_width) / 2
         if self._direction == directions.UP:
-            hand_y = y_0 + (card_button_height + hand_card_button_height) / 2
+            hand_y = y_0 + (card_button_height + hand_button_height) / 2
         if self._direction == directions.DOWN:
-            hand_y = y_0 - (card_button_height + hand_card_button_height) / 2
+            hand_y = y_0 - (card_button_height + hand_button_height) / 2
         hand_symbol = self._hand.get_name()
         button = tk.Button(
             self._window.get_tk_toplevel(),
@@ -68,8 +68,8 @@ class Hand_Viewer:
             anchor=tk.CENTER,
             x=hand_x,
             y=hand_y,
-            width=hand_card_button_width,
-            height=hand_card_button_height,
+            width=hand_button_width,
+            height=hand_button_height,
         )
         self._buttons.append(button)
 
