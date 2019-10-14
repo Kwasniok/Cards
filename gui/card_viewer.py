@@ -44,7 +44,9 @@ class Card_Viewer:
             if wp:
                 card_symbol += " " + str(wp) + "xW"
         if display_text:
-            card_symbol += "\n" + card.get_text(context)
+            text = card.get_text(context)
+            if text:
+                card_symbol += "\n" + card.get_text(context)
         button = tk.Button(
             window.get_tk_toplevel(),
             text=card_symbol,
