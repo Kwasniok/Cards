@@ -62,6 +62,10 @@ class Interaction_Window(Base_Window):
         self._stack.append(object)
         self.on_update()
 
+    def pop_object(self, index):
+        self._stack.pop(index)
+        self.on_update()
+
     def on_clear(self):
         self._stack = []
 
@@ -94,13 +98,7 @@ class Interaction_Window(Base_Window):
             button = tk.Button(
                 toplevel,
                 text=symbol,
-                command=lambda object=object: print(
-                    "clicked on "
-                    + repr(object)
-                    + " in interaction tray (@ position "
-                    + str(i)
-                    + ")"
-                ),
+                command=lambda index=i: self.pop_object(index),
             )
             button.place(
                 anchor=tk.NW,
