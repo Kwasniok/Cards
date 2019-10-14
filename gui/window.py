@@ -29,7 +29,15 @@ class Window(Base_Window):
         self.center()
         self.set_icon("res/game_icon.gif")
         # interaction window
-        self._interaction_window = Interaction_Window(self.get_application())
+        toplevel = self.get_tk_toplevel()
+        toplevel.update_idletasks()
+        interaction_window_x = toplevel.winfo_x() + toplevel.winfo_width()
+        interaction_window_y = toplevel.winfo_y() + toplevel.winfo_height() / 2
+        self._interaction_window = Interaction_Window(
+            self.get_application(),
+            x=interaction_window_x,
+            y=interaction_window_y,
+        )
         # canvas
         self._game_canvas = Canvas(self)
         # update buttons

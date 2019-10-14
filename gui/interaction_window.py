@@ -13,17 +13,16 @@ action_button_height = 20
 
 
 class Interaction_Window(Base_Window):
-    def __init__(self, application):
+    def __init__(self, application, x, y):
         Base_Window.__init__(
             self,
             application=application,
             title="Interaction Window",
             width=10,
             height=10,
-            x=0,
-            y=0,
+            x=x,
+            y=y,
         )
-        self.center()
         self.set_icon("res/game_icon.gif")
         self._stack = []
         self._stack_buttons = []
