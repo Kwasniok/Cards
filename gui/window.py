@@ -36,6 +36,7 @@ class Window(Base_Window):
         interaction_window_y = toplevel.winfo_y() + toplevel.winfo_height() / 2
         self._interaction_window = Interaction_Window(
             self.get_application(),
+            window=self,
             x=interaction_window_x,
             y=interaction_window_y,
         )
