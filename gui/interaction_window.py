@@ -96,6 +96,8 @@ class Interaction_Window(Base_Window):
                 + repr(context.current_phase)
                 + " of "
                 + str(context.active_player)
+                + " with additional arguments:"
+                + ", ".join([repr(obj) for obj in self._stack[1:]])
             )
             self._window.update_all_viewers()
 
