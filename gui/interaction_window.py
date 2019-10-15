@@ -12,11 +12,9 @@ from game.action import (
     invoke_bound_action,
 )
 
-update_button_with = 150
-update_button_height = 20
-object_button_width = update_button_with
+object_button_width = 150
 object_button_height = 50
-action_button_width = update_button_with
+action_button_width = object_button_width
 action_button_height = 20
 
 
@@ -36,23 +34,9 @@ class Interaction_Window(Base_Window):
         self.make_non_resizable()
         self._stack = []
         self._stack_buttons = []
-        # update button
-        self._update_button = tk.Button(
-            self.get_tk_toplevel(),
-            text="update interaction tray",
-            command=lambda: self.on_update(),
-        )
-        self._update_button.place(
-            anchor=tk.NW,
-            x=0,
-            y=0,
-            width=update_button_with,
-            height=update_button_height,
-        )
         self.on_update()
 
     def destroy(self):
-        self._update_button = safe_destroy(self._update_button)
         self._destroy_stack_buttons()
         self._stack = []
         Base_Window.destroy(self)
@@ -109,7 +93,7 @@ class Interaction_Window(Base_Window):
         toplevel = self.get_tk_toplevel()
         toplevel.update_idletasks()
         width = object_button_width * max(1, len(self._stack))
-        height = update_button_height + object_button_height
+        height = object_button_height
         actions = []
         if len(self._stack) > 0:
             actions = get_all_bound_action_methods(self._stack[0])
@@ -127,7 +111,7 @@ class Interaction_Window(Base_Window):
         ## create buttons
         # object buttons
         x = 0
-        y = update_button_height
+        y = 0
         for i in range(len(self._stack)):
             object = self._stack[i]
             symbol = str(object)
@@ -148,7 +132,7 @@ class Interaction_Window(Base_Window):
             self._stack_buttons.append(button)
             x += object_button_width
         x = 0
-        y = update_button_height + object_button_height
+        y = object_button_height
         # action buttons
         for action in actions:
             symbol = action.__qualname__ + "("
