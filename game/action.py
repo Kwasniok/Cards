@@ -160,6 +160,18 @@ def get_additional_action_argument_types(action_function):
     )
 
 
+def get_additional_action_argument_dict(action_function):
+    additional_argument_names = get_additional_action_argument_names(
+        action_function
+    )
+    return {
+        additional_argument_name: action_function.__annotations__[
+            additional_argument_name
+        ]
+        for additional_argument_name in additional_argument_names
+    }
+
+
 def invoke_bound_action(bound_action_function, context, additional_args):
     additional_argument_names = get_additional_action_argument_names(
         bound_action_function
