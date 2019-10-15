@@ -2,6 +2,7 @@ from core.internally_named import Internally_Named
 from core.owning import Owned
 from core.dice import Dice as Base_Dice
 from .neutral_owner import neutral_owner
+from .action import action
 
 
 class Dice(Internally_Named, Owned, Base_Dice):
@@ -12,3 +13,7 @@ class Dice(Internally_Named, Owned, Base_Dice):
 
     def get_name(self):
         return str(self)
+
+    @action
+    def on_roll(self, context):
+        self.roll()
