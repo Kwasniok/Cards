@@ -1,5 +1,5 @@
 from game.resource_card import Resource_Card
-from game.resource_types import LOGS, BRICKS, GRAIN, IRON, WOOL, GOLD
+from .resource_types import *
 
 
 def get_initial_resource_cards_black():

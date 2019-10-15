@@ -1,5 +1,5 @@
-from game.resource_types import *
 from game.expansion_card import expansion_card_library, Large_Building_Card
+from .resource_types import *
 
 
 class Habour_Card(Large_Building_Card):

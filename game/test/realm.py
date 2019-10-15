@@ -1,11 +1,11 @@
 import unittest
 from core.owning import Owner
 from ..directions import RIGHT, LEFT
-from ..structure_card import Road_Card, Settlement_Card, Town_Card
 from ..resource_card import Resource_Card
 from ..expansion_card import Small_Building_Card
-from ..resource_types import *
 from ..realm import Realm
+from ..assets.resource_types import *
+from ..assets.structure_cards import Road_Card, Settlement_Card, Town_Card
 
 
 class Test_Small_Building_Card(Small_Building_Card):

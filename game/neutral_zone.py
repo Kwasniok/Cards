@@ -4,13 +4,13 @@ from core.internally_named import Internally_Named
 from core.owning import Owner
 from .dice import Dice
 from .card_stack import Card_Stack
-from .structure_card import Road_Card, Settlement_Card, Town_Card
 from .expansion_card import expansion_card_library
 from .event_card import event_card_library
 from .piece import piece_library
 from .events import get_event_dice_outcomes
 from .player import Player
 from .piece_tray import Piece_Tray
+from .assets.structure_cards import Road_Card, Settlement_Card, Town_Card
 
 
 class Neutral_Zone(Internally_Named):
