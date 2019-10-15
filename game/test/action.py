@@ -1,11 +1,13 @@
 import unittest
 from ..action import (
     action,
+    Action_Error,
     get_all_supported_action_additional_argument_types,
     register_supported_action_additional_argument_type,
     unregister_all_supported_action_additional_argument_types,
     is_game_action,
     get_additional_action_argument_types,
+    invoke_bound_action,
 )
 
 
@@ -93,6 +95,82 @@ class Test(unittest.TestCase):
 
             def on_test_action2(self, context, arg: float):
                 pass
+
+        # invoke
+        class Test_Class_With_Action:
+            @action
+            def on_test_action0(self, context):
+                pass
+
+            @action
+            def on_test_action1(self, context, arg1: int):
+                pass
+
+            @action
+            def on_test_action2(self, context, arg1: int, arg2: float):
+                pass
+
+        test_object = Test_Class_With_Action()
+        context = None
+        # 0 additional arguments
+        invoke_bound_action(
+            test_object.on_test_action0, context=context, additional_args=[]
+        )
+        # wrong number of additional arguments
+        with self.assertRaises(Action_Error):
+            invoke_bound_action(
+                test_object.on_test_action0,
+                context=context,
+                additional_args=[None],
+            )
+        # 1 additional argument
+        invoke_bound_action(
+            test_object.on_test_action1, context=context, additional_args=[1]
+        )
+        # wrong number of additional arguments
+        with self.assertRaises(Action_Error):
+            invoke_bound_action(
+                test_object.on_test_action1, context=context, additional_args=[]
+            )
+        with self.assertRaises(Action_Error):
+            invoke_bound_action(
+                test_object.on_test_action1,
+                context=context,
+                additional_args=[1, 2],
+            )
+        # wrong type of additional arguments
+        with self.assertRaises(Action_Error):
+            invoke_bound_action(
+                test_object.on_test_action1,
+                context=context,
+                additional_args=[1.0],
+            )
+        # 2 additional arguments
+        invoke_bound_action(
+            test_object.on_test_action2,
+            context=context,
+            additional_args=[1, 2.0],
+        )
+        # wrong number of additional arguments
+        with self.assertRaises(Action_Error):
+            invoke_bound_action(
+                test_object.on_test_action2,
+                context=context,
+                additional_args=[1],
+            )
+        with self.assertRaises(Action_Error):
+            invoke_bound_action(
+                test_object.on_test_action2,
+                context=context,
+                additional_args=[1, 2.0, 3],
+            )
+        # wrong type of additional arguments
+        with self.assertRaises(Action_Error):
+            invoke_bound_action(
+                test_object.on_test_action2,
+                context=context,
+                additional_args=[1.0, 2],
+            )
 
         # unregister
         unregister_all_supported_action_additional_argument_types()
