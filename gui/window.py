@@ -153,3 +153,11 @@ class Window(Base_Window):
         self._neutral_zone_viewer.on_update_piece_tray(context)
         self._player_viewer1.on_update_piece_tray(context)
         self._player_viewer2.on_update_piece_tray(context)
+
+    def on_update_all(self, context):
+        self.on_update_realms(context)
+        self.on_update_hands(context)
+        self.on_update_player_status(context)
+        self.on_update_dices(context)
+        self.on_update_card_stacks(context)
+        self.on_update_piece_trays(context)
