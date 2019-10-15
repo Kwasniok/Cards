@@ -29,6 +29,7 @@ class Update_Window(Base_Window):
 
         ## update buttons
         # interaction window
+        i = 0
         self._update_interaction_window_button = tk.Button(
             self.get_tk_toplevel(),
             text="update interaction tray",
@@ -37,10 +38,11 @@ class Update_Window(Base_Window):
         self._update_interaction_window_button.place(
             anchor=tk.NW,
             x=0,
-            y=update_button_height * 0,
+            y=update_button_height * i,
             width=update_button_width,
             height=update_button_height,
         )
+        i += 1
         # realms
         self._update_realms_button = tk.Button(
             self.get_tk_toplevel(),
@@ -50,10 +52,11 @@ class Update_Window(Base_Window):
         self._update_realms_button.place(
             anchor=tk.NW,
             x=0,
-            y=update_button_height * 1,
+            y=update_button_height * i,
             width=update_button_width,
             height=update_button_height,
         )
+        i += 1
         # hands
         self._update_hands_button = tk.Button(
             self.get_tk_toplevel(),
@@ -63,10 +66,11 @@ class Update_Window(Base_Window):
         self._update_hands_button.place(
             anchor=tk.NW,
             x=0,
-            y=update_button_height * 2,
+            y=update_button_height * i,
             width=update_button_width,
             height=update_button_height,
         )
+        i += 1
         # player
         self._update_player_status_button = tk.Button(
             self.get_tk_toplevel(),
@@ -76,10 +80,11 @@ class Update_Window(Base_Window):
         self._update_player_status_button.place(
             anchor=tk.NW,
             x=0,
-            y=update_button_height * 3,
+            y=update_button_height * i,
             width=update_button_width,
             height=update_button_height,
         )
+        i += 1
         # dices
         self._update_dice_button = tk.Button(
             self.get_tk_toplevel(),
@@ -89,10 +94,11 @@ class Update_Window(Base_Window):
         self._update_dice_button.place(
             anchor=tk.NW,
             x=0,
-            y=update_button_height * 4,
+            y=update_button_height * i,
             width=update_button_width,
             height=update_button_height,
         )
+        i += 1
         # card stacks
         self._update_card_stacks_button = tk.Button(
             self.get_tk_toplevel(),
@@ -102,10 +108,11 @@ class Update_Window(Base_Window):
         self._update_card_stacks_button.place(
             anchor=tk.NW,
             x=0,
-            y=update_button_height * 5,
+            y=update_button_height * i,
             width=update_button_width,
             height=update_button_height,
         )
+        i += 1
         # pieces
         self._update_pieces_button = tk.Button(
             self.get_tk_toplevel(),
@@ -115,10 +122,11 @@ class Update_Window(Base_Window):
         self._update_pieces_button.place(
             anchor=tk.NW,
             x=0,
-            y=update_button_height * 6,
+            y=update_button_height * i,
             width=update_button_width,
             height=update_button_height,
         )
+        i += 1
 
     def destroy(self):
         self._update_realms_button = safe_destroy(self._update_realms_button)
