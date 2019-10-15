@@ -4,6 +4,7 @@ from core.internally_named import Internally_Named
 from .player import Player
 from .neutral_zone import Neutral_Zone
 from .piece import Piece
+from .context import Context
 from .assets.initial_resource_cards import (
     get_initial_resource_cards_black,
     get_initial_resource_cards_white,
@@ -28,6 +29,14 @@ class Game_State(Internally_Named):
 
     def get_neutral_zone(self):
         return self._neutral_zone
+
+    def get_current_context(self):
+        return Context(
+            game_state=self,
+            current_phase="dummy phase",
+            active_player=self._player1,
+            opposing_player=self._player2,
+        )
 
     # context: dummy context
     def on_prepare_game(self, context):

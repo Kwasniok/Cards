@@ -78,15 +78,25 @@ class Interaction_Window(Base_Window):
 
     def _invoke_bound_action(self, action):
         success = False
+        context = self.get_application().get_game_state().get_current_context()
         try:
             invoke_bound_action(
-                action, context=None, additional_args=self._stack[1:]
+                action, context=context, additional_args=self._stack[1:]
             )
             success = True
         except Action_Error as e:
             pass
         if success:
-            print("invoked action " + str(action))
+            print(
+                "invoked action "
+                + action.__qualname__
+                + " of "
+                + repr(action.__self__)
+                + " in phase "
+                + repr(context.current_phase)
+                + " of "
+                + str(context.active_player)
+            )
             self._window.on_update_all(context=None)
 
     def on_update(self):
