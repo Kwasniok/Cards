@@ -14,7 +14,6 @@ from game.action import (
 
 object_button_width = 150
 object_button_height = 50
-action_button_width = object_button_width
 action_button_height = 20
 
 
@@ -149,11 +148,7 @@ class Interaction_Window(Base_Window):
                 toplevel, text=symbol, command=command, state=state
             )
             button.place(
-                anchor=tk.NW,
-                x=x,
-                y=y,
-                width=action_button_width,
-                height=action_button_height,
+                anchor=tk.NW, x=x, y=y, width=width, height=action_button_height
             )
             self._stack_buttons.append(button)
             y += action_button_height
