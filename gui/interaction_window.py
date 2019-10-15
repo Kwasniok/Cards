@@ -108,7 +108,8 @@ class Interaction_Window(Base_Window):
         # clear buttons
         self._destroy_stack_buttons()
 
-        # create buttons
+        ## create buttons
+        # object buttons
         x = 0
         y = update_button_height
         for i in range(len(self._stack)):
@@ -132,6 +133,7 @@ class Interaction_Window(Base_Window):
             x += object_button_width
         x = 0
         y = update_button_height + object_button_height
+        # action buttons
         for action in actions:
             symbol = action.__qualname__ + "("
             for arg_name, arg_type in get_additional_action_argument_dict(
