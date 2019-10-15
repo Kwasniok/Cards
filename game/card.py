@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from core.internally_named import Internally_Named
 from core.owning import Owned
 from .neutral_owner import neutral_owner
+from .action import action
 
 
 class Card(ABC, Internally_Named, Owned):
@@ -51,3 +52,27 @@ class Card(ABC, Internally_Named, Owned):
 
     def get_win_points(self, context):
         return 0
+
+    @action
+    def on_inspect(self, context):
+        print(
+            "Card(name="
+            + repr(self._get_internal_name())
+            + ",owner="
+            + str(self.get_owner())
+            + ",face_up="
+            + str(self._face_up)
+            + ",title="
+            + str(self.get_title(context))
+            + ",text="
+            + str(self.get_text(context))
+            + ",cost="
+            + str(self.get_cost(context))
+            + ",mill_pints="
+            + str(self.get_mill_points(context))
+            + ",knight_points="
+            + str(self.get_knight_points(context))
+            + ",win_points="
+            + str(self.get_win_points(context))
+            + ")"
+        )
