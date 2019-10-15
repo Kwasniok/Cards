@@ -12,7 +12,7 @@ update_button_height = 20
 class Update_Window(Base_Window):
     def __init__(self, application, window, interaction_window, x, y):
         width = update_button_width
-        height = update_button_height * 7
+        height = update_button_height * 8
         Base_Window.__init__(
             self,
             application=application,
@@ -36,6 +36,20 @@ class Update_Window(Base_Window):
             command=lambda: self._interaction_window.on_update(),
         )
         self._update_interaction_window_button.place(
+            anchor=tk.NW,
+            x=0,
+            y=update_button_height * i,
+            width=update_button_width,
+            height=update_button_height,
+        )
+        i += 1
+        # all
+        self._update_all_button = tk.Button(
+            self.get_tk_toplevel(),
+            text="update main window",
+            command=lambda: self._window.on_update_all(None),
+        )
+        self._update_all_button.place(
             anchor=tk.NW,
             x=0,
             y=update_button_height * i,
