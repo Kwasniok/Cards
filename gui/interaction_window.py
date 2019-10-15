@@ -33,6 +33,7 @@ class Interaction_Window(Base_Window):
         )
         self._window = window
         self.set_icon("res/game_icon.gif")
+        self.make_non_resizable()
         self._stack = []
         self._stack_buttons = []
         # update button
