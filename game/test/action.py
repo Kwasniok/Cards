@@ -10,6 +10,7 @@ from ..action import (
     can_invoke_bound_action,
     invoke_bound_action,
 )
+from ..game_object import Game_Object
 
 
 class Test(unittest.TestCase):
@@ -20,7 +21,7 @@ class Test(unittest.TestCase):
 
         # no type must be registered in advance
         self.assertEqual(
-            get_all_supported_action_additional_argument_types(), tuple()
+            get_all_supported_action_additional_argument_types(), (Game_Object,)
         )
 
         # @action must have at least (self, context)
