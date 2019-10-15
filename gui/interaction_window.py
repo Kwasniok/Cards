@@ -5,7 +5,9 @@ from core.owning import Owned
 from core.gui.window import Window as Base_Window
 from game.action import (
     get_all_bound_action_methods,
+    get_additional_action_argument_dict,
     Action_Error,
+    can_invoke_bound_action,
     invoke_bound_action,
 )
 
@@ -131,9 +133,19 @@ class Interaction_Window(Base_Window):
         x = 0
         y = update_button_height + object_button_height
         for action in actions:
-            symbol = action.__qualname__
+            symbol = action.__qualname__ + "("
+            for arg_name, arg_type in get_additional_action_argument_dict(
+                action
+            ).items():
+                symbol += arg_name + "=" + arg_type.__qualname__
+            symbol += ")"
             command = lambda action=action: self._invoke_bound_action(action)
-            button = tk.Button(toplevel, text=symbol, command=command)
+            state = tk.DISABLED
+            if can_invoke_bound_action(action, self._stack[1:]):
+                state = tk.NORMAL
+            button = tk.Button(
+                toplevel, text=symbol, command=command, state=state
+            )
             button.place(
                 anchor=tk.NW,
                 x=x,
