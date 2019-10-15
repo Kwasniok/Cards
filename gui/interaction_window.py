@@ -87,7 +87,7 @@ class Interaction_Window(Base_Window):
             success = True
         except Action_Error as e:
             if isinstance(e, Action_Invokation_Error):
-                print(e)
+                print("Invokation of action failed: " + str(e))
         if success:
             print(
                 "Successfully invoked action "
