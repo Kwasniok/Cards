@@ -20,5 +20,5 @@ class Piece_Tray_Viewer:
                 height=height,
             )
             buttons.append(button)
-            x_piece += width
+            y_piece += height
         return buttons
