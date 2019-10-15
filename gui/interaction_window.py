@@ -3,7 +3,11 @@ from tkinter import messagebox
 from core.destroy import safe_destroy
 from core.owning import Owned
 from core.gui.window import Window as Base_Window
-from game.action import get_all_bound_action_methods
+from game.action import (
+    get_all_bound_action_methods,
+    Action_Error,
+    invoke_bound_action,
+)
 
 update_button_with = 150
 update_button_height = 20
@@ -70,6 +74,19 @@ class Interaction_Window(Base_Window):
     def on_clear(self):
         self._stack = []
 
+    def _invoke_bound_action(self, action):
+        success = False
+        try:
+            invoke_bound_action(
+                action, context=None, additional_args=self._stack[1:]
+            )
+            success = True
+        except Action_Error as e:
+            pass
+        if success:
+            print("invoked action " + str(action))
+            self._window.on_update_all(context=None)
+
     def on_update(self):
         toplevel = self.get_tk_toplevel()
         toplevel.update_idletasks()
@@ -115,13 +132,8 @@ class Interaction_Window(Base_Window):
         y = update_button_height + object_button_height
         for action in actions:
             symbol = action.__qualname__
-            button = tk.Button(
-                toplevel,
-                text=symbol,
-                command=lambda action=action: print(
-                    "clicked on action " + str(action) + " in interaction tray"
-                ),
-            )
+            command = lambda action=action: self._invoke_bound_action(action)
+            button = tk.Button(toplevel, text=symbol, command=command)
             button.place(
                 anchor=tk.NW,
                 x=x,
