@@ -6,6 +6,11 @@ class Action_Error(RuntimeError):
         RuntimeError.__init__(self, msg)
 
 
+class Action_Invokation_Error(Action_Error):
+    def __init__(self, msg):
+        Action_Error.__init__(self, msg)
+
+
 _supported_action_additional_argument_types = []
 
 
