@@ -71,11 +71,11 @@ class Neutral_Zone_Viewer:
             button.destroy()
         self._piece_tray_buttons = []
 
-    def on_update_dices(self, context):
+    def on_update_all_dice_viewers(self, context):
         self._dice_viewer_number.on_update(context)
         self._dice_viewer_event.on_update(context)
 
-    def on_update_expansion_card_stacks(self, context):
+    def on_update_expansion_card_stack_viewers(self, context):
         toplevel = self._window.get_tk_toplevel()
         toplevel.update_idletasks()
         width = toplevel.winfo_width()
@@ -103,7 +103,7 @@ class Neutral_Zone_Viewer:
             )
             x_card_stack += button_width
 
-    def on_update_structure_card_stacks(self, context):
+    def on_update_structure_card_stack_viewers(self, context):
         toplevel = self._window.get_tk_toplevel()
         toplevel.update_idletasks()
         width = toplevel.winfo_width()
@@ -157,7 +157,7 @@ class Neutral_Zone_Viewer:
         self._structure_card_stack_buttons.append(card_stack_buttons)
         x_card_stack += button_width
 
-    def on_update_event_card_stacks(self, context):
+    def on_update_event_card_stack_viewers(self, context):
         toplevel = self._window.get_tk_toplevel()
         toplevel.update_idletasks()
         width = toplevel.winfo_width()
@@ -196,7 +196,7 @@ class Neutral_Zone_Viewer:
             shift_y=int(button_width * 0.02),
         )
 
-    def on_update_piece_tray(self, context):
+    def on_update_piece_tray_viewer(self, context):
         toplevel = self._window.get_tk_toplevel()
         toplevel.update_idletasks()
         width = toplevel.winfo_width()

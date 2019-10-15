@@ -109,7 +109,7 @@ class Window(Base_Window):
             .get_neutral_zone(),
         )
         # initial update
-        self.on_update_all(None)
+        self.update_all_viewers()
 
     def destroy(self):
         self._game_canvas = safe_destroy(self._game_canvas)
@@ -132,35 +132,45 @@ class Window(Base_Window):
     def get_interaction_window(self):
         return self._interaction_window
 
-    def on_update_realms(self, context):
+    def update_all_realm_viewers(self):
+        context = self.get_application().get_game_state().get_current_context()
         self._realm_viewer1.on_update(context)
         self._realm_viewer2.on_update(context)
 
-    def on_update_hands(self, context):
+    def update_all_hand_viewers(self):
+        context = self.get_application().get_game_state().get_current_context()
         self._hand_viewer1.on_update(context)
         self._hand_viewer2.on_update(context)
 
-    def on_update_player_status(self, context):
-        self._player_viewer1.on_update_status(context)
-        self._player_viewer2.on_update_status(context)
+    def update_all_player_status_viewers(self):
+        context = self.get_application().get_game_state().get_current_context()
+        self._player_viewer1.on_update_status_viewer(context)
+        self._player_viewer2.on_update_status_viewer(context)
 
-    def on_update_dices(self, context):
-        self._neutral_zone_viewer.on_update_dices(context)
+    def update_all_dice_viewers(self):
+        context = self.get_application().get_game_state().get_current_context()
+        self._neutral_zone_viewer.on_update_all_dice_viewers(context)
 
-    def on_update_card_stacks(self, context):
-        self._neutral_zone_viewer.on_update_expansion_card_stacks(context)
-        self._neutral_zone_viewer.on_update_structure_card_stacks(context)
-        self._neutral_zone_viewer.on_update_event_card_stacks(context)
+    def update_all_card_stack_viewers(self):
+        context = self.get_application().get_game_state().get_current_context()
+        self._neutral_zone_viewer.on_update_expansion_card_stack_viewers(
+            context
+        )
+        self._neutral_zone_viewer.on_update_structure_card_stack_viewers(
+            context
+        )
+        self._neutral_zone_viewer.on_update_event_card_stack_viewers(context)
 
-    def on_update_piece_trays(self, context):
-        self._neutral_zone_viewer.on_update_piece_tray(context)
-        self._player_viewer1.on_update_piece_tray(context)
-        self._player_viewer2.on_update_piece_tray(context)
+    def update_all_piece_tray_viewers(self):
+        context = self.get_application().get_game_state().get_current_context()
+        self._neutral_zone_viewer.on_update_piece_tray_viewer(context)
+        self._player_viewer1.on_update_piece_tray_viewer(context)
+        self._player_viewer2.on_update_piece_tray_viewer(context)
 
-    def on_update_all(self, context):
-        self.on_update_realms(context)
-        self.on_update_hands(context)
-        self.on_update_player_status(context)
-        self.on_update_dices(context)
-        self.on_update_card_stacks(context)
-        self.on_update_piece_trays(context)
+    def update_all_viewers(self):
+        self.update_all_realm_viewers()
+        self.update_all_hand_viewers()
+        self.update_all_player_status_viewers()
+        self.update_all_dice_viewers()
+        self.update_all_card_stack_viewers()
+        self.update_all_piece_tray_viewers()

@@ -97,7 +97,7 @@ class Interaction_Window(Base_Window):
                 + " of "
                 + str(context.active_player)
             )
-            self._window.on_update_all(context=None)
+            self._window.update_all_viewers()
 
     def on_update(self):
         toplevel = self.get_tk_toplevel()

@@ -47,7 +47,7 @@ class Update_Window(Base_Window):
         self._update_all_button = tk.Button(
             self.get_tk_toplevel(),
             text="update main window",
-            command=lambda: self._window.on_update_all(None),
+            command=lambda: self._window.update_all_viewers(),
         )
         self._update_all_button.place(
             anchor=tk.NW,
@@ -61,7 +61,7 @@ class Update_Window(Base_Window):
         self._update_realms_button = tk.Button(
             self.get_tk_toplevel(),
             text="update realms",
-            command=lambda: self._window.on_update_realms(None),
+            command=lambda: self._window.update_all_realm_viewers(),
         )
         self._update_realms_button.place(
             anchor=tk.NW,
@@ -75,7 +75,7 @@ class Update_Window(Base_Window):
         self._update_hands_button = tk.Button(
             self.get_tk_toplevel(),
             text="update hands",
-            command=lambda: self._window.on_update_hands(None),
+            command=lambda: self._window.update_all_hand_viewers(),
         )
         self._update_hands_button.place(
             anchor=tk.NW,
@@ -89,7 +89,7 @@ class Update_Window(Base_Window):
         self._update_player_status_button = tk.Button(
             self.get_tk_toplevel(),
             text="update players",
-            command=lambda: self._window.on_update_player_status(None),
+            command=lambda: self._window.update_all_player_status_viewers(),
         )
         self._update_player_status_button.place(
             anchor=tk.NW,
@@ -103,7 +103,7 @@ class Update_Window(Base_Window):
         self._update_dice_button = tk.Button(
             self.get_tk_toplevel(),
             text="update dices",
-            command=lambda: self._window.on_update_dices(None),
+            command=lambda: self._window.update_all_dice_viewers(),
         )
         self._update_dice_button.place(
             anchor=tk.NW,
@@ -117,7 +117,7 @@ class Update_Window(Base_Window):
         self._update_card_stacks_button = tk.Button(
             self.get_tk_toplevel(),
             text="update card stacks",
-            command=lambda: self._window.on_update_card_stacks(None),
+            command=lambda: self._window.update_all_card_stack_viewers(),
         )
         self._update_card_stacks_button.place(
             anchor=tk.NW,
@@ -131,7 +131,7 @@ class Update_Window(Base_Window):
         self._update_pieces_button = tk.Button(
             self.get_tk_toplevel(),
             text="update piece trays",
-            command=lambda: self._window.on_update_piece_trays(None),
+            command=lambda: self._window.update_all_piece_tray_viewers(),
         )
         self._update_pieces_button.place(
             anchor=tk.NW,

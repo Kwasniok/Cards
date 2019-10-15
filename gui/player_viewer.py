@@ -36,7 +36,7 @@ class Player_Viewer:
             button.destroy()
         self._player_piece_tray_buttons = []
 
-    def on_update_status(self, context):
+    def on_update_status_viewer(self, context):
         toplevel = self._window.get_tk_toplevel()
         toplevel.update_idletasks()
         width = toplevel.winfo_width()
@@ -78,7 +78,7 @@ class Player_Viewer:
             anchor=tk.CENTER, x=x, y=y, width=button_width, height=button_height
         )
 
-    def on_update_piece_tray(self, context):
+    def on_update_piece_tray_viewer(self, context):
         toplevel = self._window.get_tk_toplevel()
         toplevel.update_idletasks()
         width = toplevel.winfo_width()
