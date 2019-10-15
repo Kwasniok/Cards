@@ -108,6 +108,8 @@ class Window(Base_Window):
             .get_game_state()
             .get_neutral_zone(),
         )
+        # initial update
+        self.on_update_all(None)
 
     def destroy(self):
         self._game_canvas = safe_destroy(self._game_canvas)
