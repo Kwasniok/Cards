@@ -172,6 +172,23 @@ def get_additional_action_argument_dict(action_function):
     }
 
 
+def can_invoke_bound_action(bound_action_function, additional_args):
+    additional_argument_names = get_additional_action_argument_names(
+        bound_action_function
+    )
+    if len(additional_args) != len(additional_argument_names):
+        return False
+    additional_argument_types = get_additional_action_argument_types(
+        bound_action_function
+    )
+    for i in range(len(additional_argument_names)):
+        given_argument = additional_args[i]
+        expected_type = additional_argument_types[i]
+        if not isinstance(given_argument, expected_type):
+            return False
+    return True
+
+
 def invoke_bound_action(bound_action_function, context, additional_args):
     additional_argument_names = get_additional_action_argument_names(
         bound_action_function

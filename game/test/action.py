@@ -7,6 +7,7 @@ from ..action import (
     unregister_all_supported_action_additional_argument_types,
     is_game_action,
     get_additional_action_argument_types,
+    can_invoke_bound_action,
     invoke_bound_action,
 )
 
@@ -96,7 +97,7 @@ class Test(unittest.TestCase):
             def on_test_action2(self, context, arg: float):
                 pass
 
-        # invoke
+        # (can) invoke
         class Test_Class_With_Action:
             @action
             def on_test_action0(self, context):
@@ -113,10 +114,20 @@ class Test(unittest.TestCase):
         test_object = Test_Class_With_Action()
         context = None
         # 0 additional arguments
+        self.assertTrue(
+            can_invoke_bound_action(
+                test_object.on_test_action0, additional_args=[]
+            )
+        )
         invoke_bound_action(
             test_object.on_test_action0, context=context, additional_args=[]
         )
         # wrong number of additional arguments
+        self.assertFalse(
+            can_invoke_bound_action(
+                test_object.on_test_action0, additional_args=[None]
+            )
+        )
         with self.assertRaises(Action_Error):
             invoke_bound_action(
                 test_object.on_test_action0,
@@ -124,10 +135,25 @@ class Test(unittest.TestCase):
                 additional_args=[None],
             )
         # 1 additional argument
+        self.assertTrue(
+            can_invoke_bound_action(
+                test_object.on_test_action1, additional_args=[1]
+            )
+        )
         invoke_bound_action(
             test_object.on_test_action1, context=context, additional_args=[1]
         )
         # wrong number of additional arguments
+        self.assertFalse(
+            can_invoke_bound_action(
+                test_object.on_test_action1, additional_args=[]
+            )
+        )
+        self.assertFalse(
+            can_invoke_bound_action(
+                test_object.on_test_action1, additional_args=[1, 2]
+            )
+        )
         with self.assertRaises(Action_Error):
             invoke_bound_action(
                 test_object.on_test_action1, context=context, additional_args=[]
@@ -139,6 +165,11 @@ class Test(unittest.TestCase):
                 additional_args=[1, 2],
             )
         # wrong type of additional arguments
+        self.assertFalse(
+            can_invoke_bound_action(
+                test_object.on_test_action1, additional_args=[1.0]
+            )
+        )
         with self.assertRaises(Action_Error):
             invoke_bound_action(
                 test_object.on_test_action1,
@@ -146,12 +177,27 @@ class Test(unittest.TestCase):
                 additional_args=[1.0],
             )
         # 2 additional arguments
+        self.assertTrue(
+            can_invoke_bound_action(
+                test_object.on_test_action2, additional_args=[1, 2.0]
+            )
+        )
         invoke_bound_action(
             test_object.on_test_action2,
             context=context,
             additional_args=[1, 2.0],
         )
         # wrong number of additional arguments
+        self.assertFalse(
+            can_invoke_bound_action(
+                test_object.on_test_action2, additional_args=[1]
+            )
+        )
+        self.assertFalse(
+            can_invoke_bound_action(
+                test_object.on_test_action2, additional_args=[1, 2.0, 3]
+            )
+        )
         with self.assertRaises(Action_Error):
             invoke_bound_action(
                 test_object.on_test_action2,
@@ -165,6 +211,11 @@ class Test(unittest.TestCase):
                 additional_args=[1, 2.0, 3],
             )
         # wrong type of additional arguments
+        self.assertFalse(
+            can_invoke_bound_action(
+                test_object.on_test_action2, additional_args=[1.0, 2]
+            )
+        )
         with self.assertRaises(Action_Error):
             invoke_bound_action(
                 test_object.on_test_action2,
