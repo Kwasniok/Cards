@@ -13,5 +13,5 @@ class Application(Base_Application):
 
     def run(self):
         self._game_state.on_prepare_game(None)
-        window = Window(self, x=100, y=100)
+        window = Window(self)
         Base_Application.run(self)

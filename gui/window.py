@@ -14,7 +14,9 @@ from .neutral_zone_viewer import Neutral_Zone_Viewer
 
 
 class Window(Base_Window):
-    def __init__(self, application, x, y):
+    def __init__(self, application):
+        x = 0
+        y = 0
         width = 1920
         height = 1080
         Base_Window.__init__(
@@ -27,7 +29,6 @@ class Window(Base_Window):
             y=y,
         )
         self.make_non_resizable()
-        self.center()
         self.set_icon("res/game_icon.gif")
         # interaction window
         toplevel = self.get_tk_toplevel()
@@ -43,14 +44,14 @@ class Window(Base_Window):
         # update window (for debugging)
         toplevel = self.get_tk_toplevel()
         toplevel.update_idletasks()
-        interaction_window_x = toplevel.winfo_x() - 200
-        interaction_window_y = toplevel.winfo_y() + toplevel.winfo_height() / 2
+        update_window_x = toplevel.winfo_x() + toplevel.winfo_width()
+        update_window_y = toplevel.winfo_y() + toplevel.winfo_height() / 2 - 200
         self._update_window = Update_Window(
             self.get_application(),
             window=self,
             interaction_window=self._interaction_window,
-            x=interaction_window_x,
-            y=interaction_window_y,
+            x=update_window_x,
+            y=update_window_y,
         )
         # canvas
         self._game_canvas = Canvas(self)
