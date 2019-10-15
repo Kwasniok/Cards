@@ -1,3 +1,4 @@
+import time
 import tkinter as tk
 from core.pulsed_trigger import Pulsed_Trigger
 from .root import Root
@@ -9,6 +10,7 @@ class Application:
         Root.register_application(self)
         self._tk_root = Root.get_root()
         self._windows = []
+        self._max_fps = max_fps
         self._next_frame_trigger = Pulsed_Trigger(
             max_pps=max_fps, starts_stopped=True
         )
@@ -45,11 +47,18 @@ class Application:
             )
         self._next_frame_trigger.restart()
         # main loop
+        next_update_time = time.perf_counter()
         while len(self._windows) > 0:
-            # update all components
-            Pulsed_Trigger.update_all()
-            self._tk_root.update_idletasks()
-            self._tk_root.update()
+            current_time = time.perf_counter()
+            if current_time > next_update_time:
+                # update all components
+                while current_time > next_update_time:
+                    next_update_time += 1.0 / self._max_fps
+                Pulsed_Trigger.update_all()
+                self._tk_root.update_idletasks()
+                self._tk_root.update()
+            else:
+                time.sleep(next_update_time - current_time)
         self._next_frame_trigger.stop()
 
     def quit(self):
