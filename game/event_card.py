@@ -4,6 +4,7 @@ from .subtype_library import Subtype_Library
 
 
 class Event_Card(Card):
+    @abstractmethod
     def __init__(self, name):
         Card.__init__(self, name)
 
