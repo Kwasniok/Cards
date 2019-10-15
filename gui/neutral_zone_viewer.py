@@ -208,8 +208,8 @@ class Neutral_Zone_Viewer:
         # create buttons
         button_width = 80
         button_height = 40
-        x = width - 1.5 * button_width
-        y = height / 2 - 100 - button_height
+        x = width / 2
+        y = (height - button_height) / 2
         self._piece_tray_buttons = Piece_Tray_Viewer.create_buttons(
             context=context,
             window=self._window,
