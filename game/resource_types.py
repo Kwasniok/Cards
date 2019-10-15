@@ -6,6 +6,9 @@ class Resource_Type(Internally_Named):
         Internally_Named.__init__(self, name)
         self.source = source_name
 
+    def __repr__(self):
+        return str(self)
+
     def get_name(self):
         return str(self)
 
