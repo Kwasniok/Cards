@@ -39,7 +39,7 @@ class Dice_Viewer:
 
         # create button
         button_width = 100
-        button_height = 100
+        button_height = 50
         x = width - button_width / 2
         if self._direction == directions.UP:
             y = height / 2 + button_height / 2
