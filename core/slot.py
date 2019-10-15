@@ -89,7 +89,7 @@ class Slot:
                 + str(obj)
                 + "` to slot `"
                 + str(self)
-                + "` : Object allready in slot."
+                + "`: Object allready in slot."
             )
         if self.is_full():
             raise Slot_Full_Error(
