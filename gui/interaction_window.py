@@ -7,6 +7,7 @@ from game.action import (
     get_all_bound_action_methods,
     get_additional_action_argument_dict,
     Action_Error,
+    Action_Invokation_Error,
     can_invoke_bound_action,
     invoke_bound_action,
 )
@@ -85,10 +86,11 @@ class Interaction_Window(Base_Window):
             )
             success = True
         except Action_Error as e:
-            pass
+            if isinstance(e, Action_Invokation_Error):
+                print(e)
         if success:
             print(
-                "invoked action "
+                "Successfully invoked action "
                 + action.__qualname__
                 + " of "
                 + repr(action.__self__)
@@ -96,8 +98,9 @@ class Interaction_Window(Base_Window):
                 + repr(context.current_phase)
                 + " of "
                 + str(context.active_player)
-                + " with additional arguments:"
+                + " with additional arguments: "
                 + ", ".join([repr(obj) for obj in self._stack[1:]])
+                + "."
             )
             self._window.update_all_viewers()
 
