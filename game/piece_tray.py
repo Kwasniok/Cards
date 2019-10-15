@@ -1,12 +1,10 @@
-from core.internally_named import Internally_Named
-from core.owning import Owned
 from .neutral_owner import neutral_owner
+from .game_object import Game_Object
 
 
-class Piece_Tray(Internally_Named, Owned):
+class Piece_Tray(Game_Object):
     def __init__(self, name, owner=neutral_owner):
-        Internally_Named.__init__(self, name)
-        Owned.__init__(self, owner)
+        Game_Object.__init__(self, name=name, owner=owner)
         self._pieces = []
 
     def __len__(self):

@@ -1,8 +1,7 @@
 from collections import defaultdict
 from core.random import random_pop
 from core.two_sided_stack import Two_Sided_Stack
-from core.internally_named import Internally_Named
-from core.owning import Owned
+from .game_object import Game_Object
 from .directions import RIGHT, LEFT
 from .card_slot import Card_Slot
 from .resource_card import Resource_Card
@@ -10,10 +9,9 @@ from .expansion_card import Building_Card
 from .assets.structure_cards import Road_Card, Settlement_Card
 
 
-class Realm(Internally_Named, Owned):
+class Realm(Game_Object):
     def __init__(self, name, owner):
-        Internally_Named.__init__(self, name)
-        Owned.__init__(self, owner=owner)
+        Game_Object.__init__(self, name=name, owner=owner)
         self._card_slot_grid = Two_Sided_Stack()
 
     def get_name(self):

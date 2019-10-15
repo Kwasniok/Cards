@@ -1,15 +1,12 @@
 from abc import abstractmethod
-from core.internally_named import Internally_Named
-from core.owning import Owned
-from .neutral_owner import neutral_owner
+from .game_object import Game_Object
 from .subtype_library import Subtype_Library
 
 
-class Piece(Internally_Named, Owned):
+class Piece(Game_Object):
     @abstractmethod
-    def __init__(self, name, owner=neutral_owner):
-        Internally_Named.__init__(self, name=name)
-        Owned.__init__(self, owner=owner)
+    def __init__(self, name):
+        Game_Object.__init__(self, name=name)
 
     def __repr__(self):
         return (

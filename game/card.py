@@ -1,15 +1,12 @@
-from abc import ABC, abstractmethod
-from core.internally_named import Internally_Named
-from core.owning import Owned
-from .neutral_owner import neutral_owner
+from abc import abstractmethod
+from .game_object import Game_Object
 from .action import action
 
 
-class Card(ABC, Internally_Named, Owned):
+class Card(Game_Object):
     @abstractmethod
     def __init__(self, name, face_up=False):
-        Internally_Named.__init__(self, name)
-        Owned.__init__(self, neutral_owner)
+        Game_Object.__init__(self, name=name)
         self._face_up = face_up
 
     def __repr__(self):

@@ -1,11 +1,9 @@
-from core.internally_named import Internally_Named
-from core.owning import Owned
+from .game_object import Game_Object
 
 
-class Hand(Internally_Named, Owned):
+class Hand(Game_Object):
     def __init__(self, name, owner, limit=3):
-        Internally_Named.__init__(self, name)
-        Owned.__init__(self, owner=owner)
+        Game_Object.__init__(self, name, owner=owner)
         self._cards = []
         self._limit = limit
 
