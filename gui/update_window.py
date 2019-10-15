@@ -5,7 +5,7 @@ from core.owning import Owned
 from core.gui.window import Window as Base_Window
 from game.action import get_all_bound_action_methods
 
-update_button_width = 100
+update_button_width = 200
 update_button_height = 20
 
 

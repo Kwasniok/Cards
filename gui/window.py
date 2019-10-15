@@ -42,7 +42,7 @@ class Window(Base_Window):
         # update window (for debugging)
         toplevel = self.get_tk_toplevel()
         toplevel.update_idletasks()
-        interaction_window_x = toplevel.winfo_x() - 100
+        interaction_window_x = toplevel.winfo_x() - 200
         interaction_window_y = toplevel.winfo_y() + toplevel.winfo_height() / 2
         self._update_window = Update_Window(
             self.get_application(),
