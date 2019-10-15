@@ -1,6 +1,8 @@
 from abc import abstractmethod
 from game.card import Card
 from .subtype_library import Subtype_Library
+from .action import action, Action_Invokation_Error
+from .card_slot import Card_Slot
 
 
 class Expansion_Card(Card):
@@ -64,11 +66,43 @@ class Building_Card(Expansion_Card):
         # TODO: on own turn
         return True
 
-    def on_construction(self, context):
-        return
+    @action
+    def on_construction(self, context, card_slot: Card_Slot):
+        if not (self.get_owner() == context.active_player):
+            raise Action_Invokation_Error(
+                "Cannot construct building card "
+                + str(self)
+                + ": Owner "
+                + str(self.get_owner())
+                + " is not the active player."
+            )
+        if not (context.current_phase == "dummy phase"):
+            raise Action_Invokation_Error(
+                "Cannot construct building card "
+                + str(self)
+                + ": Current phase "
+                + str(context.current_phase)
+                + " does not allow building."
+            )
+        if not card_slot.would_accept(self):
+            raise Action_Invokation_Error(
+                "Cannot construct building card "
+                + str(self)
+                + " at card slot "
+                + str(card_slot)
+                + ": Card slot does not accept this card."
+            )
+        card_slot.add(self)
+        self.make_face_up()
+        context.active_player.get_hand().remove(self)
 
-    def on_destruction(self, context):
-        return
+    @action
+    def on_destruction(self, context, card_slot: Card_Slot):
+        raise Action_Invokation_Error(
+            "Cannot destruct building card "
+            + str(self)
+            + ": Destruction not permitted."
+        )
 
 
 class Small_Building_Card(Building_Card):
