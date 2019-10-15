@@ -3,7 +3,7 @@ import inspect
 
 class Action_Error(RuntimeError):
     def __init__(self, msg):
-        RuntimeError(self, msg)
+        RuntimeError.__init__(self, msg)
 
 
 _supported_action_additional_argument_types = []
