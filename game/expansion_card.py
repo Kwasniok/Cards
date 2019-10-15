@@ -1,5 +1,4 @@
 from abc import abstractmethod
-from collections import Counter
 from game.card import Card
 from .subtype_library import Subtype_Library
 
