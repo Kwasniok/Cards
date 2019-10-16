@@ -11,6 +11,7 @@ from .realm_viewer import Realm_Viewer
 from .hand_viewer import Hand_Viewer
 from .player_viewer import Player_Viewer
 from .neutral_zone_viewer import Neutral_Zone_Viewer
+from .phase_manager_viewer import Phase_Manager_Viewer
 
 
 class Window(Base_Window):
@@ -109,6 +110,13 @@ class Window(Base_Window):
             .get_game_state()
             .get_neutral_zone(),
         )
+        # phase manager
+        self._phase_manager_viewer = Phase_Manager_Viewer(
+            window=self,
+            phase_manager=self.get_application()
+            .get_game_state()
+            .get_phase_manager(),
+        )
         # initial update
         self.update_all_viewers()
 
@@ -121,6 +129,7 @@ class Window(Base_Window):
         safe_destroy(self._player_viewer1)
         safe_destroy(self._player_viewer2)
         self._neutral_zone_viewer = safe_destroy(self._neutral_zone_viewer)
+        self._phase_manager_viewer = safe_destroy(self._phase_manager_viewer)
         self._update_window = safe_destroy(self._update_window)
         self._interaction_window = safe_destroy(self._interaction_window)
         Base_Window.destroy(self)
@@ -168,6 +177,10 @@ class Window(Base_Window):
         self._player_viewer1.on_update_piece_tray_viewer(context)
         self._player_viewer2.on_update_piece_tray_viewer(context)
 
+    def update_phase_manager_viewer(self):
+        context = self.get_application().get_game_state().get_current_context()
+        self._phase_manager_viewer.on_update(context)
+
     def update_all_viewers(self):
         self.update_all_realm_viewers()
         self.update_all_hand_viewers()
@@ -175,3 +188,4 @@ class Window(Base_Window):
         self.update_all_dice_viewers()
         self.update_all_card_stack_viewers()
         self.update_all_piece_tray_viewers()
+        self.update_phase_manager_viewer()
