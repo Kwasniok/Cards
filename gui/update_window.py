@@ -12,7 +12,7 @@ update_button_height = 20
 class Update_Window(Base_Window):
     def __init__(self, application, window, interaction_window, x, y):
         width = update_button_width
-        height = update_button_height * 8
+        height = update_button_height
         Base_Window.__init__(
             self,
             application=application,
@@ -155,6 +155,18 @@ class Update_Window(Base_Window):
             height=update_button_height,
         )
         i += 1
+        # resize window
+        toplevel = self.get_tk_toplevel()
+        toplevel.update_idletasks()
+        toplevel.geometry(
+            "%dx%d+%d+%d"
+            % (
+                update_button_width,
+                update_button_height * i,
+                toplevel.winfo_x(),
+                toplevel.winfo_y(),
+            )
+        )
 
     def destroy(self):
         self._update_realms_button = safe_destroy(self._update_realms_button)
