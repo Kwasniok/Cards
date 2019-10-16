@@ -32,11 +32,11 @@ class Interaction_Window(Base_Window):
         self.set_icon("res/game_icon.gif")
         self.make_non_resizable()
         self._stack = []
-        self._stack_buttons = []
+        self._buttons = []
         self.update()
 
     def destroy(self):
-        self._destroy_stack_buttons()
+        self._destroy_buttons()
         self._stack = []
         Base_Window.destroy(self)
 
@@ -45,10 +45,10 @@ class Interaction_Window(Base_Window):
             "Close Window", "Cannot close this window individually."
         )
 
-    def _destroy_stack_buttons(self):
-        for button in self._stack_buttons:
+    def _destroy_buttons(self):
+        for button in self._buttons:
             button.destroy()
-        self._stack_buttons = []
+        self._buttons = []
 
     def add_object(self, object):
         self._stack.append(object)
@@ -149,7 +149,7 @@ class Interaction_Window(Base_Window):
         )
 
         # clear buttons
-        self._destroy_stack_buttons()
+        self._destroy_buttons()
 
         ## create buttons
         # object buttons
@@ -172,7 +172,7 @@ class Interaction_Window(Base_Window):
                 width=object_button_width,
                 height=object_button_height,
             )
-            self._stack_buttons.append(button)
+            self._buttons.append(button)
             x += object_button_width
         x = 0
         y = object_button_height
@@ -194,5 +194,5 @@ class Interaction_Window(Base_Window):
             button.place(
                 anchor=tk.NW, x=x, y=y, width=width, height=action_button_height
             )
-            self._stack_buttons.append(button)
+            self._buttons.append(button)
             y += action_button_height
