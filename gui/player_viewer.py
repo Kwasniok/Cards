@@ -54,8 +54,12 @@ class Player_Viewer:
         y = hand_zone_heigt / 2
         if self._direction == directions.DOWN:
             y = height - y
+        ## player status symbol
+        # name
         symbol = self._player.get_name()
+        # color
         symbol += "(" + self._player.get_color() + ")"
+        # points
         symbol += "\n"
         mp = self._player.get_mill_points(context)
         if mp:
@@ -66,6 +70,7 @@ class Player_Viewer:
         wp = self._player.get_win_points(context)
         if wp:
             symbol += " " + str(wp) + "xW"
+        # is active
         if self._player == context.active_player:
             symbol += "\n (active)"
 
