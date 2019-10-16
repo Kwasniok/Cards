@@ -78,8 +78,6 @@ class Interaction_Window(Base_Window):
                 + action.__qualname__
                 + " of "
                 + repr(action.__self__)
-                + " in phase "
-                + repr(context.current_phase)
                 + " of "
                 + str(context.active_player)
                 + " with additional arguments: "

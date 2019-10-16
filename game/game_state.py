@@ -3,6 +3,7 @@ import core.gui.color as color
 from core.internally_named import Internally_Named
 from .player import Player
 from .neutral_zone import Neutral_Zone
+from .phase_manager import Phase_Manager
 from .piece import Piece
 from .context import Context
 from .assets.initial_resource_cards import (
@@ -17,6 +18,9 @@ class Game_State(Internally_Named):
         self._player1 = Player(name="player 1", color=color.BLACK)
         self._player2 = Player(name="player 2", color=color.WHITE)
         self._neutral_zone = Neutral_Zone("neutral zone of " + str(self))
+        self._phase_manager = Phase_Manager(
+            name="phase manager of " + str(self)
+        )
 
     def get_name(self):
         return str(self)
@@ -30,12 +34,16 @@ class Game_State(Internally_Named):
     def get_neutral_zone(self):
         return self._neutral_zone
 
+    def get_phase_manager(self):
+        return self._phase_manager
+
     def get_current_context(self):
         return Context(
             game_state=self,
-            current_phase="dummy phase",
             active_player=self._player1,
             opposing_player=self._player2,
+            active_phases=self._phase_manager.get_active_phases(),
+            inactive_phases=self._phase_manager.get_inactive_phases(),
         )
 
     # context: dummy context

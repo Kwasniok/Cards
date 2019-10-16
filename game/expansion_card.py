@@ -76,13 +76,13 @@ class Building_Card(Expansion_Card):
                 + str(self.get_owner())
                 + " is not the active player."
             )
-        if not (context.current_phase == "dummy phase"):
+        if not ("build phase" in context.active_phases):
             raise Action_Invokation_Error(
                 "Cannot construct building card "
                 + str(self)
-                + ": Current phase "
-                + str(context.current_phase)
-                + " does not allow building."
+                + ": Current active phase(s) "
+                + " and ".join([str(phase) for phase in context.active_phases])
+                + " do(es) not allow building."
             )
         if not card_slot.would_accept(self):
             raise Action_Invokation_Error(
