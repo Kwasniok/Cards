@@ -6,7 +6,6 @@ class Phase_Manager(Internally_Named):
     def __init__(self, name):
         Internally_Named.__init__(self, name=name)
         self._phases = phase_library.get_all()
-        print(self._phases)
 
     def __len__(self):
         return len(self._phases)
