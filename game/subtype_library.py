@@ -3,7 +3,7 @@ class Subtype_Library:
         self._base_class = base_class
         self._histogram = {}
 
-    def register(self, card_class, amount):
+    def register(self, card_class, amount=1):
         if not issubclass(card_class, self._base_class):
             raise (
                 ValueError(
