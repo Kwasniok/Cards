@@ -71,36 +71,65 @@ class Interaction_Window(Base_Window):
             success = True
         except Action_Error as e:
             if isinstance(e, Action_Invokation_Error):
-                print(
-                    "Failed invokation of action "
+                s = (
+                    "Failed invokation of action `"
                     + action.__qualname__
-                    + " for "
+                    + "` for `"
+                    + str(action.__self__.__class__.__qualname__)
+                    + "` named `"
                     + str(action.__self__)
-                    + " with additional arguments "
-                    + ", ".join([str(obj) for obj in self._stack[1:]])
-                    + ", active player "
+                    + "` with"
+                )
+                if self._stack[1:]:
+                    s += (
+                        " additional arguments "
+                        + " and ".join(
+                            ["`" + str(obj) + "`" for obj in self._stack[1:]]
+                        )
+                        + ", "
+                    )
+                s += (
+                    "active player `"
                     + str(context.active_player)
-                    + " and active phase(s) "
+                    + "` and active phase(s) "
                     + " and ".join(
-                        [str(phase) for phase in context.active_phases]
+                        [
+                            "`" + str(phase) + "`"
+                            for phase in context.active_phases
+                        ]
                     )
                     + ".\nReason: "
                     + str(e)
                 )
+            print(s)
         if success:
-            print(
-                "Successfull invokation of action "
+            s = (
+                "Successfull invokation of action `"
                 + action.__qualname__
-                + " for "
+                + "` for `"
+                + str(action.__self__.__class__.__qualname__)
+                + "` named `"
                 + str(action.__self__)
-                + " with additional arguments "
-                + ", ".join([str(obj) for obj in self._stack[1:]])
-                + ", active player "
+                + "` with"
+            )
+            if self._stack[1:]:
+                s += (
+                    " additional arguments "
+                    + " and ".join(
+                        ["`" + str(obj) + "`" for obj in self._stack[1:]]
+                    )
+                    + ", "
+                )
+            s += (
+                " active player `"
                 + str(context.active_player)
-                + " and active phase(s) "
-                + " and ".join([str(phase) for phase in context.active_phases])
+                + "` and active phase(s) "
+                + " and ".join(
+                    ["`" + str(phase) + "`" for phase in context.active_phases]
+                )
                 + "."
             )
+            print(s)
             self._window.update_all_viewers()
 
     def on_update(self):
