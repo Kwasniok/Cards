@@ -66,6 +66,8 @@ class Player_Viewer:
         wp = self._player.get_win_points(context)
         if wp:
             symbol += " " + str(wp) + "xW"
+        if self._player == context.active_player:
+            symbol += "\n (active)"
 
         self._player_status_button = tk.Button(
             self._window.get_tk_toplevel(),
