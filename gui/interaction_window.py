@@ -198,3 +198,7 @@ class Interaction_Window(Base_Window):
             )
             self._buttons.append(button)
             y += action_button_height
+
+        # immediate refresh of gui
+        toplevel.update_idletasks()
+        toplevel.update()

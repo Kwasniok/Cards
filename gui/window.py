@@ -189,3 +189,7 @@ class Window(Base_Window):
         self.update_all_card_stack_viewers()
         self.update_all_piece_tray_viewers()
         self.update_phase_manager_viewer()
+        # immediate refresh of gui
+        toplevel = self.get_tk_toplevel()
+        toplevel.update_idletasks()
+        toplevel.update()
