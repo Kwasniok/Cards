@@ -8,3 +8,19 @@ class Main_Phase(Phase):
 
 
 phase_library.register(Main_Phase)
+
+
+class Draw_Phase(Phase):
+    def __init__(self):
+        Phase.__init__(self, name="draw phase")
+
+    @action
+    def on_activate(self, context):
+        if not (context.active_phases == ["main phase"]):
+            raise (Action_Invokation_Error())
+        phase_manager = context.game_state.get_phase_manager()
+        phase_manager.make_all_inactive()
+        phase_manager.make_active(self)
+
+
+phase_library.register(Draw_Phase)
