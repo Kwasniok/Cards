@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from core.internally_named import Internally_Named
 from core.owning import Owned
 from .neutral_owner import neutral_owner
-from .action import register_supported_action_additional_argument_type
+from .action import register_supported_action_additional_argument_type, action
 
 
 class Game_Object(ABC, Internally_Named, Owned):
@@ -33,6 +33,10 @@ class Game_Object(ABC, Internally_Named, Owned):
             + str(self._id)
             + ")"
         )
+
+    @action
+    def on_inspect(self, context):
+        print(repr(self))
 
 
 register_supported_action_additional_argument_type(Game_Object)
