@@ -71,17 +71,34 @@ class Interaction_Window(Base_Window):
             success = True
         except Action_Error as e:
             if isinstance(e, Action_Invokation_Error):
-                print("Invokation of action failed: " + str(e))
+                print(
+                    "Failed invokation of action "
+                    + action.__qualname__
+                    + " for "
+                    + str(action.__self__)
+                    + " with additional arguments "
+                    + ", ".join([str(obj) for obj in self._stack[1:]])
+                    + ", active player "
+                    + str(context.active_player)
+                    + " and active phase(s) "
+                    + " and ".join(
+                        [str(phase) for phase in context.active_phases]
+                    )
+                    + ".\nReason: "
+                    + str(e)
+                )
         if success:
             print(
-                "Successfully invoked action "
+                "Successfull invokation of action "
                 + action.__qualname__
-                + " of "
-                + repr(action.__self__)
-                + " of "
+                + " for "
+                + str(action.__self__)
+                + " with additional arguments "
+                + ", ".join([str(obj) for obj in self._stack[1:]])
+                + ", active player "
                 + str(context.active_player)
-                + " with additional arguments: "
-                + ", ".join([repr(obj) for obj in self._stack[1:]])
+                + " and active phase(s) "
+                + " and ".join([str(phase) for phase in context.active_phases])
                 + "."
             )
             self._window.update_all_viewers()
@@ -97,7 +114,7 @@ class Interaction_Window(Base_Window):
         height += len(actions) * action_button_height
 
         # resize
-        self._toplevel.geometry(
+        toplevel.geometry(
             "%dx%d+%d+%d"
             % (width, height, toplevel.winfo_x(), toplevel.winfo_y())
         )
