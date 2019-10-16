@@ -130,6 +130,8 @@ class Interaction_Window(Base_Window):
                 + "."
             )
             print(s)
+            self.clear()
+            self.update()
             self._window.update_all_viewers()
 
     def update(self):
