@@ -33,7 +33,7 @@ class Update_Window(Base_Window):
         self._update_interaction_window_button = tk.Button(
             self.get_tk_toplevel(),
             text="update interaction tray",
-            command=lambda: self._interaction_window.on_update(),
+            command=lambda: self._interaction_window.update(),
         )
         self._update_interaction_window_button.place(
             anchor=tk.NW,

@@ -33,7 +33,7 @@ class Interaction_Window(Base_Window):
         self.make_non_resizable()
         self._stack = []
         self._stack_buttons = []
-        self.on_update()
+        self.update()
 
     def destroy(self):
         self._destroy_stack_buttons()
@@ -52,13 +52,13 @@ class Interaction_Window(Base_Window):
 
     def add_object(self, object):
         self._stack.append(object)
-        self.on_update()
+        self.update()
 
     def pop_object(self, index):
         self._stack.pop(index)
-        self.on_update()
+        self.update()
 
-    def on_clear(self):
+    def clear(self):
         self._stack = []
 
     def _invoke_bound_action(self, action):
@@ -132,7 +132,7 @@ class Interaction_Window(Base_Window):
             print(s)
             self._window.update_all_viewers()
 
-    def on_update(self):
+    def update(self):
         toplevel = self.get_tk_toplevel()
         toplevel.update_idletasks()
         width = object_button_width * max(1, len(self._stack))
