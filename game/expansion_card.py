@@ -76,7 +76,7 @@ class Building_Card(Expansion_Card):
                 + str(self.get_owner())
                 + " is not the active player."
             )
-        if not ("build phase" in context.active_phases):
+        if not ("main phase" in context.active_phases):
             raise Action_Invokation_Error(
                 "Cannot construct building card "
                 + str(self)
