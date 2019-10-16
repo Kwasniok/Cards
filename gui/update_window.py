@@ -141,6 +141,20 @@ class Update_Window(Base_Window):
             height=update_button_height,
         )
         i += 1
+        # phase manager
+        self._update_phase_manager_button = tk.Button(
+            self.get_tk_toplevel(),
+            text="update phase manager",
+            command=lambda: self._window.update_phase_manager_viewer(),
+        )
+        self._update_phase_manager_button.place(
+            anchor=tk.NW,
+            x=0,
+            y=update_button_height * i,
+            width=update_button_width,
+            height=update_button_height,
+        )
+        i += 1
 
     def destroy(self):
         self._update_realms_button = safe_destroy(self._update_realms_button)
@@ -153,6 +167,9 @@ class Update_Window(Base_Window):
             self._update_card_stacks_button
         )
         self._update_pieces_button = safe_destroy(self._update_pieces_button)
+        self._update_phase_manager_button = safe_destroy(
+            self._update_phase_manager_button
+        )
         Base_Window.destroy(self)
 
     def on_close_requested(self):
