@@ -46,7 +46,7 @@ class Window(Base_Window):
         toplevel = self.get_tk_toplevel()
         toplevel.update_idletasks()
         update_window_x = toplevel.winfo_x() + toplevel.winfo_width()
-        update_window_y = toplevel.winfo_y() + toplevel.winfo_height() / 2 - 200
+        update_window_y = toplevel.winfo_y() + toplevel.winfo_height() / 2 - 300
         self._update_window = Update_Window(
             self.get_application(),
             window=self,
