@@ -1,11 +1,10 @@
 from core.internally_named import Internally_Named
-from .phase import phase_library
 
 
 class Phase_Manager(Internally_Named):
-    def __init__(self, name):
+    def __init__(self, name, phases):
         Internally_Named.__init__(self, name=name)
-        self._phases = phase_library.get_all()
+        self._phases = phases
 
     def __len__(self):
         return len(self._phases)
