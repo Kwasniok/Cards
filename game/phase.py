@@ -68,7 +68,7 @@ class Turn_Phase(Phase):
                     + ") is currently active."
                 )
             )
-        phase_manager = context.game_state.get_phase_manager()
+        phase_manager = context.game_state.get_turn_phase_manager()
         phase_manager.make_all_inactive()
         phase_manager.make_active(self)
 

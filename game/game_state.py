@@ -6,6 +6,7 @@ from .neutral_zone import Neutral_Zone
 from .phase_manager import Phase_Manager
 from .piece import Piece
 from .context import Context
+from .phase import turn_phase_library
 from .resource_card import (
     initial_resource_card_library_black,
     initial_resource_card_library_white,
@@ -20,8 +21,9 @@ class Game_State(Internally_Named):
         self._active_player = None
         self._opposing_player = None
         self._neutral_zone = Neutral_Zone("neutral zone of " + str(self))
-        self._phase_manager = Phase_Manager(
-            name="phase manager of " + str(self)
+        self._turn_phase_manager = Phase_Manager(
+            name="phase manager of " + str(self),
+            phases=turn_phase_library.get_all(),
         )
 
     def get_name(self):
@@ -36,16 +38,16 @@ class Game_State(Internally_Named):
     def get_neutral_zone(self):
         return self._neutral_zone
 
-    def get_phase_manager(self):
-        return self._phase_manager
+    def get_turn_phase_manager(self):
+        return self._turn_phase_manager
 
     def get_current_context(self):
         return Context(
             game_state=self,
             active_player=self._active_player,
             opposing_player=self._opposing_player,
-            active_phases=self._phase_manager.get_active_phases(),
-            inactive_phases=self._phase_manager.get_inactive_phases(),
+            active_phases=self._turn_phase_manager.get_active_phases(),
+            inactive_phases=self._turn_phase_manager.get_inactive_phases(),
         )
 
     # context: dummy context
