@@ -4,6 +4,7 @@ from core.internally_named import Internally_Named
 from core.owning import Owner
 from .dice import Dice
 from .card_stack import Card_Stack
+from .resource_card import resource_card_library
 from .expansion_card import expansion_card_library
 from .event_card import event_card_library
 from .piece import piece_library
@@ -22,6 +23,7 @@ class Neutral_Zone(Internally_Named):
         )
         self._number_of_expansion_card_stacks = 5
         self._expansion_card_stacks = None
+        self._resource_card_stack = None
         self._road_card_stack = None
         self._settement_card_stack = None
         self._town_card_stack = None
@@ -36,6 +38,7 @@ class Neutral_Zone(Internally_Named):
         for i in range(1, self._number_of_expansion_card_stacks + 1):
             stack = Card_Stack(name="expansion card stack " + str(i))
             self._expansion_card_stacks.append(stack)
+        self._resource_card_stack = Card_Stack(name="resource card stack")
         self._road_card_stack = Card_Stack(name="road card stack")
         self._settement_card_stack = Card_Stack(name="settlement card stack")
         self._town_card_stack = Card_Stack(name="town card stack")
@@ -59,6 +62,9 @@ class Neutral_Zone(Internally_Named):
     def get_road_card_stack(self):
         return self._road_card_stack
 
+    def get_resource_card_stack(self):
+        return self._resource_card_stack
+
     def get_settlement_card_stack(self):
         return self._settement_card_stack
 
@@ -77,7 +83,9 @@ class Neutral_Zone(Internally_Named):
     def _fill_stacks(self):
         expansion_card = expansion_card_library.get_all()
         event_cards = event_card_library.get_all()
+        resource_cards = resource_card_library.get_all()
         self._fill_expension_card_stacks(expansion_card)
+        self._fill_resource_card_stack(resource_cards)
         self._fill_road_card_stack(7)
         self._fill_settlement_card_stack(5)
         self._fill_town_card_stack(7)
@@ -89,6 +97,11 @@ class Neutral_Zone(Internally_Named):
             if len(expansion_card) == 0:
                 break
             stack.push_top(random_pop(expansion_card))
+
+    def _fill_resource_card_stack(self, resource_cards):
+        # fill cards in a random order
+        while len(resource_cards) > 0:
+            self._resource_card_stack.push_top(random_pop(resource_cards))
 
     def _fill_road_card_stack(self, amount):
         for i in range(0, amount):
