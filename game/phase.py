@@ -6,15 +6,9 @@ from .subtype_library import Subtype_Library
 
 class Phase(Game_Object):
     @abstractmethod
-    def __init__(
-        self, name, initially_active=False, required_previous_phases=None
-    ):
+    def __init__(self, name, initially_active=False):
         Game_Object.__init__(self, name=name)
         self._active = initially_active
-        if required_previous_phases is None:
-            self._required_previous_phases = []
-        else:
-            self._required_previous_phases = required_previous_phases
 
     def get_name(self, context):
         return self._get_internal_name()
@@ -32,6 +26,29 @@ class Phase(Game_Object):
 
     def _set_inactive(self):
         self._active = False
+
+    @action
+    def on_activate(self, context):
+        raise (
+            Action_Invokation_Error(
+                "Phase "
+                + self.get_name(context)
+                + " cannot be activated: Not implemented."
+            )
+        )
+
+
+class Turn_Phase(Phase):
+    @abstractmethod
+    def __init__(
+        self, name, initially_active=False, required_previous_phases=None
+    ):
+        Phase.__init__(self, name=name, initially_active=initially_active)
+        self._active = initially_active
+        if required_previous_phases is None:
+            self._required_previous_phases = []
+        else:
+            self._required_previous_phases = required_previous_phases
 
     @action
     def on_activate(self, context):
@@ -56,4 +73,4 @@ class Phase(Game_Object):
         phase_manager.make_active(self)
 
 
-phase_library = Subtype_Library(Phase)
+turn_phase_library = Subtype_Library(Phase)
