@@ -1,24 +1,45 @@
-from game.resource_card import Resource_Card
-from .resource_types import *
+from game.resource_card import (
+    initial_resource_card_library_black,
+    initial_resource_card_library_white,
+)
+from .resource_cards import *
 
+# black
+initial_resource_card_library_black.register(
+    River_Card, initializer_dict={"dice_number": 1, "initial_count": 1}
+)
+initial_resource_card_library_black.register(
+    Field_Card, initializer_dict={"dice_number": 2, "initial_count": 1}
+)
+initial_resource_card_library_black.register(
+    Mountain_Card, initializer_dict={"dice_number": 3, "initial_count": 1}
+)
+initial_resource_card_library_black.register(
+    Meadow_Card, initializer_dict={"dice_number": 4, "initial_count": 1}
+)
+initial_resource_card_library_black.register(
+    Wood_Card, initializer_dict={"dice_number": 5, "initial_count": 1}
+)
+initial_resource_card_library_black.register(
+    Clay_Pit_Card, initializer_dict={"dice_number": 6, "initial_count": 1}
+)
 
-def get_initial_resource_cards_black():
-    return [
-        Resource_Card(resource_type=GOLD, dice_number=1, initial_count=1),
-        Resource_Card(resource_type=GRAIN, dice_number=2, initial_count=1),
-        Resource_Card(resource_type=IRON, dice_number=3, initial_count=1),
-        Resource_Card(resource_type=WOOL, dice_number=4, initial_count=1),
-        Resource_Card(resource_type=LOGS, dice_number=5, initial_count=1),
-        Resource_Card(resource_type=BRICKS, dice_number=6, initial_count=1),
-    ]
-
-
-def get_initial_resource_cards_white():
-    return [
-        Resource_Card(resource_type=GRAIN, dice_number=1, initial_count=1),
-        Resource_Card(resource_type=IRON, dice_number=2, initial_count=1),
-        Resource_Card(resource_type=WOOL, dice_number=3, initial_count=1),
-        Resource_Card(resource_type=LOGS, dice_number=4, initial_count=1),
-        Resource_Card(resource_type=BRICKS, dice_number=5, initial_count=1),
-        Resource_Card(resource_type=GOLD, dice_number=6, initial_count=1),
-    ]
+# white
+initial_resource_card_library_white.register(
+    Field_Card, initializer_dict={"dice_number": 1, "initial_count": 1}
+)
+initial_resource_card_library_white.register(
+    Mountain_Card, initializer_dict={"dice_number": 2, "initial_count": 1}
+)
+initial_resource_card_library_white.register(
+    Meadow_Card, initializer_dict={"dice_number": 3, "initial_count": 1}
+)
+initial_resource_card_library_white.register(
+    Wood_Card, initializer_dict={"dice_number": 4, "initial_count": 1}
+)
+initial_resource_card_library_white.register(
+    Clay_Pit_Card, initializer_dict={"dice_number": 5, "initial_count": 1}
+)
+initial_resource_card_library_white.register(
+    River_Card, initializer_dict={"dice_number": 6, "initial_count": 1}
+)

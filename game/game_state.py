@@ -6,9 +6,9 @@ from .neutral_zone import Neutral_Zone
 from .phase_manager import Phase_Manager
 from .piece import Piece
 from .context import Context
-from .assets.initial_resource_cards import (
-    get_initial_resource_cards_black,
-    get_initial_resource_cards_white,
+from .resource_card import (
+    initial_resource_card_library_black,
+    initial_resource_card_library_white,
 )
 
 
@@ -60,11 +60,11 @@ class Game_State(Internally_Named):
         realm_black = player_black.get_realm()
         realm_white.on_prepare_initial_state()
         realm_white.on_place_initial_resources(
-            get_initial_resource_cards_black()
+            initial_resource_card_library_white.get_all()
         )
         realm_black.on_prepare_initial_state()
         realm_black.on_place_initial_resources(
-            get_initial_resource_cards_white()
+            initial_resource_card_library_black.get_all()
         )
 
         # fill hand with random cards (AGAINST RULES, dummy rule to test gui)

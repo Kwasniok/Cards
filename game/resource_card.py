@@ -1,9 +1,12 @@
+from abc import abstractmethod
 from game.card import Card
+from .subtype_library import Subtype_Library
 
 
 class Resource_Card(Card):
     RESOURCE_LIMIT = 3
 
+    @abstractmethod
     def __init__(self, resource_type, dice_number, initial_count):
         Card.__init__(self, resource_type.get_source_name())
         self.resource_type = resource_type
@@ -61,3 +64,8 @@ class Resource_Card(Card):
                     + str(self)
                 )
             )
+
+
+resource_card_library = Subtype_Library(Resource_Card)
+initial_resource_card_library_black = Subtype_Library(Resource_Card)
+initial_resource_card_library_white = Subtype_Library(Resource_Card)
