@@ -17,6 +17,8 @@ class Game_State(Internally_Named):
         Internally_Named.__init__(self, name)
         self._player1 = Player(name="player 1", color=color.BLACK)
         self._player2 = Player(name="player 2", color=color.WHITE)
+        self._active_player = None
+        self._opposing_player = None
         self._neutral_zone = Neutral_Zone("neutral zone of " + str(self))
         self._phase_manager = Phase_Manager(
             name="phase manager of " + str(self)
@@ -40,8 +42,8 @@ class Game_State(Internally_Named):
     def get_current_context(self):
         return Context(
             game_state=self,
-            active_player=self._player1,
-            opposing_player=self._player2,
+            active_player=self._active_player,
+            opposing_player=self._opposing_player,
             active_phases=self._phase_manager.get_active_phases(),
             inactive_phases=self._phase_manager.get_inactive_phases(),
         )
@@ -83,3 +85,14 @@ class Game_State(Internally_Named):
 
         fill_hand_randomly(player_white)
         fill_hand_randomly(player_black)
+
+        # make white player the active player
+        self._active_player = player_white
+        self._opposing_player = player_black
+
+    def switch_active_player(self):
+        # note: invalidates previously generated contexts
+        self._active_player, self._opposing_player = (
+            self._opposing_player,
+            self._active_player,
+        )
