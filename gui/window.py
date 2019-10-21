@@ -166,6 +166,7 @@ class Window(Base_Window):
         self._neutral_zone_viewer.on_update_expansion_card_stack_viewers(
             context
         )
+        self._neutral_zone_viewer.on_update_resource_card_stack_viewer(context)
         self._neutral_zone_viewer.on_update_structure_card_stack_viewers(
             context
         )
