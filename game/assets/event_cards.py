@@ -10,9 +10,15 @@ class Event_Card(Basic_Event_Card):
         Basic_Event_Card.__init__(self, name)
 
     def on_discovery_is_invokable(self, context):
+        last_event_dice_outcome = (
+            context.game_state.get_neutral_zone()
+            .get_event_dice()
+            .get_last_outcome()
+        )
         return (
             Basic_Event_Card.on_discovery_is_invokable(self, context)
             and "event phase" in context.active_phases
+            and last_event_dice_outcome == "QUESTIONMARK"
         )
 
     @action(on_discovery_is_invokable)
