@@ -13,7 +13,7 @@ class Begin_Turn_Phase(Turn_Phase):
 
     @action
     def on_activate(self, context):
-        Phase.on_activate(self, context)
+        Turn_Phase.on_activate(self, context)
         context.game_state.switch_active_player()
 
 
