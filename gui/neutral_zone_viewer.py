@@ -229,6 +229,7 @@ class Neutral_Zone_Viewer:
             shift_x=0,
             shift_y=int(button_width * 0.02),
         )
+        self._structure_card_stack_buttons.append(card_stack_buttons)
 
     def on_update_piece_tray_viewer(self, context):
         toplevel = self._window.get_tk_toplevel()
