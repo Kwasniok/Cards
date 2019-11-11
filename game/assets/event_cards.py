@@ -45,3 +45,20 @@ class Turn_Of_The_Year_Card(Event_Card):
 
 
 event_card_library.register(Turn_Of_The_Year_Card, amount=1)
+
+
+class Productive_Year_Card(Event_Card):
+    def __init__(self):
+        Event_Card.__init__(self, "Productive Year")
+
+    def get_text(self, context):
+        return "Each resource neighbouring a storage building yeilds an additional resource unit."
+
+    @action(Event_Card.on_discovery_is_invokable)
+    def on_discovery(self, context):
+        # TODO: implement productive year card
+        print("TODO: implement productive year card")
+        Event_Card.on_discovery(self, context)
+
+
+event_card_library.register(Productive_Year_Card, amount=2)
