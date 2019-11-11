@@ -216,15 +216,17 @@ def _action_functions_have_same_interface(action_functionA, action_functionB):
 #                      [<kwarg_1>:<kwarg_1_type>,
 #                      ...,
 #                      <kwarg_N>:<kwarg_N_type>]): ...
-def action(action_is_invokable=None):
+def action(action_is_invokable_function=None):
     def decorator(action_function):
         # check interface of action function
         _check_has_valid_action_interface(action_function)
-        if not (action_is_invokable is None):
+        if not (action_is_invokable_function is None):
             # check interface of action requirements function
-            _check_has_valid_action_is_invokable_interface(action_is_invokable)
+            _check_has_valid_action_is_invokable_interface(
+                action_is_invokable_function
+            )
             if not _action_functions_have_same_interface(
-                action_function, action_is_invokable
+                action_function, action_is_invokable_function
             ):
                 raise (
                     TypeError(
@@ -235,7 +237,7 @@ def action(action_is_invokable=None):
                 )
             # check if requirements function has name on_<action>_requirements
             if (
-                action_is_invokable.__name__
+                action_is_invokable_function.__name__
                 != action_function.__name__ + "_is_invokable"
             ):
                 raise (
@@ -246,7 +248,7 @@ def action(action_is_invokable=None):
                         + action_function.__name__
                         + "_is_invokable`"
                         + "(not `"
-                        + action_is_invokable.__name__
+                        + action_is_invokable_function.__name__
                         + "`)."
                     )
                 )
@@ -254,7 +256,7 @@ def action(action_is_invokable=None):
         # mark as action
         action_function._is_game_action = None
         # add requirements function
-        action_function._game_action_is_invokable = action_is_invokable
+        action_function._game_action_is_invokable = action_is_invokable_function
         # forwarding
         return action_function
 
