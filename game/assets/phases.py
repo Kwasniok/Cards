@@ -11,7 +11,7 @@ class Begin_Turn_Phase(Turn_Phase):
             required_previous_phases=["end turn phase"],
         )
 
-    @action
+    @action(Turn_Phase.on_activate_is_invokable)
     def on_activate(self, context):
         Turn_Phase.on_activate(self, context)
         context.game_state.switch_active_player()

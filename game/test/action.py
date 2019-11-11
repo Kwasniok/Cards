@@ -24,37 +24,37 @@ class Test(unittest.TestCase):
             get_all_supported_action_additional_argument_types(), (Game_Object,)
         )
 
-        # @action must have at least (self, context)
+        # @action() must have at least (self, context)
         with self.assertRaises(TypeError):
 
             class Test_Class_With_Action:
-                @action
+                @action()
                 def on_test_action():
                     pass
 
         with self.assertRaises(TypeError):
 
             class Test_Class_With_Action:
-                @action
+                @action()
                 def on_test_action(self):
                     pass
 
         with self.assertRaises(TypeError):
 
             class Test_Class_With_Action:
-                @action
+                @action()
                 def on_test_action(s, context):
                     pass
 
         with self.assertRaises(TypeError):
 
             class Test_Class_With_Action:
-                @action
+                @action()
                 def on_test_action(self, c):
                     pass
 
         class Test_Class_With_Action:
-            @action
+            @action()
             def on_test_action(self, context):
                 pass
 
@@ -62,28 +62,28 @@ class Test(unittest.TestCase):
         with self.assertRaises(TypeError):
 
             class Test_Class_With_Action:
-                @action
+                @action()
                 def on_test_action(self, context, arg):
                     pass
 
         with self.assertRaises(TypeError):
 
             class Test_Class_With_Action:
-                @action
+                @action()
                 def on_test_action(self, context, arg):
                     pass
 
         with self.assertRaises(TypeError):
 
             class Test_Class_With_Action:
-                @action
+                @action()
                 def on_test_action(self, context, arg: "string"):
                     pass
 
         with self.assertRaises(TypeError):
 
             class Test_Class_With_Action:
-                @action
+                @action()
                 def on_test_action(self, context, arg: int):
                     pass
 
@@ -91,7 +91,7 @@ class Test(unittest.TestCase):
         register_supported_action_additional_argument_type(float)
 
         class Test_Class_With_Action:
-            @action
+            @action()
             def on_test_action1(self, context, arg: int):
                 pass
 
@@ -100,15 +100,15 @@ class Test(unittest.TestCase):
 
         # (can) invoke
         class Test_Class_With_Action:
-            @action
+            @action()
             def on_test_action0(self, context):
                 pass
 
-            @action
+            @action()
             def on_test_action1(self, context, arg1: int):
                 pass
 
-            @action
+            @action()
             def on_test_action2(self, context, arg1: int, arg2: float):
                 pass
 

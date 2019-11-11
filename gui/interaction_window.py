@@ -157,6 +157,7 @@ class Interaction_Window(Base_Window):
         # object buttons
         x = 0
         y = 0
+        context = self.get_application().get_game_state().get_current_context()
         for i in range(len(self._stack)):
             object = self._stack[i]
             symbol = str(object)
@@ -188,7 +189,7 @@ class Interaction_Window(Base_Window):
             symbol += ")"
             command = lambda action=action: self._invoke_bound_action(action)
             state = tk.DISABLED
-            if can_invoke_bound_action(action, self._stack[1:]):
+            if can_invoke_bound_action(action, context, self._stack[1:]):
                 state = tk.NORMAL
             button = tk.Button(
                 toplevel, text=symbol, command=command, state=state

@@ -11,12 +11,11 @@ class Dice(Game_Object, Base_Dice):
     def get_name(self):
         return str(self)
 
-    @action
-    def on_roll(self, context):
+    def on_roll_is_invokable(self, context):
         if not "dice roll phase" in context.active_phases:
-            raise Action_Invokation_Error(
-                "Cannot roll dice "
-                + str(self)
-                + ": active phase is not roll dice phase."
-            )
+            return False
+        return True
+
+    @action(on_roll_is_invokable)
+    def on_roll(self, context):
         self.roll()

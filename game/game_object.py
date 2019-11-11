@@ -34,7 +34,7 @@ class Game_Object(ABC, Internally_Named, Owned):
             + ")"
         )
 
-    @action
+    @action()
     def on_inspect(self, context):
         print(repr(self))
 

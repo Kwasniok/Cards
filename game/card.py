@@ -50,7 +50,7 @@ class Card(Game_Object):
     def get_win_points(self, context):
         return 0
 
-    @action
+    @action()
     def on_inspect(self, context):
         print(
             "Card(name="

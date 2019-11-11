@@ -66,43 +66,27 @@ class Building_Card(Expansion_Card):
         # TODO: on own turn
         return True
 
-    @action
-    def on_construction(self, context, card_slot: Card_Slot):
+    def on_construction_is_invokable(self, context, card_slot: Card_Slot):
         if not (self.get_owner() == context.active_player):
-            raise Action_Invokation_Error(
-                "Cannot construct building card "
-                + str(self)
-                + ": Owner "
-                + str(self.get_owner())
-                + " is not the active player."
-            )
+            return False
         if not ("main phase" in context.active_phases):
-            raise Action_Invokation_Error(
-                "Cannot construct building card "
-                + str(self)
-                + ": Current active phase(s) "
-                + " and ".join([str(phase) for phase in context.active_phases])
-                + " do(es) not allow building."
-            )
+            return False
         if not card_slot.would_accept(self):
-            raise Action_Invokation_Error(
-                "Cannot construct building card "
-                + str(self)
-                + " at card slot "
-                + str(card_slot)
-                + ": Card slot does not accept this card."
-            )
+            return False
+        return True
+
+    @action(on_construction_is_invokable)
+    def on_construction(self, context, card_slot: Card_Slot):
         card_slot.add(self)
         self.make_face_up()
         context.active_player.get_hand().remove(self)
 
-    @action
+    def on_destruction_is_invokable(self, context, card_slot: Card_Slot):
+        return False
+
+    @action(on_destruction_is_invokable)
     def on_destruction(self, context, card_slot: Card_Slot):
-        raise Action_Invokation_Error(
-            "Cannot destruct building card "
-            + str(self)
-            + ": Destruction not permitted."
-        )
+        pass
 
 
 class Small_Building_Card(Building_Card):

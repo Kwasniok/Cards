@@ -27,15 +27,12 @@ class Phase(Game_Object):
     def _set_inactive(self):
         self._active = False
 
-    @action
+    def on_activate_is_invokable(self, context):
+        return False
+
+    @action(on_activate_is_invokable)
     def on_activate(self, context):
-        raise (
-            Action_Invokation_Error(
-                "Phase "
-                + self.get_name(context)
-                + " cannot be activated: Not implemented."
-            )
-        )
+        pass
 
 
 class Turn_Phase(Phase):
@@ -50,24 +47,17 @@ class Turn_Phase(Phase):
         else:
             self._required_previous_phases = required_previous_phases
 
-    @action
-    def on_activate(self, context):
+    def on_activate_is_invokable(self, context):
         active = len(self._required_previous_phases) == 0
         for required_previous_phase in self._required_previous_phases:
             if required_previous_phase in context.active_phases:
                 active = True
         if not active:
-            raise (
-                Action_Invokation_Error(
-                    "Phase "
-                    + self.get_name(context)
-                    + " cannot be activated: None of the required previous phases ("
-                    + " or ".join(
-                        [str(phase) for phase in self._required_previous_phases]
-                    )
-                    + ") is currently active."
-                )
-            )
+            return False
+        return True
+
+    @action(on_activate_is_invokable)
+    def on_activate(self, context):
         phase_manager = context.game_state.get_turn_phase_manager()
         phase_manager.make_all_inactive()
         phase_manager.make_active(self)
