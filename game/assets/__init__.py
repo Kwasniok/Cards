@@ -1,4 +1,5 @@
 # load all submodules to trigger game object registration
+from game.assets.events import *
 from game.assets.resource_cards import *
 from game.assets.initial_resource_cards import *
 from game.assets.small_building_cards import *
