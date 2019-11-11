@@ -1,4 +1,5 @@
 from abc import abstractmethod
+from .action import action
 from game.card import Card
 from .subtype_library import Subtype_Library
 
@@ -19,6 +20,7 @@ class Event_Card(Card):
             + ")"
         )
 
+    @action()
     @abstractmethod
     def on_discovery(self, context):
         pass
