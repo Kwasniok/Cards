@@ -1,4 +1,5 @@
 from abc import abstractmethod
+from core.random import random_pop
 from game.action import action
 from game.event_card import event_card_library, Event_Card as Basic_Event_Card
 
@@ -28,8 +29,19 @@ class Turn_Of_The_Year_Card(Event_Card):
 
     @action(Event_Card.on_discovery_is_invokable)
     def on_discovery(self, context):
-        print("TODO: shuffle event card stack")
-        # TODO: shuffle event card stack
+        Event_Card.on_discovery(self, context)
+        # put all event cards into the event card intake stack and shuffle it
+        event_card_tray_stack = (
+            context.game_state.get_neutral_zone().get_event_card_tray_stack()
+        )
+        event_card_intake_stack = (
+            context.game_state.get_neutral_zone().get_event_card_intake_stack()
+        )
+        event_cards = (
+            event_card_tray_stack.pop_all() + event_card_intake_stack.pop_all()
+        )
+        while event_cards:
+            event_card_intake_stack.push_top(random_pop(event_cards))
 
 
 event_card_library.register(Turn_Of_The_Year_Card, amount=1)
