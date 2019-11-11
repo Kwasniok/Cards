@@ -51,6 +51,7 @@ class Game_State(Internally_Named):
         )
 
     # context: dummy context
+    # TODO: make @action()?
     def on_prepare_game(self, context):
         # neutral zone
         self._neutral_zone.reset()
