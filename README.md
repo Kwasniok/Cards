@@ -80,3 +80,4 @@ where `<test>` might be the name of any [test modules](interactive_tests).
 
 ## Tested with
 `Windows 10` and `Python 3.6.6`
+`MAC OS X 10.11.6` and `Python 3.6.3`
