@@ -29,7 +29,7 @@ def unregister_all_supported_action_additional_argument_types():
     _supported_action_additional_argument_types.clear()
 
 
-# interface:
+# decorator to ensure the `action` interface:
 # def on_<action_name>(self, context, <kwarg_1>:<kwarg_1_type>, ..., <kwarg_N>:<kwarg_N_type>)
 def action(action_function):
     # check function name
