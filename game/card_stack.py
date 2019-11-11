@@ -38,6 +38,11 @@ class Card_Stack(Game_Object):
         self._cards.remove(card)
         return card
 
+    def pop_all(self):
+        cards = self._cards
+        self._cards = []
+        return cards
+
     def push_top(self, card):
         if card in self._cards:
             raise (
