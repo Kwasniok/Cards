@@ -29,7 +29,7 @@ class Interaction_Window(Base_Window):
             y=y,
         )
         self._window = window
-        self.set_icon("res/game_icon.gif")
+        self.set_icon("../res/game_icon.gif")
         self.make_non_resizable()
         self._stack = []
         self._buttons = []

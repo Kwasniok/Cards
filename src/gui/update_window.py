@@ -22,7 +22,7 @@ class Update_Window(Base_Window):
             x=x,
             y=y,
         )
-        self.set_icon("res/game_icon.gif")
+        self.set_icon("../res/game_icon.gif")
         self.make_non_resizable()
         self._window = window
         self._interaction_window = interaction_window

@@ -32,8 +32,8 @@ cd ..
 # Run
 Call
 ```
-cd Cards
-python main.py
+cd Cards/src
+python -m main
 ```
 to run the script.
 
@@ -60,22 +60,23 @@ which will update them according to your project's current version.
 ## Unit Tests
 Run all unit tests via
 ```
-cd Cards
-python run_all_unittests.py
+cd Cards/src
+python -m run_all_unittests
 ```
 
 ## Interactive Tests
 Run all interactive tests sequentially via
 ```
-cd Cards
-python run_all_interactive_tests.py
+cd Cards/src
+python -m run_all_interactive_tests
 ```
 or run a single interactive test via
 ```
-cd Cards
-python -m interactive_tests.<test>
+cd Cards/src
+python -m interactive_tests/<test>
 ```
 where `<test>` might be the name of any [test modules](interactive_tests).
+
 *Note: Remeber to strip the file extension `.py` like in `example_test.py` --> `example_test`.*
 
 ## Tested with

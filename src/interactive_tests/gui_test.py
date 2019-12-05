@@ -18,7 +18,7 @@ class Test_Window(Window):
         )
         self.make_non_resizable()
         self.center()
-        self.set_icon("res/test.gif")
+        self.set_icon("../res/test.gif")
         self._counter = 0
         self._canvas = tk.Canvas(self.get_tk_toplevel())
         self._canvas.pack(expand=True, fill=tk.BOTH)  # fill parent
@@ -32,7 +32,7 @@ class Test_Window(Window):
             fill="#0000FF",
             outline="#FFFFFF",
         )
-        self._image = tk.PhotoImage(file="res/test.gif")
+        self._image = tk.PhotoImage(file="../res/test.gif")
         self._image_id = self._canvas.create_image(
             128, 128, anchor=tk.NW, image=self._image
         )

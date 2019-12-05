@@ -30,7 +30,7 @@ class Window(Base_Window):
             y=y,
         )
         self.make_non_resizable()
-        self.set_icon("res/game_icon.gif")
+        self.set_icon("../res/game_icon.gif")
         # interaction window
         toplevel = self.get_tk_toplevel()
         toplevel.update_idletasks()
