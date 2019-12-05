@@ -117,7 +117,7 @@ class Test(unittest.TestCase):
         # 0 additional arguments
         self.assertTrue(
             can_invoke_bound_action(
-                test_object.on_test_action0, additional_args=[]
+                test_object.on_test_action0, context=context, additional_args=[]
             )
         )
         invoke_bound_action(
@@ -126,7 +126,9 @@ class Test(unittest.TestCase):
         # wrong number of additional arguments
         self.assertFalse(
             can_invoke_bound_action(
-                test_object.on_test_action0, additional_args=[None]
+                test_object.on_test_action0,
+                context=context,
+                additional_args=[None],
             )
         )
         with self.assertRaises(Action_Error):
@@ -138,7 +140,9 @@ class Test(unittest.TestCase):
         # 1 additional argument
         self.assertTrue(
             can_invoke_bound_action(
-                test_object.on_test_action1, additional_args=[1]
+                test_object.on_test_action1,
+                context=context,
+                additional_args=[1],
             )
         )
         invoke_bound_action(
@@ -147,12 +151,14 @@ class Test(unittest.TestCase):
         # wrong number of additional arguments
         self.assertFalse(
             can_invoke_bound_action(
-                test_object.on_test_action1, additional_args=[]
+                test_object.on_test_action1, context=context, additional_args=[]
             )
         )
         self.assertFalse(
             can_invoke_bound_action(
-                test_object.on_test_action1, additional_args=[1, 2]
+                test_object.on_test_action1,
+                context=context,
+                additional_args=[1, 2],
             )
         )
         with self.assertRaises(Action_Error):
@@ -168,7 +174,9 @@ class Test(unittest.TestCase):
         # wrong type of additional arguments
         self.assertFalse(
             can_invoke_bound_action(
-                test_object.on_test_action1, additional_args=[1.0]
+                test_object.on_test_action1,
+                context=context,
+                additional_args=[1.0],
             )
         )
         with self.assertRaises(Action_Error):
@@ -180,7 +188,9 @@ class Test(unittest.TestCase):
         # 2 additional arguments
         self.assertTrue(
             can_invoke_bound_action(
-                test_object.on_test_action2, additional_args=[1, 2.0]
+                test_object.on_test_action2,
+                context=context,
+                additional_args=[1, 2.0],
             )
         )
         invoke_bound_action(
@@ -191,12 +201,16 @@ class Test(unittest.TestCase):
         # wrong number of additional arguments
         self.assertFalse(
             can_invoke_bound_action(
-                test_object.on_test_action2, additional_args=[1]
+                test_object.on_test_action2,
+                context=context,
+                additional_args=[1],
             )
         )
         self.assertFalse(
             can_invoke_bound_action(
-                test_object.on_test_action2, additional_args=[1, 2.0, 3]
+                test_object.on_test_action2,
+                context=context,
+                additional_args=[1, 2.0, 3],
             )
         )
         with self.assertRaises(Action_Error):
@@ -214,7 +228,9 @@ class Test(unittest.TestCase):
         # wrong type of additional arguments
         self.assertFalse(
             can_invoke_bound_action(
-                test_object.on_test_action2, additional_args=[1.0, 2]
+                test_object.on_test_action2,
+                context=context,
+                additional_args=[1.0, 2],
             )
         )
         with self.assertRaises(Action_Error):
